@@ -514,7 +514,8 @@ const Navbar = () => {
 				{isloggedIn ? (
 					<div className="media-profile-icon">
 						<img
-							onClick={() => setOpenProfile((prev) => !prev)}
+							// onClick={() => setOpenProfile((prev) => !prev)}
+							onClick={() => navigate("/userprofile")}
 							src={user_icon}
 							style={{ cursor: "pointer" }}
 							alt=""
@@ -522,7 +523,7 @@ const Navbar = () => {
 					</div>
 				) : (
 					<button className="btn btn-primary media-login">
-						<Link to="/login">LOGIN</Link>
+						<Link to="/Signup">LOGIN</Link>
 					</button>
 				)}
 				{isloggedIn && (
