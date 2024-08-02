@@ -1,0 +1,27 @@
+.shipping-address-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.shipping-address-container button {
+  font-size: 18px;
+  padding: 5px 15px;
+  border-radius: 40px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.a_checkout {
+  padding-top: 10vh;
+  background: #EFE2D7;
+}
+
+.success-gif-containe {
+  padding-top: 35vh;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
