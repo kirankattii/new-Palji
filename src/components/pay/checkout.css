@@ -25,3 +25,8 @@
   justify-content: center;
   align-items: center;
 }
+
+.checkout_to_cart {
+  margin-left: 60px;
+  margin-top: -20px;
+}

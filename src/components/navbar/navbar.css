@@ -207,6 +207,20 @@
   /* Example underline for active link */
 }
 
+.media_nav_login_button {
+  border: 1px solid #000;
+  font-size: 16px;
+  padding: 3px 15px;
+  background: #efe2d7;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.navbar_wishlist {
+  font-size: 30px;
+  margin-bottom: 23px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 1100px) {
   .navbar {
@@ -338,6 +352,14 @@
 }
 
 @media screen and (max-width: 500px) {
+  .media_nav_login_button {
+    border: 1px solid #000;
+    font-size: 14px;
+    padding: 3px 6px;
+    background: #efe2d7;
+    border-radius: 20px;
+  }
+
   .center-logo {
     width: 90px;
   }

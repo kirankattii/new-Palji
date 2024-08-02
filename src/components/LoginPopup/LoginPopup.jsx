@@ -73,7 +73,7 @@ const LoginPopup = ({ onClose }) => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<button
-						className="click_buttons"
+						className="login_click_buttons"
 						onClick={(e) => handleLogin(e)}
 					>
 						Login

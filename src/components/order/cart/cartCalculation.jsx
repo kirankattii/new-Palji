@@ -36,9 +36,9 @@ function CartCalculation({
 				</div>
 				<Link
 					to="/userprofile/myorders"
-					className="css-for-link-tag"
+					className="css-for-link-taga"
 				>
-					<div className="cart_calculation_button">{ButtonName}</div>
+					<div className="proced_to_payment_button">{ButtonName}</div>
 				</Link>
 			</div>
 			<div></div>

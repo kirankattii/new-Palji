@@ -296,6 +296,8 @@ import ProductDropdown from "../productDropdown/ProductDropdown"
 import ProfileDropdown from "../profileDropdown/ProfileDropdown"
 import { makeApi } from "../../api/callApi"
 import NavSearchList from "../navSearchList/NavSearchList"
+import { FaRegHeart } from "react-icons/fa"
+
 import {
 	subscribeToCartCount,
 	unsubscribeFromCartCount,
@@ -454,9 +456,7 @@ const Navbar = () => {
 					</div>
 				) : (
 					<p className="btn-btn-primary">
-						<Link to="/Signup">
-							<IoMdLogIn />
-						</Link>
+						<Link to="/Signup">{/* <IoMdLogIn /> */}</Link>
 					</p>
 				)}
 
@@ -511,6 +511,14 @@ const Navbar = () => {
 						clearSearchInput={clearSearchInput}
 					/>
 				</div>
+				{isloggedIn && (
+					<div
+						className="navbar_wishlist"
+						onClick={() => navigate("/userprofile/mywatchlist")}
+					>
+						<FaRegHeart />
+					</div>
+				)}
 				{isloggedIn ? (
 					<div className="media-profile-icon">
 						<img
@@ -522,7 +530,7 @@ const Navbar = () => {
 						/>
 					</div>
 				) : (
-					<button className="btn btn-primary media-login">
+					<button className="media_nav_login_button">
 						<Link to="/Signup">LOGIN</Link>
 					</button>
 				)}

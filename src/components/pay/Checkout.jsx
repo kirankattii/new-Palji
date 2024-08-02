@@ -8,6 +8,7 @@ import SucessGIF from "../../assets/Order Placed.gif"
 import Primaryloader from "../../components/loaders/primaryloader.jsx"
 import { ToastContainer, toast } from "react-toastify"
 import CartCalculation from "../CartCalculation/cartCalculation.jsx"
+import BackButton from "../products/backButton.jsx"
 
 function Checkout() {
 	const navigation = useNavigate()
@@ -150,8 +151,12 @@ function Checkout() {
 							<div>
 								<Orderbar activeOptionName="CHECKOUT" />
 							</div>
+							<div className="checkout_to_cart">
+								<BackButton pageLocation="/cart" />
+							</div>
 							<div className="main_checkout_div">
 								{/* Shipping address */}
+
 								<div className="shipping-address-container Order_page_display_none ">
 									<div>
 										<div className="shipping-address-title">
@@ -234,7 +239,7 @@ function Checkout() {
 															htmlFor={`billing-address-${index}`}
 															className="address-label"
 														>
-															{`${address.firstname} ${address.lastname}, ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
+															{`${address.name} , ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
 														</label>
 													</div>
 												))}
@@ -259,7 +264,9 @@ function Checkout() {
 							<div>
 								<Orderbar activeOptionName="PAYMENT" />
 							</div>
-
+							<div className="checkout_to_cart">
+								<BackButton pageLocation="/cart" />
+							</div>
 							<div className="main_checkout_div">
 								<div className="shipping-address-container">
 									<div className="shipping-address-title">Payment Method</div>

@@ -7,6 +7,7 @@ import "./signup.css"
 
 const Signup = () => {
 	const navigate = useNavigate()
+	const mobileNumberRegex = /^[0-9]{10}$/
 	const [signupSuccess, setSignupSuccess] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [state, setState] = useState("Login")
@@ -67,6 +68,10 @@ const Signup = () => {
 		}
 		if (!formData.password) {
 			toast.error("Please fill password")
+			return
+		}
+		if (!mobileNumberRegex.test(formData.mobileNumber)) {
+			toast.error("Please enter a valid 10-digit mobile number")
 			return
 		}
 		if (!formData.mobileNumber) {
@@ -141,7 +146,7 @@ const Signup = () => {
 					<input
 						name="email"
 						type="email"
-						placeholder="Email Address ok"
+						placeholder="Email Address"
 						value={formData.email}
 						onChange={changeHandler}
 					/>
@@ -184,7 +189,7 @@ const Signup = () => {
 
 					{state === "Sign Up" ? (
 						<p>
-							Already have an account ?{" "}
+							<b> Already have an account ?</b>{" "}
 							<span
 								onClick={() => setState("Login")}
 								style={{ cursor: "pointer" }}
@@ -194,7 +199,7 @@ const Signup = () => {
 						</p>
 					) : (
 						<p className="loginsignup-login">
-							Create an account <span> </span>
+							<b>Create an account</b> <span> </span>
 							<span
 								onClick={() => setState("Sign Up")}
 								style={{ cursor: "pointer" }}

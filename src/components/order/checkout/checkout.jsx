@@ -116,6 +116,7 @@ function Checkout() {
 							</div>
 							<div className="main_checkout_div">
 								{/* Shipping address */}
+
 								<div className="shipping-address-container Order_page_display_none ">
 									<div className="shipping-address-title">Shipping Address</div>
 									<div className="shipping-address-list">

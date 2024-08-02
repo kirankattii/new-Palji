@@ -137,6 +137,7 @@ const Payment = () => {
 							<div>
 								<Orderbar activeOptionName="CHECKOUT" />
 							</div>
+
 							<div className="main_checkout_div">
 								{/* Shipping address */}
 								<div className="shipping-address-container Order_page_display_none ">

@@ -46,6 +46,25 @@ const Contact = () => {
 			toast.error("Please enter valid phonennumber")
 			return
 		}
+		// Validate email
+		const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+		if (!Data.email) {
+			toast.error("Please fill email")
+			return
+		} else if (!emailPattern.test(Data.email)) {
+			toast.error("Please enter a valid email address")
+			return
+		}
+
+		// Validate phonennumber
+		const phonePattern = /^\d{10}$/
+		if (!Data.phonennumber) {
+			toast.error("Please fill phone number")
+			return
+		} else if (!phonePattern.test(Data.phonennumber)) {
+			toast.error("Please enter a valid 10-digit phone number")
+			return
+		}
 		try {
 			const response = await makeApi("/api/create-message", "POST", Data)
 			console.log(response)

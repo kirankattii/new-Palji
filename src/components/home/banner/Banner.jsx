@@ -746,13 +746,13 @@ const Banner = () => {
 												</div>
 											)}
 										</div> */}
-										{isInCart(item._id) ? (
+										{isInCart(item?._id) ? (
 											<div className="a_Add_to_cart_and_watchlist_child">
 												{productLoaders[item?._id] ? (
 													<HorizotalLoader />
 												) : (
 													<div className="a_cart_quantity b_cart_quantity">
-														<img
+														<LazyLoadImage
 															effect="blur"
 															loading="lazy"
 															src={RemoveIcon}
@@ -787,15 +787,18 @@ const Banner = () => {
 											</div>
 										) : (
 											<div>
-												{AddTocartLoader ? (
-													<div>
-														{" "}
-														<HorizotalLoader />{" "}
-													</div>
+												{productLoaders[item?._id] ? (
+													<HorizotalLoader />
 												) : (
 													<div
 														className="a_Add_to_cart_button b_addtocart"
-														onClick={() => addToCart(item._id)}
+														onClick={() =>
+															handleAddToCart(
+																item?._id,
+																getProductQuantity(item?._id),
+																item?.quantity
+															)
+														}
 													>
 														Add to Cart
 													</div>

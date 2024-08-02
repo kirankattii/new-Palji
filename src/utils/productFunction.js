@@ -207,3 +207,27 @@ export const subscribeToCartCount = (listener) => {
 export const unsubscribeFromCartCount = (listener) => {
 	cartCountListeners = cartCountListeners.filter((l) => l !== listener)
 }
+
+export const removeAllProductsFromCart = async (
+	productId,
+	setProductLoaders,
+	fetchCart
+) => {
+	try {
+		setProductLoaders((prevState) => ({
+			...prevState,
+			[productId]: true,
+		}))
+		const method = "DELETE"
+		const endpoint = `/api/cart/remove-all/${productId}`
+		await makeApi(endpoint, method)
+		fetchCart()
+	} catch (error) {
+		console.log("Error removing all products from cart: ", error)
+	} finally {
+		setProductLoaders((prevState) => ({
+			...prevState,
+			[productId]: false,
+		}))
+	}
+}
