@@ -107,6 +107,15 @@
   cursor: pointer;
 }
 
+.filter_product_popup {
+  z-index: 5555555550;
+}
+
+.line_btn_sidebar_products {
+  color: #AE7B37;
+  border: 2px solid #AE7B37;
+}
+
 @media (max-width: 800px) {
   .main_product_sidebar_div {
     max-width: 200px;
@@ -191,6 +200,10 @@
 
   .more_icon_sidebar_div {
     padding: 10px 0px;
+  }
+
+  .line_btn_sidebar_products {
+    display: none;
   }
 }
 

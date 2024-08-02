@@ -27,10 +27,10 @@ const AboutUs = () => {
 					From those humble beginnings, Palji Bakery has flourished into a
 					beloved establishment known for its dedication to excellence. Sardar
 					Tarlochan Singh Ji's commitment to quality and taste laid the
-					foundation for what would become a cherished family legacy. Today,
-					with his son and grandson carrying forward his vision, Palji Bakery
-					continues to uphold the values instilled by its founder. Our
-					vegetarian bakery products are crafted with the same love and
+					foundation for what would become a cherished family legacy. <br />
+					<br /> Today, with his son and grandson carrying forward his vision,
+					Palji Bakery continues to uphold the values instilled by its founder.
+					Our vegetarian bakery products are crafted with the same love and
 					attention to detail that defined our early days. Despite our growth
 					and expansion, we remain committed to delivering the best in taste and
 					hygiene. Each product is prepared with freshly harvested raw materials

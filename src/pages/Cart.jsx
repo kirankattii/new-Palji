@@ -843,6 +843,309 @@
 
 // export default Cart
 
+// import React, { useContext, useEffect, useState } from "react"
+// import "./CSS/cart.css"
+// import { ShopContext } from "../context/ShopContext"
+// import { assets } from "../assets/assets"
+// import { useNavigate } from "react-router"
+// import { makeApi } from "../api/callApi"
+// import Orderbar from "../components/orderbar/orderbar"
+// import { ToastContainer, toast } from "react-toastify"
+// import "react-toastify/dist/ReactToastify.css"
+// import Primaryloader from "../components/loaders/primaryloader"
+// import { Link } from "react-router-dom"
+// import {
+// 	cartItemFetchCart,
+// 	cartItemAddToCart,
+// 	cartItemRemoveFromCart,
+// 	removeAllProductsFromCart,
+// } from "../utils/productFunction"
+
+// const Cart = () => {
+// 	const {
+// 		cartItems,
+// 		getTotalCartDiscountAmount,
+// 		all_product,
+// 		getTotalCartAmount,
+// 	} = useContext(ShopContext)
+
+// 	const totalDiscount = (
+// 		getTotalCartAmount() - getTotalCartDiscountAmount()
+// 	).toFixed(2)
+
+// 	const navigate = useNavigate()
+
+// 	const [shippingAddresses, setShippingAddresses] = useState([])
+// 	const [loading, setLoading] = useState(false)
+// 	const [selectedAddress, setSelectedAddress] = useState(null)
+// 	const [cartItem, setCartItem] = useState([])
+// 	const [cartPoductList, setCartProductList] = useState([])
+// 	const [coupanCode, setCoupanCode] = useState("")
+// 	const [appliedCoupan, setAppliedCoupan] = useState(null)
+// 	const [AllProductLoader, setAllProductLoader] = useState(false)
+// 	const [productLoaders, setProductLoaders] = useState({})
+// 	const [IscartEmpty, setIsCartEmpty] = useState(false)
+// 	const [coupanDiscount, setCoupanDiscount] = useState(0)
+
+// 	const fetchShippingAddresses = async () => {
+// 		try {
+// 			setLoading(true)
+// 			const response = await makeApi("/api/get-my-shiped-address", "GET")
+// 			setShippingAddresses(response.data.shipedaddress)
+// 			setLoading(false)
+// 		} catch (error) {
+// 			console.error("Error fetching shipping addresses: ", error)
+// 			setLoading(false)
+// 		}
+// 	}
+
+// 	const SubmitCoupan = async (e) => {
+// 		e.preventDefault()
+// 		try {
+// 			const applyCoupan = await makeApi(
+// 				`/api/get-coupan-by-coupancode/${coupanCode}`,
+// 				"GET"
+// 			)
+// 			if (applyCoupan?.data?.coupan !== null) {
+// 				setAppliedCoupan(applyCoupan.data.coupan)
+// 				toast.success("Coupon applied successfully!")
+// 				setCoupanDiscount(applyCoupan?.data?.coupan?.discountPercentage)
+// 				fetchCartItem()
+// 			} else {
+// 				toast.error("Coupan Code is Invalid")
+// 			}
+
+// 			// Update cart data after applying coupon
+// 		} catch (error) {
+// 			console.error("Error applying coupon: ", error)
+// 			toast.error("Failed to apply coupon")
+// 		}
+// 	}
+// 	console.log("cujadn", coupanDiscount)
+
+// 	const RemoveCoupan = async () => {
+// 		try {
+// 			const removeCoupan = await makeApi("/api/remove-coupon", "POST")
+// 			setAppliedCoupan(null)
+// 			setCoupanCode("")
+// 			toast.success("Coupon removed successfully!")
+// 			// Update cart data after removing coupon
+// 			fetchCartItem()
+// 		} catch (error) {
+// 			console.error("Error removing coupon: ", error)
+// 			toast.error("Failed to remove coupon")
+// 		}
+// 	}
+
+// 	const handleAddressSelect = (address) => {
+// 		setSelectedAddress(address)
+// 	}
+
+// 	useEffect(() => {
+// 		fetchShippingAddresses()
+// 	}, [])
+
+// 	const fetchCartItem = async () => {
+// 		await cartItemFetchCart(
+// 			setCartItem,
+// 			setCartProductList,
+// 			setAllProductLoader,
+// 			setIsCartEmpty
+// 		)
+// 	}
+
+// 	const removeFromCart = async (productId) => {
+// 		await cartItemRemoveFromCart(productId, setProductLoaders, fetchCartItem)
+// 	}
+
+// 	const addToCart = async (productId) => {
+// 		await cartItemAddToCart(productId, setProductLoaders, fetchCartItem)
+// 	}
+
+// 	const handleAddToCart = (productId, quantity, availableQuantity) => {
+// 		if (quantity < availableQuantity) {
+// 			addToCart(productId)
+// 		} else {
+// 			toast.error("Cannot add more than available quantity.")
+// 		}
+// 	}
+
+// 	useEffect(() => {
+// 		fetchCartItem()
+// 	}, [])
+
+// 	return (
+// 		<>
+// 			<ToastContainer />
+// 			{AllProductLoader ? (
+// 				<div className="All_Product_loader">
+// 					<div className="All_Product_loadera">
+// 						<Primaryloader />
+// 					</div>
+// 				</div>
+// 			) : (
+// 				<div className="cart-container">
+// 					{IscartEmpty && (
+// 						<div className="empty_cart_div">
+// 							<img
+// 								src={assets.empty_cart}
+// 								alt="No cart "
+// 								className="NO_cart_image"
+// 							/>
+// 							<Link to="/product/all-products">
+// 								<h2>Explore products</h2>
+// 							</Link>
+// 						</div>
+// 					)}
+// 					{!IscartEmpty && (
+// 						<div>
+// 							<div className="cart-item">
+// 								<div className="cart-items-title cart-items-title2">
+// 									<p>Items</p>
+// 									<p>Name</p>
+// 									<p>Price</p>
+// 									<p>Qty</p>
+// 									<p>Total:</p>
+// 									<p>Remove</p>
+// 								</div>
+// 								<br />
+// 								<hr />
+// 								{cartPoductList &&
+// 									cartPoductList.map((item, index) => (
+// 										<div key={index}>
+// 											<div className="cart-items-title cart-items-item">
+// 												<img
+// 													src={item.productId.thumbnail}
+// 													alt=""
+// 												/>
+// 												<p>{item.productId.name}</p>
+// 												<p>₹{item.productId.price}</p>
+// 												<div className="cartPageButton">
+// 													<img
+// 														loading="lazy"
+// 														src={assets.add_icon_red}
+// 														alt="RemoveIcon"
+// 														className="Icon_add_to_cart_main_cart_page cart_increase"
+// 														onClick={() => removeFromCart(item.productId._id)}
+// 													/>
+// 													<p>{item.quantity}</p>
+// 													<img
+// 														loading="lazy"
+// 														src={assets.add_icon_green}
+// 														alt="AddIcon"
+// 														className="Icon_add_to_cart_main_cart_page"
+// 														onClick={() =>
+// 															handleAddToCart(
+// 																item.productId._id,
+// 																item.quantity,
+// 																item.productId.quantity
+// 															)
+// 														}
+// 													/>
+// 												</div>
+// 												<p>₹{item.totalPrice}</p>
+// 												<p
+// 													className="cross"
+// 													onClick={() =>
+// 														removeAllProductsFromCart(
+// 															item.productId._id,
+// 															setProductLoaders,
+// 															fetchCartItem
+// 														)
+// 													}
+// 												>
+// 													<img
+// 														className="remove-cart"
+// 														src={assets.cart_remove}
+// 														alt=""
+// 													/>
+// 												</p>
+// 											</div>
+// 											{/* <hr /> */}
+// 										</div>
+// 									))}
+// 							</div>
+// 							<div className="cart-bottomm">
+// 								<div className="cart-address">
+// 									<div className="cart-shipping-address"></div>
+// 								</div>
+
+// 								<div className="cart-billing">
+// 									<div className="cart-promocode">
+// 										<h2>HAVE A COUPON ?</h2>
+// 										<div className="cart-promocode-input">
+// 											<input
+// 												type="text"
+// 												placeholder="COUPON CODE"
+// 												value={coupanCode}
+// 												onChange={(e) => setCoupanCode(e.target.value)}
+// 												disabled={appliedCoupan !== null}
+// 											/>
+// 											{appliedCoupan ? (
+// 												<button onClick={RemoveCoupan}>REMOVE</button>
+// 											) : (
+// 												<button onClick={(e) => SubmitCoupan(e)}>APPLY</button>
+// 											)}
+// 										</div>
+// 									</div>
+// 									<div className="cart-order-summary">
+// 										<h2>order summary</h2>
+// 										<div className="cart-billing-charges">
+// 											<div className="cart-billing-subtotal">
+// 												<p>SUBTOTAL</p>
+// 												<p>
+// 													₹
+// 													{cartItem.totalPrice
+// 														? cartItem.totalPrice.toFixed(2)
+// 														: "0.00"}
+// 												</p>
+// 											</div>{" "}
+// 											<div className="cart-billing-discount">
+// 												<p>DISCOUNT</p>
+// 												<p>{appliedCoupan ? coupanDiscount : totalDiscount}%</p>
+// 											</div>{" "}
+// 											<div className="cart-billing-tax">
+// 												<p>TAX</p>
+// 												<p>{18}%</p>
+// 											</div>{" "}
+// 											<div className="cart-billing-shipping">
+// 												<p>SHIPPING</p>
+// 												<p>{cartItem.shippingPrice}</p>
+// 											</div>{" "}
+// 											<div className="cart-billing-shipping">
+// 												<b>TOTAL</b>
+// 												<b>
+// 													₹
+// 													{cartItem.TotalProductPrice -
+// 														cartItem.TotalProductPrice * (coupanDiscount / 100)}
+// 												</b>
+// 											</div>
+// 										</div>
+// 										<button
+// 											className="proceed_to_payment_button"
+// 											onClick={() => navigate("./checkout")}
+// 										>
+// 											proceed to checkout
+// 										</button>
+// 										<hr />
+// 										<p className="cart-delivery-day">
+// 											Estimated delivery in <span>3 to 5</span> Days
+// 										</p>
+// 									</div>
+
+// 									{/* </div> */}
+// 								</div>
+// 							</div>
+// 						</div>
+// 					)}
+// 				</div>
+// 			)}
+// 		</>
+// 	)
+// }
+
+// export default Cart
+
 import React, { useContext, useEffect, useState } from "react"
 import "./CSS/cart.css"
 import { ShopContext } from "../context/ShopContext"
@@ -860,6 +1163,8 @@ import {
 	cartItemRemoveFromCart,
 	removeAllProductsFromCart,
 } from "../utils/productFunction"
+
+const COUPON_EXPIRY_TIME = 3 * 60 * 1000 // 3 minutes in milliseconds
 
 const Cart = () => {
 	const {
@@ -899,6 +1204,23 @@ const Cart = () => {
 		}
 	}
 
+	const saveCouponToLocalStorage = (coupon) => {
+		const couponData = {
+			code: coupon,
+			timestamp: Date.now(),
+		}
+		localStorage.setItem("coupon", JSON.stringify(couponData))
+
+		// Automatically remove the coupon after 3 minutes
+		setTimeout(() => {
+			localStorage.removeItem("coupon")
+			setAppliedCoupan(null)
+			setCoupanDiscount(0)
+			toast.info("Coupon expired.")
+			fetchCartItem()
+		}, COUPON_EXPIRY_TIME)
+	}
+
 	const SubmitCoupan = async (e) => {
 		e.preventDefault()
 		try {
@@ -910,26 +1232,24 @@ const Cart = () => {
 				setAppliedCoupan(applyCoupan.data.coupan)
 				toast.success("Coupon applied successfully!")
 				setCoupanDiscount(applyCoupan?.data?.coupan?.discountPercentage)
+				saveCouponToLocalStorage(coupanCode)
 				fetchCartItem()
 			} else {
-				toast.error("Coupan Code is Invalid")
+				toast.error("Coupon Code is Invalid")
 			}
-
-			// Update cart data after applying coupon
 		} catch (error) {
 			console.error("Error applying coupon: ", error)
 			toast.error("Failed to apply coupon")
 		}
 	}
-	console.log("cujadn", coupanDiscount)
 
 	const RemoveCoupan = async () => {
 		try {
 			const removeCoupan = await makeApi("/api/remove-coupon", "POST")
 			setAppliedCoupan(null)
 			setCoupanCode("")
+			localStorage.removeItem("coupon")
 			toast.success("Coupon removed successfully!")
-			// Update cart data after removing coupon
 			fetchCartItem()
 		} catch (error) {
 			console.error("Error removing coupon: ", error)
@@ -941,8 +1261,25 @@ const Cart = () => {
 		setSelectedAddress(address)
 	}
 
+	const checkCouponValidity = () => {
+		const couponData = JSON.parse(localStorage.getItem("coupon"))
+		if (couponData) {
+			const { code, timestamp } = couponData
+			if (Date.now() - timestamp < COUPON_EXPIRY_TIME) {
+				setCoupanCode(code)
+				setAppliedCoupan({ code })
+				// Calculate discount or whatever logic you want here
+				setCoupanDiscount(10) // Example discount value
+				fetchCartItem()
+			} else {
+				localStorage.removeItem("coupon")
+			}
+		}
+	}
+
 	useEffect(() => {
 		fetchShippingAddresses()
+		checkCouponValidity()
 	}, [])
 
 	const fetchCartItem = async () => {
@@ -1006,7 +1343,7 @@ const Cart = () => {
 									<p>Price</p>
 									<p>Qty</p>
 									<p>Total:</p>
-									<p>Remove</p>
+									{/* <p>Remove</p> */}
 								</div>
 								<br />
 								<hr />
@@ -1044,7 +1381,7 @@ const Cart = () => {
 													/>
 												</div>
 												<p>₹{item.totalPrice}</p>
-												<p
+												{/* <p
 													className="cross"
 													onClick={() =>
 														removeAllProductsFromCart(
@@ -1059,9 +1396,8 @@ const Cart = () => {
 														src={assets.cart_remove}
 														alt=""
 													/>
-												</p>
+												</p> */}
 											</div>
-											{/* <hr /> */}
 										</div>
 									))}
 							</div>
@@ -1132,8 +1468,6 @@ const Cart = () => {
 											Estimated delivery in <span>3 to 5</span> Days
 										</p>
 									</div>
-
-									{/* </div> */}
 								</div>
 							</div>
 						</div>

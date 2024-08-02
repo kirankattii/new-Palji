@@ -210,10 +210,15 @@ const ProductSidebar = () => {
 	return (
 		<>
 			{showPopup && (
-				<FilterPopup
-					onClose={() => setShowPopup(false)}
-					onSubmit={handleApplyFilter}
-				/>
+				<div
+					className="filter_product_popup"
+					style={{ zIndex: 50 }}
+				>
+					<FilterPopup
+						onClose={() => setShowPopup(false)}
+						onSubmit={handleApplyFilter}
+					/>
+				</div>
 			)}
 			<div className="main_product_sidebar_top_parent_div">
 				<div className="main_product_sidebar_div">
@@ -299,6 +304,7 @@ const ProductSidebar = () => {
 						<div
 							className="more_icon_sidebar_div"
 							onClick={() => setShowPopup(true)}
+							style={{ cursor: "pointer" }}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -313,8 +319,11 @@ const ProductSidebar = () => {
 						</div>
 					</div>
 				</div>
-
-				<div className="w-100">
+				<hr className="line_btn_sidebar_products" />
+				<div
+					className="w-100"
+					style={{ zIndex: 1 }}
+				>
 					<Allproduct
 						search={search}
 						category={category}

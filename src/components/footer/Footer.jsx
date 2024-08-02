@@ -51,13 +51,15 @@ const Footer = () => {
 							<Link to="/aboutus">ABOUT US</Link>
 						</li>
 						<li>
-							<Link to="/products">BISCUIT</Link>
+							<Link to="/product/all-products?category=BISCUIT">BISCUIT</Link>
 						</li>
 						<li>
-							<Link to="/products">SAVORY</Link>
+							<Link to="/product/all-products?category=SAVORY">SAVORY</Link>
 						</li>
 						<li>
-							<Link to="/products">GIFT HAMPERS</Link>
+							<Link to="/product/all-products?category=GIFT%20HAMPERS">
+								GIFT HAMPERS
+							</Link>
 						</li>
 						<li>
 							<Link to="/contact">CONTACT US</Link>

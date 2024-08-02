@@ -358,6 +358,13 @@
     padding: 3px 6px;
     background: #efe2d7;
     border-radius: 20px;
+    margin-top: 25px;
+  }
+
+  .navbar_wishlist {
+    font-size: 30px;
+    margin-bottom: 5px;
+    cursor: pointer;
   }
 
   .center-logo {

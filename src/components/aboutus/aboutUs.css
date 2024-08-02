@@ -5,7 +5,6 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  min-height: 100vh;
   background: linear-gradient(to right,
       #EFE2D7 0%,
       #EFE2D7 50%,
@@ -74,7 +73,7 @@ h1 span {
 
 .ours {
   width: 100%;
-  height: 110vh;
+  /* height: 110vh; */
 
   display: flex;
   gap: 50px;
@@ -112,11 +111,14 @@ h1 span {
 }
 
 .our-mission {
-  background-image: url('../../assets/Rectangle with shadow 1.png');
-  height: 100%;
+  /* background-image: url('../../assets/Rectangle with shadow 1.png'); */
+  /* height: 100%; */
+  background: #FEA59F;
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-top: 50px;
+  padding-bottom: 60px;
 }
 
 .our-values .valued-features {
@@ -174,7 +176,7 @@ h1 span {
 
 @media screen and (max-width: 865px) {
   .ours {
-    height: 150vh;
+    /* height: 150vh; */
   }
 
   .company-history h1 {
@@ -212,15 +214,22 @@ h1 span {
 
 
   .cup-cakes img {
-    width: 480px;
+    width: 500px;
     height: 400px;
   }
 
+  .aboutus {
+    height: 70vh;
+  }
+
+  .aboutus h1 {
+    line-height: 350px;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .ours {
-    height: 185vh;
+    /* height: 185vh; */
   }
 
   .company-history h1 {
@@ -245,7 +254,7 @@ h1 span {
 
 @media screen and (max-width: 450px) {
   .ours {
-    height: 170vh;
+    /* height: 170vh; */
   }
 
   .our-values h2, .our-mission h2 {
@@ -257,7 +266,7 @@ h1 span {
   }
 
   .our-values .valued-features div p {
-    font-size: 14px;
+    font-size: 13px;
     width: 110px;
 
   }
@@ -269,6 +278,10 @@ h1 span {
   .cup-cakes img {
     width: 380px;
     height: 320px;
+  }
+
+  .company-history {
+    padding: 50px 0px;
   }
 
 }
