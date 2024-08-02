@@ -527,7 +527,8 @@ const Cart = () => {
 											</div>{" "}
 											<div className="cart-billing-tax">
 												<p>TAX</p>
-												<p>₹{cartItem.taxPrice}</p>
+												{/* <p>₹{cartItem.taxPrice}</p> */}
+												<p>{18}%</p>
 											</div>{" "}
 											<div className="cart-billing-shipping">
 												<p>SHIPPING</p>
