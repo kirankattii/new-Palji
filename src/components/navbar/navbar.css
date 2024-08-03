@@ -222,6 +222,35 @@
   cursor: pointer;
 }
 
+.user_icon_login {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  border: 1px solid #000;
+  padding-bottom: 0;
+  height: 35px;
+  padding: 0px;
+  border-radius: 50px;
+}
+
+.user_icon_login img {
+  width: 35px;
+  padding-bottom: 0;
+
+
+}
+
+.user_icon_login p {
+  font-size: 18px;
+  padding-bottom: 0;
+  margin-top: 13px;
+  padding-right: 10px;
+}
+
+.responcive_profile_login {
+  display: none;
+}
+
 @media screen and (max-width: 1100px) {
   .navbar {
     background: none;
@@ -348,7 +377,23 @@
     right: -200px;
   }
 
+  .responcive_profile_login {
+    display: block;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    height: 35px;
+    border-radius: 50px;
+  }
 
+  .responcive_profile_login img {
+    width: 35px;
+  }
+
+  .responcive_profile_login p {
+    margin-top: 12px;
+    padding-right: 5px;
+  }
 }
 
 @media screen and (max-width: 500px) {

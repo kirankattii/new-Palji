@@ -1079,7 +1079,17 @@ const Navbar = () => {
 					</div>
 				) : (
 					<p className="btn-btn-primary">
-						<Link to="/Signup"></Link>
+						<Link
+							to="/Signup"
+							className="user_icon_login"
+						>
+							<img
+								// onClick={() => navigate("/userprofile")}
+								src={user_icon}
+								alt=""
+							/>
+							<p>LOGIN</p>
+						</Link>
 					</p>
 				)}
 
@@ -1152,9 +1162,14 @@ const Navbar = () => {
 						/>
 					</div>
 				) : (
-					<button className="media_nav_login_button">
-						<Link to="/Signup">LOGIN</Link>
-					</button>
+					<div className="responcive_profile_login">
+						<img
+							// onClick={() => navigate("/userprofile")}
+							src={user_icon}
+							alt=""
+						/>
+						<p>LOGIN</p>
+					</div>
 				)}
 				{isloggedIn && (
 					<Link to="/cart">
@@ -1213,13 +1228,14 @@ const Navbar = () => {
 					</nav>
 				</div>
 			</div>
-			{openProfile && (
-				<ProfileDropdown
+			{openProfile &&
+				{
+					/* <ProfileDropdown
 					openProfile={setOpenProfile}
 					setOpenProfile={setOpenProfile}
 					className="nav-profile-dropdown"
-				/>
-			)}
+				/> */
+				}}
 		</div>
 	) : null
 }

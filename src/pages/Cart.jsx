@@ -1151,10 +1151,8 @@ import "./CSS/cart.css"
 import { ShopContext } from "../context/ShopContext"
 import { assets } from "../assets/assets"
 import { useNavigate } from "react-router"
-import { makeApi } from "../api/callApi"
 import Orderbar from "../components/orderbar/orderbar"
-import { ToastContainer, toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import { ToastContainer } from "react-toastify"
 import Primaryloader from "../components/loaders/primaryloader"
 import { Link } from "react-router-dom"
 import {
@@ -1163,8 +1161,9 @@ import {
 	cartItemRemoveFromCart,
 	removeAllProductsFromCart,
 } from "../utils/productFunction"
-
-const COUPON_EXPIRY_TIME = 3 * 60 * 1000 // 3 minutes in milliseconds
+import useCoupon from "../hook/coupanHook"
+import CouponFunctions from "../utils/couponFunctions"
+import { makeApi } from "../api/callApi"
 
 const Cart = () => {
 	const {
@@ -1173,6 +1172,15 @@ const Cart = () => {
 		all_product,
 		getTotalCartAmount,
 	} = useContext(ShopContext)
+
+	const {
+		couponCode,
+		setCouponCode,
+		appliedCoupon,
+		couponDiscount,
+		applyCoupon,
+		removeCoupon,
+	} = useCoupon()
 
 	const totalDiscount = (
 		getTotalCartAmount() - getTotalCartDiscountAmount()
@@ -1185,12 +1193,9 @@ const Cart = () => {
 	const [selectedAddress, setSelectedAddress] = useState(null)
 	const [cartItem, setCartItem] = useState([])
 	const [cartPoductList, setCartProductList] = useState([])
-	const [coupanCode, setCoupanCode] = useState("")
-	const [appliedCoupan, setAppliedCoupan] = useState(null)
 	const [AllProductLoader, setAllProductLoader] = useState(false)
 	const [productLoaders, setProductLoaders] = useState({})
 	const [IscartEmpty, setIsCartEmpty] = useState(false)
-	const [coupanDiscount, setCoupanDiscount] = useState(0)
 
 	const fetchShippingAddresses = async () => {
 		try {
@@ -1204,82 +1209,12 @@ const Cart = () => {
 		}
 	}
 
-	const saveCouponToLocalStorage = (coupon) => {
-		const couponData = {
-			code: coupon,
-			timestamp: Date.now(),
-		}
-		localStorage.setItem("coupon", JSON.stringify(couponData))
-
-		// Automatically remove the coupon after 3 minutes
-		setTimeout(() => {
-			localStorage.removeItem("coupon")
-			setAppliedCoupan(null)
-			setCoupanDiscount(0)
-			toast.info("Coupon expired.")
-			fetchCartItem()
-		}, COUPON_EXPIRY_TIME)
-	}
-
-	const SubmitCoupan = async (e) => {
-		e.preventDefault()
-		try {
-			const applyCoupan = await makeApi(
-				`/api/get-coupan-by-coupancode/${coupanCode}`,
-				"GET"
-			)
-			if (applyCoupan?.data?.coupan !== null) {
-				setAppliedCoupan(applyCoupan.data.coupan)
-				toast.success("Coupon applied successfully!")
-				setCoupanDiscount(applyCoupan?.data?.coupan?.discountPercentage)
-				saveCouponToLocalStorage(coupanCode)
-				fetchCartItem()
-			} else {
-				toast.error("Coupon Code is Invalid")
-			}
-		} catch (error) {
-			console.error("Error applying coupon: ", error)
-			toast.error("Failed to apply coupon")
-		}
-	}
-
-	const RemoveCoupan = async () => {
-		try {
-			const removeCoupan = await makeApi("/api/remove-coupon", "POST")
-			setAppliedCoupan(null)
-			setCoupanCode("")
-			localStorage.removeItem("coupon")
-			toast.success("Coupon removed successfully!")
-			fetchCartItem()
-		} catch (error) {
-			console.error("Error removing coupon: ", error)
-			toast.error("Failed to remove coupon")
-		}
-	}
-
 	const handleAddressSelect = (address) => {
 		setSelectedAddress(address)
 	}
 
-	const checkCouponValidity = () => {
-		const couponData = JSON.parse(localStorage.getItem("coupon"))
-		if (couponData) {
-			const { code, timestamp } = couponData
-			if (Date.now() - timestamp < COUPON_EXPIRY_TIME) {
-				setCoupanCode(code)
-				setAppliedCoupan({ code })
-				// Calculate discount or whatever logic you want here
-				setCoupanDiscount(10) // Example discount value
-				fetchCartItem()
-			} else {
-				localStorage.removeItem("coupon")
-			}
-		}
-	}
-
 	useEffect(() => {
 		fetchShippingAddresses()
-		checkCouponValidity()
 	}, [])
 
 	const fetchCartItem = async () => {
@@ -1398,78 +1333,12 @@ const Cart = () => {
 													/>
 												</p> */}
 											</div>
+											{/* <hr /> */}
 										</div>
 									))}
 							</div>
-							<div className="cart-bottomm">
-								<div className="cart-address">
-									<div className="cart-shipping-address"></div>
-								</div>
 
-								<div className="cart-billing">
-									<div className="cart-promocode">
-										<h2>HAVE A COUPON ?</h2>
-										<div className="cart-promocode-input">
-											<input
-												type="text"
-												placeholder="COUPON CODE"
-												value={coupanCode}
-												onChange={(e) => setCoupanCode(e.target.value)}
-												disabled={appliedCoupan !== null}
-											/>
-											{appliedCoupan ? (
-												<button onClick={RemoveCoupan}>REMOVE</button>
-											) : (
-												<button onClick={(e) => SubmitCoupan(e)}>APPLY</button>
-											)}
-										</div>
-									</div>
-									<div className="cart-order-summary">
-										<h2>order summary</h2>
-										<div className="cart-billing-charges">
-											<div className="cart-billing-subtotal">
-												<p>SUBTOTAL</p>
-												<p>
-													₹
-													{cartItem.totalPrice
-														? cartItem.totalPrice.toFixed(2)
-														: "0.00"}
-												</p>
-											</div>{" "}
-											<div className="cart-billing-discount">
-												<p>DISCOUNT</p>
-												<p>{appliedCoupan ? coupanDiscount : totalDiscount}%</p>
-											</div>{" "}
-											<div className="cart-billing-tax">
-												<p>TAX</p>
-												<p>{18}%</p>
-											</div>{" "}
-											<div className="cart-billing-shipping">
-												<p>SHIPPING</p>
-												<p>{cartItem.shippingPrice}</p>
-											</div>{" "}
-											<div className="cart-billing-shipping">
-												<b>TOTAL</b>
-												<b>
-													₹
-													{cartItem.TotalProductPrice -
-														cartItem.TotalProductPrice * (coupanDiscount / 100)}
-												</b>
-											</div>
-										</div>
-										<button
-											className="proceed_to_payment_button"
-											onClick={() => navigate("./checkout")}
-										>
-											proceed to checkout
-										</button>
-										<hr />
-										<p className="cart-delivery-day">
-											Estimated delivery in <span>3 to 5</span> Days
-										</p>
-									</div>
-								</div>
-							</div>
+							<CouponFunctions />
 						</div>
 					)}
 				</div>

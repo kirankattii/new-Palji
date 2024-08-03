@@ -338,21 +338,6 @@
 
 // export default Checkout
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from "react"
 import "./checkout.css"
 import Orderbar from "../orderbar/orderbar.jsx"
@@ -363,21 +348,31 @@ import Primaryloader from "../../components/loaders/primaryloader.jsx"
 import { ToastContainer, toast } from "react-toastify"
 import CartCalculation from "../CartCalculation/cartCalculation.jsx"
 import BackButton from "../products/backButton.jsx"
-
-const COUPON_EXPIRY_TIME = 3 * 60 * 1000 // 3 minutes in milliseconds
+import useCoupon from "../../hook/coupanHook.jsx"
+import CouponFunctions from "../../utils/couponFunctions.jsx"
 
 function Checkout() {
-	const navigation = useNavigate()
+	const navigate = useNavigate()
 	const [shippingAddresses, setShippingAddresses] = useState([])
-	const [selectedShippingAddress, setSelectedShippingAddress] = useState(null)
+	const [selectedAddress, setSelectedAddress] = useState(null)
 	const [billingAddresses, setBillingAddresses] = useState([])
-	const [selectedBillingAddress, setSelectedBillingAddress] = useState(null)
+
 	const [selectPaymentMethod, setSelectPaymentMethod] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const [cartItem, setCartItem] = useState([])
+	const [selectedShippingAddress, setSelectedShippingAddress] = useState(null)
+	const [selectedBillingAddress, setSelectedBillingAddress] = useState(null)
 	const [currentPage, setCurrentPage] = useState("CHECKOUT")
 	const [orderPlaced, setOrderPlaced] = useState(false)
-	const [coupanDiscount, setCoupanDiscount] = useState(0)
+
+	const {
+		couponCode,
+		setCouponCode,
+		appliedCoupon,
+		couponDiscount,
+		applyCoupon,
+		removeCoupon,
+	} = useCoupon()
 
 	useEffect(() => {
 		const fetchCartItem = async () => {
@@ -414,36 +409,31 @@ function Checkout() {
 	useEffect(() => {
 		fetchShippingAddresses()
 		fetchBillingAddresses()
-		checkCouponValidity()
 	}, [])
 
-	const checkCouponValidity = () => {
-		const couponData = JSON.parse(localStorage.getItem("coupon"))
-		if (couponData) {
-			const { code, timestamp } = couponData
-			if (Date.now() - timestamp < COUPON_EXPIRY_TIME) {
-				setCoupanDiscount(10) // Example discount value, replace with actual discount calculation if needed
-			} else {
-				localStorage.removeItem("coupon")
-			}
-		}
+	const handleAddressSelect = (address) => {
+		setSelectedAddress(address)
 	}
 
-	const handleAddressSelect = (address) => {
+	const handleShippingAddressSelect = (address) => {
+		console.log("Selected shipping address:", address)
 		setSelectedShippingAddress(address)
+		console.log("Updated selected shipping address:", selectedShippingAddress)
 	}
 
 	const handleBillingAddressSelect = (address) => {
+		console.log("Selected billing address:", address)
 		setSelectedBillingAddress(address)
+		console.log("Updated selected billing address:", selectedBillingAddress)
 	}
 
-	const handlepaymentmethodSelect = (payment) => {
+	const handlePaymentMethodSelect = (payment) => {
 		setSelectPaymentMethod(payment)
 	}
 
 	const handleSubmit = async (event) => {
 		if (!selectPaymentMethod) {
-			toast("Please select payment method")
+			toast("Please select a payment method")
 			return
 		}
 		event.preventDefault()
@@ -459,7 +449,7 @@ function Checkout() {
 			setOrderPlaced(true)
 			setTimeout(() => {
 				setOrderPlaced(false)
-				navigation("/product/all-products")
+				navigate("/product/all-products")
 			}, 5000)
 		} catch (error) {
 			console.error("Error placing order: ", error)
@@ -468,7 +458,7 @@ function Checkout() {
 		}
 	}
 
-	const ManageCurrnetPage = (e) => {
+	const manageCurrentPage = (e) => {
 		e.preventDefault()
 		if (!selectedShippingAddress) {
 			toast.error("Please select a shipping address")
@@ -479,10 +469,13 @@ function Checkout() {
 		}
 	}
 
-	const totalAmountWithDiscount = (
-		cartItem.TotalProductPrice -
-		(cartItem.TotalProductPrice * coupanDiscount) / 100
-	).toFixed(2)
+	// Calculate final price after applying coupon discount
+	const calculateFinalPrice = () => {
+		if (appliedCoupon) {
+			return cartItem.TotalProductPrice * ((100 - couponDiscount) / 100)
+		}
+		return cartItem.TotalProductPrice
+	}
 
 	return (
 		<>
@@ -511,14 +504,12 @@ function Checkout() {
 				<div className="a_checkout">
 					{currentPage === "CHECKOUT" ? (
 						<div>
-							<div>
-								<Orderbar activeOptionName="CHECKOUT" />
-							</div>
+							<Orderbar activeOptionName="CHECKOUT" />
 							<div className="checkout_to_cart">
 								<BackButton pageLocation="/cart" />
 							</div>
 							<div className="main_checkout_div">
-								{/* Shipping address */}
+								{/* Shipping and Billing Addresses */}
 								<div className="shipping-address-container Order_page_display_none">
 									<div>
 										<div className="shipping-address-title">
@@ -529,6 +520,7 @@ function Checkout() {
 												Add New Address
 											</button>
 										</div>
+
 										<div className="shipping-address-list">
 											{loading && <Primaryloader />}
 											{!loading &&
@@ -543,7 +535,9 @@ function Checkout() {
 															name="shippingAddress"
 															value={address._id}
 															checked={selectedShippingAddress === address}
-															onChange={() => handleAddressSelect(address)}
+															onChange={() =>
+																handleShippingAddressSelect(address)
+															}
 															className="address-radio"
 														/>
 														<label
@@ -588,57 +582,57 @@ function Checkout() {
 															htmlFor={`billing-address-${index}`}
 															className="address-label"
 														>
-															{`${address.name} , ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
+															{`${address.name} ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
 														</label>
 													</div>
 												))}
 										</div>
 									</div>
 								</div>
-								{/* Payment */}
-								<div onClick={(e) => ManageCurrnetPage(e)}>
+								{/* Proceed to Payment */}
+								<div onClick={(e) => manageCurrentPage(e)}>
 									<CartCalculation
 										tax={cartItem.taxPrice}
 										shipping={cartItem.shippingPrice}
 										total={cartItem.totalPrice}
-										CoupanApplied={cartItem.Iscoupanapplied}
-										Final={totalAmountWithDiscount}
+										CoupanApplied={appliedCoupon}
+										Final={calculateFinalPrice()}
 										ButtonName="PROCEED TO PAYMENT"
 									/>
+									{/* <CouponFunctions /> */}
 								</div>
 							</div>
 						</div>
 					) : (
 						<div>
-							<div>
-								<Orderbar activeOptionName="PAYMENT" />
-							</div>
+							<Orderbar activeOptionName="PAYMENT" />
 							<div className="checkout_to_cart">
 								<BackButton pageLocation="/cart" />
 							</div>
 							<div className="main_checkout_div">
+								{/* Payment Method */}
 								<div className="shipping-address-container">
 									<div className="shipping-address-title">Payment Method</div>
 									<div>
 										<div
 											className="address-item"
 											onClick={() =>
-												handlepaymentmethodSelect("Cash On Delivery")
+												handlePaymentMethodSelect("Cash On Delivery")
 											}
 										>
 											<input
 												type="radio"
-												id={`Cash On Delivery`}
+												id="CashOnDelivery"
 												name="payment-method"
 												value="Cash On Delivery"
 												checked={selectPaymentMethod === "Cash On Delivery"}
 												onChange={() =>
-													handlepaymentmethodSelect("Cash On Delivery")
+													handlePaymentMethodSelect("Cash On Delivery")
 												}
 												className="address-radio"
 											/>
 											<label
-												htmlFor={`Cash On Delivery`}
+												htmlFor="CashOnDelivery"
 												className="address-label"
 											>
 												Cash On Delivery
@@ -646,19 +640,19 @@ function Checkout() {
 										</div>
 										<div
 											className="address-item"
-											onClick={() => handlepaymentmethodSelect("Razorpay")}
+											onClick={() => handlePaymentMethodSelect("Razorpay")}
 										>
 											<input
 												type="radio"
-												id={`Razorpay`}
+												id="Razorpay"
 												name="payment-method"
 												value="Razorpay"
 												checked={selectPaymentMethod === "Razorpay"}
-												onChange={() => handlepaymentmethodSelect("Razorpay")}
+												onChange={() => handlePaymentMethodSelect("Razorpay")}
 												className="address-radio"
 											/>
 											<label
-												htmlFor={`Razorpay`}
+												htmlFor="Razorpay"
 												className="address-label"
 											>
 												Razorpay
@@ -671,8 +665,8 @@ function Checkout() {
 										tax={cartItem.taxPrice}
 										shipping={cartItem.shippingPrice}
 										total={cartItem.totalPrice}
-										CoupanApplied={cartItem.Iscoupanapplied}
-										Final={totalAmountWithDiscount}
+										CoupanApplied={appliedCoupon}
+										Final={calculateFinalPrice()}
 										ButtonName="PLACE ORDER"
 									/>
 								</div>
