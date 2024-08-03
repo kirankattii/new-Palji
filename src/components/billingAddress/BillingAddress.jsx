@@ -424,7 +424,7 @@ const BillingAddress = () => {
 				`https://api.postalpincode.in/pincode/${pincode}`
 			)
 			const postOfficeData = response.data[0].PostOffice[0]
-			const { State, Country, District: city } = postOfficeData
+			const { State, Country, Division: city } = postOfficeData
 
 			setFormData((prevState) => ({
 				...prevState,
