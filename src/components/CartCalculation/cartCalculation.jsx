@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./cartCalculation.css"
 function CartCalculation({
 	tax,
@@ -8,10 +8,12 @@ function CartCalculation({
 	total,
 	Final,
 	ButtonName,
+	disabled,
 }) {
 	const formatNumber = (number) => {
 		return Math.round(number).toString()
 	}
+	const navigate = useNavigate()
 	return (
 		<>
 			<div className="right-checkoutpayment cart-billing">
@@ -39,12 +41,20 @@ function CartCalculation({
 							<b>₹ {formatNumber(total)}</b>
 						</div>
 					</div>
-					<Link
+					{/* <Link
 						to="/cart/checkout/"
 						className="css-for-link-tag"
 					>
 						<div className="cart_calculation_button">{ButtonName}</div>
-					</Link>
+					</Link> */}
+					<button
+						className="cart_calculation_button"
+						disabled={disabled} // Apply the disabled attribute
+						style={{ opacity: disabled ? 0.5 : 1 }}
+						onClick={() => navigate("/cart/checkout/")}
+					>
+						{ButtonName}
+					</button>
 					<hr />
 					{/* <p className="cart-delivery-day">
 						Delivery In <span>4 to 5 Days</span>

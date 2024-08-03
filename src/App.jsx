@@ -28,6 +28,7 @@ import ProductDetails from "./components/productDetails/ProductDetails"
 import Products from "./pages/products.jsx"
 import Checkout from "./components/pay/Checkout.jsx"
 import TestingCart from "./utils/TestingCart.jsx"
+import AddressForm from "./components/shippingAddress/AddressForm.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -158,6 +159,18 @@ function App() {
 				<Route
 					path="/test"
 					element={<TestingCart />}
+				/>
+				{/* <Route
+					path="/userprofile/myaddress"
+					element={<MyAddress />}
+				/> */}
+				<Route
+					path="/edit-billing-address/:id"
+					element={<AddressForm isBilling={true} />}
+				/>
+				<Route
+					path="/edit-shipping-address/:id"
+					element={<AddressForm isBilling={false} />}
 				/>
 			</Routes>
 			<Footer />
