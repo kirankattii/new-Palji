@@ -347,9 +347,322 @@
 //
 //
 
+// import React, { useEffect, useState } from "react"
+// import { useNavigate, useParams } from "react-router-dom"
+// // import "../../styles/product/productDetails.css"
+// import "../../pages/CSS/product/productDetails.css"
+// import LoginPopup from "../../components/LoginPopup/LoginPopup.jsx"
+// import AddIcon from "../../assets/add_icon_green.png"
+// import RemoveIcon from "../../assets/remove_icon_red.png"
+// import Primaryloader from "../loaders/primaryloader.jsx"
+// import BackButton from "./backButton.jsx"
+// import HorizotalLoader from "../loaders/horizotalLoader.jsx"
+// import { makeApi } from "../../api/callApi"
+// import { ToastContainer, toast } from "react-toastify"
+// import { LazyLoadImage } from "react-lazy-load-image-component"
+// import {
+// 	addToCart,
+// 	removeFromCart,
+// 	fetchCart,
+// } from "../../utils/productFunction.js"
+// // import { makeApi } from "../../api/callApi.js"
+
+// function ProductDetails() {
+// 	const navigate = useNavigate()
+// 	const { productId } = useParams()
+// 	const [product, setProduct] = useState()
+// 	const [showPopup, setShowPopup] = useState(false)
+
+// 	const [selectedImage, setSelectedImage] = useState("")
+// 	const [loading, setLoading] = useState(false)
+// 	const [AddTocartLoader, setAddTocartLoader] = useState(false)
+// 	const [AddToWishlistLoader, setAddToWishlistLoader] = useState(false)
+// 	const [wishlistItems, setWishlistItems] = useState([])
+// 	const [cartItems, setCartItems] = useState([])
+// 	const [isInCart, setIsInCart] = useState(false)
+// 	const [IsLogin, setIsLogin] = useState(false)
+// 	const [productLoaders, setProductLoaders] = useState({})
+
+// 	// fetch data
+
+// 	useEffect(() => {
+// 		const token = localStorage.getItem("token")
+
+// 		if (token) {
+// 			setIsLogin(true)
+// 		} else {
+// 			setIsLogin(false)
+// 		}
+// 	}, [localStorage.getItem("token")])
+// 	// product details
+// 	const fetchProduct = async () => {
+// 		try {
+// 			setLoading(true)
+// 			const response = await makeApi(
+// 				`/api/get-single-product/${productId}`,
+// 				"GET"
+// 			)
+// 			setProduct(response.data.product)
+// 		} catch (error) {
+// 			console.error("Error fetching product details:", error)
+// 		} finally {
+// 			setLoading(false)
+// 		}
+// 	}
+
+// 	const fetchWishlist = async () => {
+// 		try {
+// 			setAddToWishlistLoader(true)
+// 			const response = await makeApi("/api/get-my-wishlist", "GET")
+// 			const wishlistIds = response.data.wishlist
+// 				.filter((item) => item.products !== null)
+// 				.map((item) => item.products._id)
+// 			setWishlistItems(wishlistIds)
+// 		} catch (error) {
+// 			console.log(error)
+// 		} finally {
+// 			setAddToWishlistLoader(false)
+// 		}
+// 	}
+
+// 	useEffect(() => {
+// 		const checkCart = async () => {
+// 			const isInCart = cartItems.some((item) => item.productId === productId)
+// 			setIsInCart(isInCart)
+// 		}
+// 		checkCart()
+// 	}, [cartItems, productId])
+
+// 	// functions
+
+// 	// show image
+// 	const handleImageClick = (imageUrl) => {
+// 		setSelectedImage(imageUrl)
+// 	}
+
+// 	const closePopup = () => {
+// 		setShowPopup(false)
+// 	}
+
+// 	const handleBuyNow = async () => {
+// 		if (!IsLogin) {
+// 			setShowPopup(true)
+// 		} else {
+// 			try {
+// 				if (!isInCart) {
+// 					await addToCart(
+// 						productId,
+// 						setIsLogin,
+// 						setShowPopup,
+// 						fetchCart,
+// 						setCartItems,
+// 						setProductLoaders
+// 					)
+// 					navigate("/cart")
+// 				} else {
+// 					navigate("/cart")
+// 				}
+// 			} catch (error) {
+// 				console.log(error)
+// 			}
+// 		}
+// 	}
+
+// 	const handleAddToCart = (productId, quantity, availableQuantity) => {
+// 		if (quantity < availableQuantity) {
+// 			addToCart(
+// 				productId,
+// 				setIsLogin,
+// 				setShowPopup,
+// 				fetchCart,
+// 				setCartItems,
+// 				setProductLoaders
+// 			)
+// 		} else {
+// 			toast("Cannot add more than available quantity.", { type: "error" })
+// 		}
+// 	}
+
+// 	const handleRemoveFromCart = (productId) => {
+// 		removeFromCart(productId, setProductLoaders, setCartItems, fetchCart)
+// 	}
+
+// 	const getProductQuantity = (productId) => {
+// 		const cartItem = cartItems.find((item) => item.productId === productId)
+// 		return cartItem ? cartItem.quantity : 0
+// 	}
+
+// 	useEffect(() => {
+// 		fetchProduct()
+// 		fetchCart(setCartItems)
+// 		fetchWishlist()
+// 	}, [productId])
+
+// 	return (
+// 		<>
+// 			{showPopup && <LoginPopup onClose={closePopup} />}
+// 			<ToastContainer />
+// 			{loading ? (
+// 				<div className="All_Product_loader">
+// 					<div
+// 						className="d-flex justify-content-center align-items-center"
+// 						style={{ height: "100vh" }}
+// 					>
+// 						<Primaryloader />
+// 					</div>
+// 				</div>
+// 			) : (
+// 				<div>
+// 					{product && (
+// 						<div>
+// 							<div className="product_display_back_btn">
+// 								<BackButton pageLocation="/product/all-products" />
+// 							</div>
+
+// 							<div className="productDisplay">
+// 								<div className="product-display-left">
+// 									<div className="productdisplay-img-list">
+// 										{product.image.map((item, i) => {
+// 											return (
+// 												<div className="d-flex justify-content-center align-items-center">
+// 													<img
+// 														key={i}
+// 														src={item}
+// 														alt=""
+// 														onClick={() => handleImageClick(item)}
+// 														style={{ cursor: "pointer" }}
+// 													/>
+// 												</div>
+// 											)
+// 										})}
+// 									</div>
+// 									{selectedImage ? (
+// 										<div className="productdisplay-img">
+// 											<img
+// 												src={selectedImage} // Use the selected image here
+// 												alt=""
+// 												className="productdisplay-main-img"
+// 											/>
+// 										</div>
+// 									) : (
+// 										<div className="productdisplay-img">
+// 											<img
+// 												src={product.thumbnail}
+// 												alt=""
+// 												className="productdisplay-main-img"
+// 											/>
+// 										</div>
+// 									)}
+// 								</div>
+// 								<div className="product-display-right">
+// 									<h1>{product.name}</h1>
+// 									<h2>{product.subTitle}</h2>
+// 									<p>{product.description}</p>
+// 									<div className="productdisplay-addtocart">
+// 										<div className="productdisplay-item-cart">
+// 											{/* <div className="productdisplay-whislist">
+//                          <IoIosHeart />
+//                      </div> */}
+// 										</div>
+// 									</div>
+// 									<div className="">
+// 										<p className="aproduct_display_price">
+// 											₹ {product.PriceAfterDiscount}{" "}
+// 											<span>{product?.price}</span>
+// 										</p>
+// 										<p></p>
+// 									</div>
+// 									{/* <button onClick={() => addToCart(id)}>ADD To CART</button> */}
+// 									<div className="productdisplay-item-cart productdisplay-item-car1">
+// 										{!isInCart ? (
+// 											<>
+// 												{productLoaders[productId] ? (
+// 													<div className="d-flex justify-content-center">
+// 														<HorizotalLoader />
+// 													</div>
+// 												) : (
+// 													<div
+// 														className="productdisplay-item-addto-cart "
+// 														onClick={() =>
+// 															handleAddToCart(
+// 																product._id,
+// 																getProductQuantity(product._id),
+// 																product.quantity
+// 															)
+// 														}
+// 													>
+// 														ADD TO CART
+// 													</div>
+// 												)}
+// 											</>
+// 										) : (
+// 											<div className="productdisplay-food-item-counter">
+// 												<LazyLoadImage
+// 													// onClick={() => removeFromCart(product._id)}
+// 													src={RemoveIcon}
+// 													effect="blur"
+// 													loading="lazy"
+// 													onClick={() => handleRemoveFromCart(product._id)}
+// 													alt=""
+// 												/>
+// 												{/* {AddTocartLoader ? (
+// 													<div className="w-50 ">
+// 														{" "}
+// 														<HorizotalLoader />{" "}
+// 													</div>
+// 												) : ( */}
+// 												<p className="productdisplay-cart-item-no">
+// 													{/* {cartItems[product._id]} */}
+// 													<span style={{ color: "#fff" }}>
+// 														{getProductQuantity(product._id)}
+// 													</span>
+// 												</p>
+// 												{/* )} */}
+// 												<LazyLoadImage
+// 													LazyLoadImage
+// 													effect="blur"
+// 													loading="lazy"
+// 													onClick={() =>
+// 														handleAddToCart(
+// 															product._id,
+// 															getProductQuantity(product._id),
+// 															product.quantity
+// 														)
+// 													}
+// 													src={AddIcon}
+// 													alt=""
+// 												/>
+// 											</div>
+// 										)}
+// 									</div>
+// 									<button
+// 										className="buy-now-btn"
+// 										onClick={handleBuyNow}
+// 									>
+// 										BUY NOW
+// 									</button>
+// 								</div>
+// 							</div>
+// 						</div>
+// 					)}
+// 				</div>
+// 			)}
+// 		</>
+// 	)
+// }
+
+// export default ProductDetails
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-// import "../../styles/product/productDetails.css"
 import "../../pages/CSS/product/productDetails.css"
 import LoginPopup from "../../components/LoginPopup/LoginPopup.jsx"
 import AddIcon from "../../assets/add_icon_green.png"
@@ -365,7 +678,6 @@ import {
 	removeFromCart,
 	fetchCart,
 } from "../../utils/productFunction.js"
-// import { makeApi } from "../../api/callApi.js"
 
 function ProductDetails() {
 	const navigate = useNavigate()
@@ -383,8 +695,6 @@ function ProductDetails() {
 	const [IsLogin, setIsLogin] = useState(false)
 	const [productLoaders, setProductLoaders] = useState({})
 
-	// fetch data
-
 	useEffect(() => {
 		const token = localStorage.getItem("token")
 
@@ -394,7 +704,7 @@ function ProductDetails() {
 			setIsLogin(false)
 		}
 	}, [localStorage.getItem("token")])
-	// product details
+
 	const fetchProduct = async () => {
 		try {
 			setLoading(true)
@@ -403,6 +713,7 @@ function ProductDetails() {
 				"GET"
 			)
 			setProduct(response.data.product)
+			setSelectedImage(response.data.product.thumbnail) // Set default selected image
 		} catch (error) {
 			console.error("Error fetching product details:", error)
 		} finally {
@@ -433,9 +744,6 @@ function ProductDetails() {
 		checkCart()
 	}, [cartItems, productId])
 
-	// functions
-
-	// show image
 	const handleImageClick = (imageUrl) => {
 		setSelectedImage(imageUrl)
 	}
@@ -522,48 +830,34 @@ function ProductDetails() {
 							<div className="productDisplay">
 								<div className="product-display-left">
 									<div className="productdisplay-img-list">
-										{product.image.map((item, i) => {
-											return (
-												<div className="d-flex justify-content-center align-items-center">
-													<img
-														key={i}
-														src={item}
-														alt=""
-														onClick={() => handleImageClick(item)}
-														style={{ cursor: "pointer" }}
-													/>
-												</div>
-											)
-										})}
+										{[product.thumbnail, ...product.image].map((item, i) => (
+											<div
+												key={i}
+												className="d-flex justify-content-center align-items-center"
+											>
+												<img
+													src={item}
+													alt=""
+													onClick={() => handleImageClick(item)}
+													style={{ cursor: "pointer" }}
+												/>
+											</div>
+										))}
 									</div>
-									{selectedImage ? (
-										<div className="productdisplay-img">
-											<img
-												src={selectedImage} // Use the selected image here
-												alt=""
-												className="productdisplay-main-img"
-											/>
-										</div>
-									) : (
-										<div className="productdisplay-img">
-											<img
-												src={product.thumbnail}
-												alt=""
-												className="productdisplay-main-img"
-											/>
-										</div>
-									)}
+									<div className="productdisplay-img">
+										<img
+											src={selectedImage}
+											alt=""
+											className="productdisplay-main-img"
+										/>
+									</div>
 								</div>
 								<div className="product-display-right">
 									<h1>{product.name}</h1>
 									<h2>{product.subTitle}</h2>
 									<p>{product.description}</p>
 									<div className="productdisplay-addtocart">
-										<div className="productdisplay-item-cart">
-											{/* <div className="productdisplay-whislist">
-                         <IoIosHeart />
-                     </div> */}
-										</div>
+										<div className="productdisplay-item-cart"></div>
 									</div>
 									<div className="">
 										<p className="aproduct_display_price">
@@ -572,7 +866,6 @@ function ProductDetails() {
 										</p>
 										<p></p>
 									</div>
-									{/* <button onClick={() => addToCart(id)}>ADD To CART</button> */}
 									<div className="productdisplay-item-cart productdisplay-item-car1">
 										{!isInCart ? (
 											<>
@@ -598,28 +891,18 @@ function ProductDetails() {
 										) : (
 											<div className="productdisplay-food-item-counter">
 												<LazyLoadImage
-													// onClick={() => removeFromCart(product._id)}
 													src={RemoveIcon}
 													effect="blur"
 													loading="lazy"
 													onClick={() => handleRemoveFromCart(product._id)}
 													alt=""
 												/>
-												{/* {AddTocartLoader ? (
-													<div className="w-50 ">
-														{" "}
-														<HorizotalLoader />{" "}
-													</div>
-												) : ( */}
 												<p className="productdisplay-cart-item-no">
-													{/* {cartItems[product._id]} */}
 													<span style={{ color: "#fff" }}>
 														{getProductQuantity(product._id)}
 													</span>
 												</p>
-												{/* )} */}
 												<LazyLoadImage
-													LazyLoadImage
 													effect="blur"
 													loading="lazy"
 													onClick={() =>

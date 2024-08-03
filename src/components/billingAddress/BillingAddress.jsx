@@ -302,10 +302,10 @@ const BillingAddress = () => {
 				>
 					<div className="my-billing-address">
 						<h2>Billing Address</h2>
-						<div className="same-add-checkbox">
+						{/* <div className="same-add-checkbox">
 							<input type="checkbox" />
 							<p>Use same as shipping address</p>
-						</div>
+						</div> */}
 						<input
 							type="text"
 							name="name"
