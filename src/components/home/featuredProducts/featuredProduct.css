@@ -136,11 +136,12 @@
 }
 
 .swiper-button-next {
-  color: green !important;
+  color: white !important;
   /* Change to desired color */
 }
 
 .swiper-button-prev {
-  color: red !important;
+  color: white !important;
   /* Change to desired color */
+
 }

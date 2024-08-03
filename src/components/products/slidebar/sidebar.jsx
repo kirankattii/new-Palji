@@ -435,7 +435,7 @@ const ProductSidebar = () => {
 								id="category"
 								value={category}
 								onChange={(e) => setCategory(e.target.value)}
-								className="input_for_category_sidebar"
+								className="input_for_category_sidebar a_input_for_category_sidebar "
 							>
 								<option
 									value=""

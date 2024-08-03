@@ -18,7 +18,7 @@ a {
   /* list-style-type: none; */
 }
 
-.main_admin_pages { 
+.main_admin_pages {
   display: flex;
 }
 
@@ -33,7 +33,8 @@ a {
 :root {
   --gay-bg-color: rgb(130, 130, 123);
 }
-Link{
+
+Link {
   text-decoration: none;
 }
 
@@ -221,4 +222,19 @@ Link{
   100% {
     opacity: 1;
   }
+}
+
+
+
+.sidebar_options option:hover {
+  background: #fff;
+}
+
+.sidebar_options:focus {
+  background: #fff;
+}
+
+.a_input_for_category_sidebar option:hover {
+  background: #fff;
+
 }

@@ -124,6 +124,11 @@
   background: #fff;
 }
 
+.a_input_for_category_sidebar option:hover {
+  background: #fff;
+
+}
+
 @media (max-width: 800px) {
   .main_product_sidebar_div {
     max-width: 200px;
