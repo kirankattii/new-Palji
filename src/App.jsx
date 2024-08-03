@@ -27,6 +27,7 @@ import OtpVerifiedForm from "./components/login/otp"
 import ProductDetails from "./components/productDetails/ProductDetails"
 import Products from "./pages/products.jsx"
 import Checkout from "./components/pay/Checkout.jsx"
+import TestingCart from "./utils/TestingCart.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -153,6 +154,10 @@ function App() {
 				<Route
 					path="/otp-verified"
 					element={<OtpVerifiedForm />}
+				/>{" "}
+				<Route
+					path="/test"
+					element={<TestingCart />}
 				/>
 			</Routes>
 			<Footer />

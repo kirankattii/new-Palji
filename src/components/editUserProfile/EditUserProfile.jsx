@@ -349,10 +349,11 @@ const EditUserProfile = () => {
 			if (file) {
 				const data = new FormData()
 				data.append("file", file)
-				data.append("upload_preset", "ou1fk438")
+				data.append("upload_preset", "pfendx01")
+				data.append("folder", "palji")
 
 				const response = await axios.post(
-					`https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+					`  https://api.cloudinary.com/v1_1/dwxtuqnty/upload`,
 					data
 				)
 				if (response.status === 200) {
@@ -393,7 +394,6 @@ const EditUserProfile = () => {
 						</div>
 						<div className="about-edit-btn">
 							<h2>About</h2>
-							<button type="button">Edit</button>
 						</div>
 						<div className="edit-username">
 							<input

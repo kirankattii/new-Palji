@@ -913,12 +913,6 @@
 
 // export default Allproduct
 
-
-
-
-
-
-
 import React, { useEffect, useState } from "react"
 import "../../pages/CSS/product/allproduct.css"
 import { IoIosHeart } from "react-icons/io"
@@ -1105,7 +1099,10 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 													{product.name}
 												</Link>
 											</div>
-											<div>₹{product.PriceAfterDiscount}</div>
+											<div className="all_product_price">
+												₹{product.PriceAfterDiscount}{" "}
+												<span>{product?.price}</span>
+											</div>
 										</div>
 										<div className="Add_to_cart_and_watchlist_button">
 											<>

@@ -260,6 +260,7 @@ const ProductSidebar = () => {
 									<option
 										key={category._id}
 										value={category._id}
+										className="sidebar_options"
 									>
 										{category.name}
 									</option>

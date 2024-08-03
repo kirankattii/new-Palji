@@ -1316,22 +1316,6 @@ const Cart = () => {
 													/>
 												</div>
 												<p>₹{item.totalPrice}</p>
-												{/* <p
-													className="cross"
-													onClick={() =>
-														removeAllProductsFromCart(
-															item.productId._id,
-															setProductLoaders,
-															fetchCartItem
-														)
-													}
-												>
-													<img
-														className="remove-cart"
-														src={assets.cart_remove}
-														alt=""
-													/>
-												</p> */}
 											</div>
 											{/* <hr /> */}
 										</div>

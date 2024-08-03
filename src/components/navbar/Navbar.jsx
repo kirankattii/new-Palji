@@ -1162,7 +1162,11 @@ const Navbar = () => {
 						/>
 					</div>
 				) : (
-					<div className="responcive_profile_login">
+					<div
+						className="responcive_profile_login"
+						style={{ cursor: "pointer" }}
+						onClick={() => navigate("/Signup")}
+					>
 						<img
 							// onClick={() => navigate("/userprofile")}
 							src={user_icon}

@@ -349,7 +349,6 @@
 
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-
 // import "../../styles/product/productDetails.css"
 import "../../pages/CSS/product/productDetails.css"
 import LoginPopup from "../../components/LoginPopup/LoginPopup.jsx"
@@ -568,8 +567,10 @@ function ProductDetails() {
 									</div>
 									<div className="">
 										<p className="aproduct_display_price">
-											₹ {product.PriceAfterDiscount}
+											₹ {product.PriceAfterDiscount}{" "}
+											<span>{product?.price}</span>
 										</p>
+										<p></p>
 									</div>
 									{/* <button onClick={() => addToCart(id)}>ADD To CART</button> */}
 									<div className="productdisplay-item-cart productdisplay-item-car1">

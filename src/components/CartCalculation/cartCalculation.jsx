@@ -51,33 +51,7 @@ function CartCalculation({
 					</p> */}
 				</div>
 			</div>
-			{/* <div className="cart_calculation_main_div">
-				<div>ORDER SUMMARY</div>
-				<div className="cart_calculation_div">
 
-					<div className="cart_calculation_name_value">
-						<div>SUB TOTAL</div>
-						<div>DISCOUNT</div>
-						<div>TAX</div>
-						<div>SHIPPING</div>
-						<div>TOTAL</div>
-					</div>
-			
-					<div className="cart_calculation_name_value">
-						<div>₹ {formatNumber(Final)}</div>
-						<div>₹ 0.00</div>
-						<div> 5%</div>
-						<div>₹ {formatNumber(shipping)}</div>
-						<div>₹ {formatNumber(total)}</div>
-					</div>
-				</div>
-				<Link
-					to="/order/checkout"
-					className="css-for-link-tag"
-				>
-					<div className="cart_calculation_button">{ButtonName}</div>
-				</Link>
-			</div> */}
 			<div></div>
 		</>
 	)

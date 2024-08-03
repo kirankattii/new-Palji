@@ -15,6 +15,7 @@ import {
 import useCoupon from "../hook/coupanHook"
 import { ShopContext } from "../context/ShopContext"
 import { makeApi } from "../api/callApi"
+import CartCalculation from "../components/CartCalculation/cartCalculation"
 
 const CouponFunctions = () => {
 	const {
@@ -121,7 +122,7 @@ const CouponFunctions = () => {
 							)}
 						</div>
 					</div>
-					<div className="cart-order-summary">
+					{/* <div className="cart-order-summary">
 						<h2>order summary</h2>
 						<div className="cart-billing-charges">
 							<div className="cart-billing-subtotal">
@@ -164,9 +165,21 @@ const CouponFunctions = () => {
 						<p className="cart-delivery-day">
 							Estimated delivery in <span>3 to 5</span> Days
 						</p>
-					</div>
+					</div> */}
 
 					{/* </div> */}
+
+					<CartCalculation
+						tax={cartItem.taxPrice}
+						shipping={cartItem.shippingPrice}
+						total={cartItem.totalPrice}
+						CoupanApplied={appliedCoupon ? couponDiscount : totalDiscount}
+						Final={
+							cartItem.TotalProductPrice -
+							cartItem.TotalProductPrice * (couponDiscount / 100)
+						}
+						ButtonName="PROCEED TO CHECKOUT"
+					/>
 				</div>
 			</div>
 		</div>

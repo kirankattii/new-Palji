@@ -212,6 +212,13 @@
   color: red;
 } */
 
+
+.all_product_price span {
+  font-size: 14px;
+  opacity: 0.8;
+  text-decoration: line-through;
+}
+
 @media (max-width: 1480px) {
   .main_all_product_div {
     padding: 20px 20px;
