@@ -231,7 +231,6 @@ const ShippingAddress = () => {
 			}))
 		} catch (error) {
 			console.error("Error fetching city, state, and country:", error)
-			toast.error("Invalid pincode or unable to fetch city, state, and country")
 		}
 	}
 
