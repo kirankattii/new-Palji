@@ -312,7 +312,7 @@ const ShippingAddress = () => {
 					<div className="my-shipping-address">
 						<div className="shipping-header">
 							<h2>Shipping Address:</h2>
-							<button type="button">Edit</button>
+							{/* <button type="button">Edit</button> */}
 						</div>
 						<div className="add-form-name">
 							<input
