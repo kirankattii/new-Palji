@@ -349,7 +349,8 @@ import { ToastContainer, toast } from "react-toastify"
 import CartCalculation from "../CartCalculation/cartCalculation.jsx"
 import BackButton from "../products/backButton.jsx"
 import useCoupon from "../../hook/coupanHook.jsx"
-import CouponFunctions from "../../utils/couponFunctions.jsx"
+// import { updateCartCount } from "../../utils/couponFunctions.jsx"
+import { submitOrder } from "../../utils/productFunction.js"
 
 function Checkout() {
 	const navigate = useNavigate()
@@ -443,19 +444,22 @@ function Checkout() {
 			paymentMethod: selectPaymentMethod,
 			CartId: cartItem._id,
 		}
-		try {
-			setLoading(true)
-			const response = await makeApi("/api/create-second-order", "POST", data)
-			setOrderPlaced(true)
-			setTimeout(() => {
-				setOrderPlaced(false)
-				navigate("/product/all-products")
-			}, 5000)
-		} catch (error) {
-			console.error("Error placing order: ", error)
-		} finally {
-			setLoading(false)
-		}
+		submitOrder(data, setLoading, setOrderPlaced, navigate)
+		// try {
+		// 	setLoading(true)
+		// 	const response = await makeApi("/api/create-second-order", "POST", data)
+		// 	setOrderPlaced(true)
+
+		// 	setTimeout(() => {
+		// 		setOrderPlaced(false)
+		// 		navigate("/product/all-products")
+		// 	}, 5000)
+		// 	updateCartCount([])
+		// } catch (error) {
+		// 	console.error("Error placing order: ", error)
+		// } finally {
+		// 	setLoading(false)
+		// }
 	}
 
 	const manageCurrentPage = (e) => {
@@ -606,11 +610,8 @@ function Checkout() {
 					) : (
 						<div>
 							<Orderbar activeOptionName="PAYMENT" />
-							<div
-								className="checkout_to_cart"
-								onClick={() => setCurrentPage("CHECKOUT")}
-							>
-								<BackButton />
+							<div className="checkout_to_cart">
+								<BackButton pageLocation="/cart" />
 							</div>
 							<div className="main_checkout_div">
 								{/* Payment Method */}

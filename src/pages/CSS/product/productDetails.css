@@ -369,3 +369,10 @@
     gap: 100px;
   }
 }
+
+.aproduct_display_price span {
+  font-size: 17px;
+  opacity: 0.8;
+  text-decoration: line-through;
+  padding-left: 5px;
+}

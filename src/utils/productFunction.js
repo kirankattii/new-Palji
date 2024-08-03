@@ -104,7 +104,10 @@ export const submitOrder = async (
 		setLoading(true)
 		const response = await makeApi("/api/create-second-order", "POST", data)
 		setOrderPlaced(true)
+
+		// Update cart count to 0
 		updateCartCount([])
+
 		setTimeout(() => {
 			setOrderPlaced(false)
 			navigation("/product/all-products")
@@ -194,7 +197,7 @@ export const cartItemRemoveFromCart = async (
 	}
 }
 
-const updateCartCount = (cartItems) => {
+export const updateCartCount = (cartItems) => {
 	const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0)
 	cartCountListeners.forEach((listener) => listener(cartCount))
 	console.log("cart count")
