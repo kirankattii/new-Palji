@@ -1136,7 +1136,7 @@ function ProductDetails() {
 									<div className="">
 										<p className="aproduct_display_price">
 											₹ {product.PriceAfterDiscount}{" "}
-											<span>{product?.price}</span>
+											<span>{product?.price} Rs</span>
 										</p>
 										<p></p>
 									</div>

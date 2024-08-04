@@ -1,15 +1,13 @@
 // import React, { useState, useEffect } from "react"
-// // import "../../../styles/product/filterpopup.css"
-// import "../../../pages/CSS/product/filterpopup.css"
 // import { makeApi } from "../../../api/callApi"
+// import Slider from "rc-slider"
+// import "rc-slider/assets/index.css"
+// import "./filterPopup.css"
 
-// const FilterPopup = ({ onClose, onSubmit }) => {
-// 	const [showPriceRange, setShowPriceRange] = useState(true)
-// 	const [showCategoryMenu, setShowCategoryMenu] = useState(false)
+// const FilterDropdown = ({ show, onClose, onApply }) => {
 // 	const [categories, setCategories] = useState([])
 // 	const [selectedCategory, setSelectedCategory] = useState("")
-// 	const [minPrice, setMinPrice] = useState(0)
-// 	const [maxPrice, setMaxPrice] = useState(1000)
+// 	const [priceRange, setPriceRange] = useState([50, 5000])
 
 // 	useEffect(() => {
 // 		async function fetchCategories() {
@@ -25,118 +23,97 @@
 // 		fetchCategories()
 // 	}, [])
 
-// 	const handleApplyFilter = () => {
-// 		const filterData = {
-// 			minPrice,
-// 			maxPrice,
+// 	if (!show) {
+// 		return null
+// 	}
+
+// 	const handleApply = () => {
+// 		onApply({
 // 			selectedCategory,
-// 		}
-// 		onSubmit(filterData)
+// 			minPrice: priceRange[0],
+// 			maxPrice: priceRange[1],
+// 		})
 // 		onClose()
 // 	}
 
+// 	const handlePriceRangeChange = (range) => {
+// 		setPriceRange(range)
+// 	}
+
 // 	return (
-// 		<div
-// 			className="filter-popup"
-// 			style={{ zIndex: 50 }}
-// 		>
-// 			<div className="popup-header">
-// 				<h2>Filter</h2>
-// 				<button
-// 					className="close-btn"
-// 					onClick={onClose}
-// 				>
-// 					<svg
-// 						xmlns="http://www.w3.org/2000/svg"
-// 						width="16"
-// 						height="16"
-// 						fill="currentColor"
-// 						className="bi bi-x-lg"
-// 						viewBox="0 0 16 16"
+// 		<div className="filter_dropdown_container">
+// 			<div className="filter-dropdown">
+// 				<div className="filter-dropdown-header">
+// 					<h3>Filter</h3>
+// 					<button
+// 						onClick={onClose}
+// 						className="close-button"
 // 					>
-// 						<path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-// 					</svg>
-// 				</button>
-// 			</div>
-// 			<div className="popup-content">
-// 				<div className="sidebar">
-// 					<ul>
-// 						<li
-// 							onClick={() => {
-// 								setShowPriceRange(true)
-// 								setShowCategoryMenu(false)
-// 							}}
-// 						>
-// 							Price Range
-// 						</li>
-// 						<li
-// 							onClick={() => {
-// 								setShowPriceRange(false)
-// 								setShowCategoryMenu(true)
-// 							}}
-// 						>
-// 							Category
-// 						</li>
-// 					</ul>
+// 						X
+// 					</button>
 // 				</div>
-// 				<div className="content">
-// 					<div className={`price-range-form ${showPriceRange ? "active" : ""}`}>
-// 						<label htmlFor="minPrice">Min Price:</label>
-// 						<input
-// 							type="number"
-// 							id="minPrice"
-// 							value={minPrice}
-// 							onChange={(e) => setMinPrice(e.target.value)}
-// 						/>
-// 						<label htmlFor="maxPrice">Max Price:</label>
-// 						<input
-// 							type="number"
-// 							id="maxPrice"
-// 							value={maxPrice}
-// 							onChange={(e) => setMaxPrice(e.target.value)}
-// 						/>
-// 						<button onClick={handleApplyFilter}>Apply</button>
+// 				<div className="filter-dropdown-body">
+// 					<div className="filter-section">
+// 						<h4>Categories</h4>
+
+// 						{categories.map((category) => (
+// 							<div
+// 								key={category._id}
+// 								className="filter-category"
+// 							>
+// 								<input
+// 									type="radio"
+// 									id={category._id}
+// 									name="category"
+// 									value={category._id}
+// 									checked={selectedCategory === category._id}
+// 									onChange={(e) => setSelectedCategory(e.target.value)}
+// 								/>
+
+// 								<label htmlFor={category._id}>{category.name}</label>
+// 							</div>
+// 						))}
 // 					</div>
-// 					<div className={`category-menu ${showCategoryMenu ? "active" : ""}`}>
-// 						<h3>Select Category:</h3>
-// 						<ul>
-// 							{categories.map((category) => (
-// 								<li key={category._id}>
-// 									<label>
-// 										<input
-// 											type="radio"
-// 											name="category"
-// 											value={category._id}
-// 											onChange={() => setSelectedCategory(category._id)}
-// 											checked={selectedCategory === category._id}
-// 										/>
-// 										{category.name}
-// 									</label>
-// 								</li>
-// 							))}
-// 						</ul>
-// 						<button onClick={handleApplyFilter}>Apply</button>
+// 					<h4>Filter By Price</h4>
+// 					<div className="filter-section filterSection2">
+// 						<div className="price-slider">
+// 							<label>₹{priceRange[0]}</label>
+// 							<Slider
+// 								range
+// 								min={50}
+// 								max={5000}
+// 								value={priceRange}
+// 								onChange={handlePriceRangeChange}
+// 							/>
+// 							<label>₹{priceRange[1]}</label>
+// 						</div>
 // 					</div>
+// 				</div>
+// 				<div className="filter-dropdown-footer">
+// 					<button
+// 						onClick={handleApply}
+// 						className="apply-button"
+// 					>
+// 						Apply
+// 					</button>
 // 				</div>
 // 			</div>
 // 		</div>
 // 	)
 // }
 
-// export default FilterPopup
+// export default FilterDropdown
 
 import React, { useState, useEffect } from "react"
-import "../../../styles/product/filterpopup.css"
 import { makeApi } from "../../../api/callApi"
-// import { makeApi } from "../../../api/callApi.tsx"
-
-const FilterPopup = ({ onClose, onSubmit }) => {
-	const [showPriceRange, setShowPriceRange] = useState(true)
-	const [showCategoryMenu, setShowCategoryMenu] = useState(false)
+import Slider from "rc-slider"
+import "rc-slider/assets/index.css"
+import "./filterPopup.css"
+import "rc-slider/assets/index.css"
+const FilterDropdown = ({ show, onClose, onApply }) => {
 	const [categories, setCategories] = useState([])
 	const [selectedCategory, setSelectedCategory] = useState("")
-	const [minPrice, setMinPrice] = useState(0)
-	const [maxPrice, setMaxPrice] = useState(1000)
+	const [priceRange, setPriceRange] = useState([50, 5000])
 
 	useEffect(() => {
 		async function fetchCategories() {
@@ -152,121 +129,92 @@ const FilterPopup = ({ onClose, onSubmit }) => {
 		fetchCategories()
 	}, [])
 
-	const handleApplyFilter = () => {
-		const filterData = {
-			minPrice,
-			maxPrice,
+	if (!show) {
+		return null
+	}
+
+	const handleApply = () => {
+		onApply({
 			selectedCategory,
-		}
-		onSubmit(filterData)
+			minPrice: priceRange[0],
+			maxPrice: priceRange[1],
+		})
 		onClose()
 	}
 
+	const handlePriceRangeChange = (range) => {
+		setPriceRange(range)
+	}
+
 	return (
-		<div
-			className="filter-popup"
-			style={{
-				width: "350px",
-				maxHeight: "300px",
-				position: "absolute",
-				top: "13.5%",
-				zIndex: 20,
-			}}
-		>
-			<div className="popup-header">
-				<h2>Filter</h2>
-				<button
-					className="close-btn"
-					onClick={onClose}
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						fill="currentColor"
-						className="bi bi-x-lg"
-						viewBox="0 0 16 16"
+		<div className="filter_dropdown_container">
+			<div className="filter-dropdown">
+				<div className="filter-dropdown-header">
+					{/* <h3>Filter</h3> */}
+					<button
+						onClick={onClose}
+						className="close-button"
 					>
-						<path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-					</svg>
-				</button>
-			</div>
-			<div className="popup-content">
-				<div className="sidebar">
-					<ul>
-						<li
-							onClick={() => {
-								setShowPriceRange(true)
-								setShowCategoryMenu(false)
-							}}
-						>
-							Price Range
-						</li>
-						{/* <li
-							onClick={() => {
-								setShowPriceRange(false)
-								setShowCategoryMenu(true)
-							}}
-						>
-							Category
-						</li> */}
-					</ul>
+						{/* X */}
+					</button>
 				</div>
-				<div
-					className="content"
-					style={{ marginTop: "0px" }}
-				>
-					<div className={`price-range-form ${showPriceRange ? "active" : ""}`}>
-						<label
-							htmlFor="minPrice"
-							style={{ color: "black", fontSize: "18px" }}
-						>
-							Min Price:
-						</label>
-						<input
-							type="number"
-							id="minPrice"
-							value={minPrice}
-							onChange={(e) => setMinPrice(e.target.value)}
-						/>
-						<label
-							htmlFor="maxPrice"
-							style={{ color: "black", fontSize: "18px" }}
-						>
-							Max Price:
-						</label>
-						<input
-							type="number"
-							id="maxPrice"
-							value={maxPrice}
-							onChange={(e) => setMaxPrice(e.target.value)}
-						/>
-						<button onClick={handleApplyFilter}>Apply</button>
+				<div className="filter-dropdown-body">
+					<div className="filter-section">
+						<h4>Categories</h4>
+						<div className="filter-category">
+							<input
+								type="radio"
+								id="all"
+								name="category"
+								value=""
+								checked={selectedCategory === ""}
+								onChange={(e) => setSelectedCategory(e.target.value)}
+							/>
+							<label htmlFor="all">All</label>
+						</div>
+						{categories.map((category) => (
+							<div
+								key={category._id}
+								className="filter-category"
+							>
+								<input
+									type="radio"
+									id={category._id}
+									name="category"
+									value={category._id}
+									checked={selectedCategory === category._id}
+									onChange={(e) => setSelectedCategory(e.target.value)}
+								/>
+								<label htmlFor={category._id}>{category.name}</label>
+							</div>
+						))}
 					</div>
-					<div className={`category-menu ${showCategoryMenu ? "active" : ""}`}>
-						{/* <h3>Select Category:</h3>
-						<ul>
-							{categories?.map((category) => (
-								<li key={category._id}>
-									<label>
-										<input
-											type="radio"
-											name="category"
-											value={category._id}
-											onChange={() => setSelectedCategory(category._id)}
-											checked={selectedCategory === category._id}
-										/>
-										{category.name}
-									</label>
-								</li>
-							))}
-						</ul> */}
-						<button onClick={handleApplyFilter}>Apply</button>
+					<h4>Filter By Price</h4>
+					<div className="filter-section filterSection2">
+						<div className="price-slider">
+							<label>₹{priceRange[0]}</label>
+							<Slider
+								range
+								min={50}
+								max={5000}
+								value={priceRange}
+								onChange={handlePriceRangeChange}
+							/>
+							<label>₹{priceRange[1]}</label>
+						</div>
 					</div>
+				</div>
+				<div className="filter-dropdown-footer">
+					<button
+						onClick={handleApply}
+						className="apply-button"
+					>
+						Apply
+					</button>
 				</div>
 			</div>
 		</div>
 	)
 }
 
-export default FilterPopup
+export default FilterDropdown

@@ -1041,6 +1041,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 
 	const handlePageClick = (pageNumber) => {
 		setCurrentPage(pageNumber)
+		window.scrollTo(0, 0) // Scrolls to the top of the page
 	}
 
 	const getProductQuantity = (productId) => {
@@ -1101,7 +1102,7 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 											</div>
 											<div className="all_product_price">
 												₹{product.PriceAfterDiscount}{" "}
-												<span>{product?.price}</span>
+												<span>{product?.price} Rs</span>
 											</div>
 										</div>
 										<div className="Add_to_cart_and_watchlist_button">

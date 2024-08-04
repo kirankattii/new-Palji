@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 100vh;
   height: 100%;
-  padding-top: 8vh;
+  padding-top: 10vh;
 }
 
 .main_all_product_div {
@@ -142,13 +142,14 @@
   /* background-color: #f0f0f0; */
   background: var(--golden-color);
   color: var(--navy-blue-color);
-  border: none;
+  border: 1px solid #000;
   cursor: pointer;
 }
 
-.pagination button.active {
-  background-color: var(--navy-blue-color);
-  color: var(--golden-color);
+.pagination .active {
+  background: #FEA59F;
+  color: #fff;
+  border: 2px solid #fff;
 }
 
 .pagination button:hover {
@@ -367,6 +368,13 @@
 
 
 @media (max-width:500px) {
+  .top_parent_div_all_product {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    padding-top: 3vh;
+  }
+
   .product_name_and_price {
     display: flex;
     width: 100%;
@@ -432,7 +440,7 @@
 
   .pagination button {
     margin: 10px;
-    padding: 14px 25px;
+    padding: 8px 14px;
   }
 
   /* wishlist */

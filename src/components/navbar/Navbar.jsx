@@ -1132,7 +1132,7 @@ const Navbar = () => {
 					>
 						<input
 							type="text"
-							placeholder="SEARCH"
+							placeholder="Search"
 							value={input}
 							onChange={(e) => handleChange(e.target.value)}
 						/>
