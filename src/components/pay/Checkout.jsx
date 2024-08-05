@@ -940,8 +940,11 @@ function Checkout() {
 					) : (
 						<div>
 							<Orderbar activeOptionName="PAYMENT" />
-							<div className="checkout_to_cart">
-								<BackButton pageLocation="/cart" />
+							<div
+								className="checkout_to_cart"
+								onClick={() => setCurrentPage("CHECKOUT")}
+							>
+								<BackButton />
 							</div>
 							<div className="main_checkout_div">
 								{/* Payment Method */}
