@@ -1,7 +1,9 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "./cartCalculation.css"
+import useCoupon from "../../hook/coupanHook"
 // import useCoupon from "../hook/coupanHook"
+
 function CartCalculation({
 	tax,
 	shipping,
@@ -14,10 +16,36 @@ function CartCalculation({
 	const formatNumber = (number) => {
 		return Math.round(number).toString()
 	}
+
+	const {
+		couponCode,
+		setCouponCode,
+		appliedCoupon,
+		couponDiscount,
+		applyCoupon,
+		removeCoupon,
+	} = useCoupon()
 	const navigate = useNavigate()
 	return (
 		<>
 			<div className="right-checkoutpayment cart-billing">
+				<div className="cart-promocode">
+					<h2>HAVE A COUPON ?</h2>
+					<div className="cart-promocode-input">
+						<input
+							type="text"
+							placeholder="COUPON CODE"
+							value={couponCode}
+							onChange={(e) => setCouponCode(e.target.value)}
+							disabled={appliedCoupon !== null}
+						/>
+						{appliedCoupon ? (
+							<button onClick={removeCoupon}>REMOVE</button>
+						) : (
+							<button onClick={(e) => applyCoupon(couponCode)}>APPLY</button>
+						)}
+					</div>
+				</div>
 				<div className="cart-order-summary">
 					<h2>order summary</h2>
 					<div className="cart-billing-charges">
@@ -27,7 +55,7 @@ function CartCalculation({
 						</div>
 						<div className="cart-billing-discount">
 							<p>DISCOUNT</p>
-							<p>{CoupanApplied}%</p>
+							<p>{appliedCoupon ? couponDiscount : 0}%</p>
 						</div>
 						<div className="cart-billing-tax">
 							<p>TAX</p>
@@ -39,7 +67,7 @@ function CartCalculation({
 						</div>
 						<div className="cart-billing-shipping">
 							<b>TOTAL</b>
-							<b>₹ {formatNumber(total)}</b>
+							<b>₹ {formatNumber(total - total * (couponDiscount / 100))}</b>
 						</div>
 					</div>
 					{/* <Link
