@@ -50,7 +50,20 @@
   padding-top: 30px;
 }
 
+.all_oredrs_loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.no-orders-found {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 10%;
+}
 
 @media(max-width:1000px) {
   .order-summary2 p {

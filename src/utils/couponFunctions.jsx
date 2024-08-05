@@ -105,7 +105,7 @@ const CouponFunctions = () => {
 				</div>
 
 				<div className="cart-billing">
-					<div className="cart-promocode">
+					{/* <div className="cart-promocode">
 						<h2>HAVE A COUPON ?</h2>
 						<div className="cart-promocode-input">
 							<input
@@ -121,7 +121,7 @@ const CouponFunctions = () => {
 								<button onClick={(e) => applyCoupon(couponCode)}>APPLY</button>
 							)}
 						</div>
-					</div>
+					</div> */}
 					{/* <div className="cart-order-summary">
 						<h2>order summary</h2>
 						<div className="cart-billing-charges">

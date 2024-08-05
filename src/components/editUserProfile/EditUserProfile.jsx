@@ -337,6 +337,7 @@ const EditUserProfile = () => {
 					}
 				},
 			})
+			navigate("/userprofile")
 		} catch (error) {
 			console.log("Error updating user details:", error.response.data.message)
 			toast.error(error.response.data.message)

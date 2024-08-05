@@ -197,6 +197,33 @@ export const cartItemRemoveFromCart = async (
 	}
 }
 
+export const deleteCartItemRemoveFromCart = async (
+	productId,
+	setProductLoaders,
+	fetchCart,
+	quantity
+) => {
+	try {
+		let removeQuantity = quantity ? quantity : 1
+		setProductLoaders((prevState) => ({
+			...prevState,
+			[productId]: true,
+		}))
+		const method = "POST"
+		const endpoint = `/api/remove-from-cart?quantity=${removeQuantity}`
+
+		await makeApi(endpoint, method, { productId })
+		fetchCart()
+	} catch (error) {
+		console.log(error)
+	} finally {
+		setProductLoaders((prevState) => ({
+			...prevState,
+			[productId]: false,
+		}))
+	}
+}
+
 export const updateCartCount = (cartItems) => {
 	const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0)
 	cartCountListeners.forEach((listener) => listener(cartCount))

@@ -1077,66 +1077,91 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 					</div>
 				) : (
 					<div className="">
-						<div className="main_all_product_div">
-							{products.map((product, index) => (
-								<div
-									className="product_div_all_product_parent"
-									key={index}
-								>
-									<div className="product_div_all_product">
-										<Link to={`/product/product-details/${product._id}`}>
-											<div className="ab_product_div_all_product">
-												<img
-													src={product.thumbnail}
-													alt="product"
-													className="all_product_product_thumbnail"
-													loading="lazy"
-												/>
+						{products.length === 0 ? (
+							<div className="no-products-found">No Products Found</div>
+						) : (
+							<div className="main_all_product_div">
+								{products.map((product, index) => (
+									<div
+										className="product_div_all_product_parent"
+										key={index}
+									>
+										<div className="product_div_all_product">
+											<Link to={`/product/product-details/${product._id}`}>
+												<div className="ab_product_div_all_product">
+													<img
+														src={product.thumbnail}
+														alt="product"
+														className="all_product_product_thumbnail"
+														loading="lazy"
+													/>
+												</div>
+											</Link>
+											<div className="product_name_and_price">
+												<div>
+													<Link to={`/product/product-details/${product._id}`}>
+														{product.name}
+													</Link>
+												</div>
+												<div className="all_product_price">
+													₹{product.PriceAfterDiscount}{" "}
+													<span>{product?.price} Rs</span>
+												</div>
 											</div>
-										</Link>
-										<div className="product_name_and_price">
-											<div>
-												<Link to={`/product/product-details/${product._id}`}>
-													{product.name}
-												</Link>
-											</div>
-											<div className="all_product_price">
-												₹{product.PriceAfterDiscount}{" "}
-												<span>{product?.price} Rs</span>
-											</div>
-										</div>
-										<div className="Add_to_cart_and_watchlist_button">
-											<>
-												{isInCart(product._id) ? (
-													<div className="Add_to_cart_and_watchlist_child Add_to_cart_and_watchlist_child1">
-														{productLoaders[product._id] ? (
-															<div className="hori_loading">
-																<HorizotalLoader />
-															</div>
-														) : (
-															<div className="cart-quantity">
-																<LazyLoadImage
-																	effect="blur"
-																	loading="lazy"
-																	src={RemoveIcon}
-																	alt="RemoveIcon"
-																	className="Icon_add_to_cart"
-																	onClick={() =>
-																		removeFromCart(
-																			product?._id,
-																			setProductLoaders,
-																			setCartItems,
-																			fetchCart
-																		)
-																	}
-																/>
-																<span>{getProductQuantity(product?._id)}</span>
-																<LazyLoadImage
-																	effect="blur"
-																	loading="lazy"
-																	src={AddIcon}
-																	alt="AddIcon"
-																	className="Icon_add_to_cart"
+											<div className="Add_to_cart_and_watchlist_button">
+												<>
+													{isInCart(product._id) ? (
+														<div className="Add_to_cart_and_watchlist_child Add_to_cart_and_watchlist_child1">
+															{productLoaders[product._id] ? (
+																<div className="hori_loading">
+																	<HorizotalLoader />
+																</div>
+															) : (
+																<div className="cart-quantity">
+																	<LazyLoadImage
+																		effect="blur"
+																		loading="lazy"
+																		src={RemoveIcon}
+																		alt="RemoveIcon"
+																		className="Icon_add_to_cart"
+																		onClick={() =>
+																			removeFromCart(
+																				product?._id,
+																				setProductLoaders,
+																				setCartItems,
+																				fetchCart
+																			)
+																		}
+																	/>
+																	<span>
+																		{getProductQuantity(product?._id)}
+																	</span>
+																	<LazyLoadImage
+																		effect="blur"
+																		loading="lazy"
+																		src={AddIcon}
+																		alt="AddIcon"
+																		className="Icon_add_to_cart"
+																		onClick={() =>
+																			handleAddToCart(
+																				product?._id,
+																				getProductQuantity(product?._id),
+																				product?.quantity
+																			)
+																		}
+																	/>
+																</div>
+															)}
+														</div>
+													) : (
+														<div>
+															{productLoaders[product._id] ? (
+																<div className="hori_loading">
+																	<HorizotalLoader />
+																</div>
+															) : (
+																<div
+																	className="Add_to_cart_button"
 																	onClick={() =>
 																		handleAddToCart(
 																			product?._id,
@@ -1144,55 +1169,36 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 																			product?.quantity
 																		)
 																	}
-																/>
-															</div>
-														)}
-													</div>
-												) : (
-													<div>
-														{productLoaders[product._id] ? (
-															<div className="hori_loading">
-																<HorizotalLoader />
-															</div>
-														) : (
-															<div
-																className="Add_to_cart_button"
-																onClick={() =>
-																	handleAddToCart(
-																		product?._id,
-																		getProductQuantity(product?._id),
-																		product?.quantity
-																	)
-																}
-															>
-																Add to Cart
-															</div>
-														)}
-													</div>
-												)}
-											</>
+																>
+																	Add to Cart
+																</div>
+															)}
+														</div>
+													)}
+												</>
 
-											<div className="Add_to_cart_and_watchlist_child a_Add_to_cart_and_watchlist_child">
-												{AddToWishlistLoader[product._id] ? (
-													<div className="heart_loader_all_product">
-														<Heartloader />
-													</div>
-												) : (
-													<IoIosHeart
-														className={`watchlist-icon pointer-event ${
-															wishlistItems.includes(product._id)
-																? "wishlist-active"
-																: ""
-														}`}
-														onClick={() => toggleWishlist(product._id)}
-													/>
-												)}
+												<div className="Add_to_cart_and_watchlist_child a_Add_to_cart_and_watchlist_child">
+													{AddToWishlistLoader[product._id] ? (
+														<div className="heart_loader_all_product">
+															<Heartloader />
+														</div>
+													) : (
+														<IoIosHeart
+															className={`watchlist-icon pointer-event ${
+																wishlistItems.includes(product._id)
+																	? "wishlist-active"
+																	: ""
+															}`}
+															onClick={() => toggleWishlist(product._id)}
+														/>
+													)}
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							))}
-						</div>
+								))}
+							</div>
+						)}
 						<div className="pagination">
 							{Array.from({ length: totalPages }, (_, index) => index + 1).map(
 								(pageNumber) => (

@@ -1160,6 +1160,7 @@ import {
 	cartItemAddToCart,
 	cartItemRemoveFromCart,
 	removeAllProductsFromCart,
+	deleteCartItemRemoveFromCart,
 } from "../utils/productFunction"
 import useCoupon from "../hook/coupanHook"
 import CouponFunctions from "../utils/couponFunctions"
@@ -1242,6 +1243,19 @@ const Cart = () => {
 		}
 	}
 
+	// const removeAll = async(productId,quantity)
+
+	const removeAll = async (productId, quantity) => {
+		console.log("Remove all cart", productId, quantity)
+
+		await deleteCartItemRemoveFromCart(
+			productId,
+			setProductLoaders,
+			fetchCartItem,
+			quantity
+		)
+	}
+
 	useEffect(() => {
 		fetchCartItem()
 	}, [])
@@ -1278,7 +1292,7 @@ const Cart = () => {
 									<p>Price</p>
 									<p>Qty</p>
 									<p>Total:</p>
-									{/* <p>Remove</p> */}
+									<p>Remove</p>
 								</div>
 								<br />
 								<hr />
@@ -1316,6 +1330,23 @@ const Cart = () => {
 													/>
 												</div>
 												<p>₹{item.totalPrice}</p>
+												<p
+													className="cross"
+													onClick={() =>
+														removeAll(
+															item.productId._id,
+
+															item.quantity
+														)
+													}
+												>
+													{/* {item.quantity} */}
+													<img
+														className="remove-cart"
+														src={assets.cart_remove}
+														alt=""
+													/>
+												</p>
 											</div>
 											{/* <hr /> */}
 										</div>

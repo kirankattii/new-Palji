@@ -260,18 +260,25 @@
     /* padding: 0 20px; */
   }
 
+  .cust1 img {}
+
   .cards img {
     width: 100%;
     display: flex;
     justify-content: center;
     margin: auto;
+    align-items: center;
+
   }
 
   .cards {
-    width: 100%;
+    width: 140%;
     display: flex;
     justify-content: center;
     margin: auto;
+    align-items: center;
+    margin-left: -20%;
+
   }
 
   .customer h1 {

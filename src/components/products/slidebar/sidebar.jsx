@@ -747,6 +747,7 @@ import { useNavigate } from "react-router-dom"
 import { makeApi } from "../../../api/callApi"
 import { IoSearch } from "react-icons/io5"
 import FilterDropdown from "./FilterPopup"
+import { RiArrowDropDownLine } from "react-icons/ri"
 
 const ProductSidebar = () => {
 	const history = useNavigate()
@@ -915,7 +916,10 @@ const ProductSidebar = () => {
 						className="media_filter"
 						onClick={() => setShowDropdown(!showDropdown)}
 					>
-						Filter
+						Filter{" "}
+						<span>
+							<RiArrowDropDownLine />
+						</span>
 					</div>
 				</div>
 				<hr className="line_btn_sidebar_products" />
