@@ -1146,6 +1146,226 @@
 
 // export default Cart
 
+// import React, { useContext, useEffect, useState } from "react"
+// import "./CSS/cart.css"
+// import { ShopContext } from "../context/ShopContext"
+// import { assets } from "../assets/assets"
+// import { useNavigate } from "react-router"
+// import Orderbar from "../components/orderbar/orderbar"
+// import { ToastContainer } from "react-toastify"
+// import Primaryloader from "../components/loaders/primaryloader"
+// import { Link } from "react-router-dom"
+// import {
+// 	cartItemFetchCart,
+// 	cartItemAddToCart,
+// 	cartItemRemoveFromCart,
+// 	removeAllProductsFromCart,
+// 	deleteCartItemRemoveFromCart,
+// } from "../utils/productFunction"
+// import useCoupon from "../hook/coupanHook"
+// import CouponFunctions from "../utils/couponFunctions"
+// import { makeApi } from "../api/callApi"
+// import CartCalculation from "../components/CartCalculation/cartCalculation"
+
+// const Cart = () => {
+// 	const {
+// 		cartItems,
+// 		getTotalCartDiscountAmount,
+// 		all_product,
+// 		getTotalCartAmount,
+// 	} = useContext(ShopContext)
+
+// 	const {
+// 		couponCode,
+// 		setCouponCode,
+// 		appliedCoupon,
+// 		couponDiscount,
+// 		applyCoupon,
+// 		removeCoupon,
+// 	} = useCoupon()
+
+// 	const totalDiscount = (
+// 		getTotalCartAmount() - getTotalCartDiscountAmount()
+// 	).toFixed(2)
+
+// 	const navigate = useNavigate()
+
+// 	const [shippingAddresses, setShippingAddresses] = useState([])
+// 	const [loading, setLoading] = useState(false)
+// 	const [selectedAddress, setSelectedAddress] = useState(null)
+// 	const [cartItem, setCartItem] = useState([])
+// 	const [cartPoductList, setCartProductList] = useState([])
+// 	const [AllProductLoader, setAllProductLoader] = useState(false)
+// 	const [productLoaders, setProductLoaders] = useState({})
+// 	const [IscartEmpty, setIsCartEmpty] = useState(false)
+
+// 	const fetchShippingAddresses = async () => {
+// 		try {
+// 			setLoading(true)
+// 			const response = await makeApi("/api/get-my-shiped-address", "GET")
+// 			setShippingAddresses(response.data.shipedaddress)
+// 			setLoading(false)
+// 		} catch (error) {
+// 			console.error("Error fetching shipping addresses: ", error)
+// 			setLoading(false)
+// 		}
+// 	}
+
+// 	const handleAddressSelect = (address) => {
+// 		setSelectedAddress(address)
+// 	}
+
+// 	useEffect(() => {
+// 		fetchShippingAddresses()
+// 	}, [])
+
+// 	const fetchCartItem = async () => {
+// 		await cartItemFetchCart(
+// 			setCartItem,
+// 			setCartProductList,
+// 			setAllProductLoader,
+// 			setIsCartEmpty
+// 		)
+// 	}
+
+// 	const removeFromCart = async (productId) => {
+// 		await cartItemRemoveFromCart(productId, setProductLoaders, fetchCartItem)
+// 	}
+
+// 	const addToCart = async (productId) => {
+// 		await cartItemAddToCart(productId, setProductLoaders, fetchCartItem)
+// 	}
+
+// 	const handleAddToCart = (productId, quantity, availableQuantity) => {
+// 		if (quantity < availableQuantity) {
+// 			addToCart(productId)
+// 		} else {
+// 			toast.error("Cannot add more than available quantity.")
+// 		}
+// 	}
+
+// 	// const removeAll = async(productId,quantity)
+
+// 	const removeAll = async (productId, quantity) => {
+// 		console.log("Remove all cart", productId, quantity)
+
+// 		await deleteCartItemRemoveFromCart(
+// 			productId,
+// 			setProductLoaders,
+// 			fetchCartItem,
+// 			quantity
+// 		)
+// 	}
+
+// 	useEffect(() => {
+// 		fetchCartItem()
+// 	}, [])
+
+// 	return (
+// 		<>
+// 			<ToastContainer />
+// 			{AllProductLoader ? (
+// 				<div className="All_Product_loader">
+// 					<div className="All_Product_loadera">
+// 						<Primaryloader />
+// 					</div>
+// 				</div>
+// 			) : (
+// 				<div className="cart-container">
+// 					{IscartEmpty && (
+// 						<div className="empty_cart_div">
+// 							<img
+// 								src={assets.empty_cart}
+// 								alt="No cart "
+// 								className="NO_cart_image"
+// 							/>
+// 							<Link to="/product/all-products">
+// 								<h2>Explore products</h2>
+// 							</Link>
+// 						</div>
+// 					)}
+// 					{!IscartEmpty && (
+// 						<div>
+// 							<div className="cart-item">
+// 								<div className="cart-items-title cart-items-title2">
+// 									<p>Items</p>
+// 									<p>Name</p>
+// 									<p>Price</p>
+// 									<p>Qty</p>
+// 									<p>Total:</p>
+// 									<p>Remove</p>
+// 								</div>
+// 								<br />
+// 								<hr />
+// 								{cartPoductList &&
+// 									cartPoductList.map((item, index) => (
+// 										<div key={index}>
+// 											<div className="cart-items-title cart-items-item">
+// 												<img
+// 													src={item.productId.thumbnail}
+// 													alt=""
+// 												/>
+// 												<p>{item.productId.name}</p>
+// 												<p>₹{item.productId.price}</p>
+// 												<div className="cartPageButton">
+// 													<img
+// 														loading="lazy"
+// 														src={assets.add_icon_red}
+// 														alt="RemoveIcon"
+// 														className="Icon_add_to_cart_main_cart_page cart_increase"
+// 														onClick={() => removeFromCart(item.productId._id)}
+// 													/>
+// 													<p>{item.quantity}</p>
+// 													<img
+// 														loading="lazy"
+// 														src={assets.add_icon_green}
+// 														alt="AddIcon"
+// 														className="Icon_add_to_cart_main_cart_page"
+// 														onClick={() =>
+// 															handleAddToCart(
+// 																item.productId._id,
+// 																item.quantity,
+// 																item.productId.quantity
+// 															)
+// 														}
+// 													/>
+// 												</div>
+// 												<p>₹{item.totalPrice}</p>
+// 												<p
+// 													className="cross"
+// 													onClick={() =>
+// 														removeAll(
+// 															item.productId._id,
+
+// 															item.quantity
+// 														)
+// 													}
+// 												>
+// 													{/* {item.quantity} */}
+// 													<img
+// 														className="remove-cart"
+// 														src={assets.cart_remove}
+// 														alt=""
+// 													/>
+// 												</p>
+// 											</div>
+// 											{/* <hr /> */}
+// 										</div>
+// 									))}
+// 							</div>
+
+// 							<CouponFunctions />
+// 							{/* <CartCalculation  /> */}
+// 						</div>
+// 					)}
+// 				</div>
+// 			)}
+// 		</>
+// 	)
+// }
+
+// export default Cart
+
 import React, { useContext, useEffect, useState } from "react"
 import "./CSS/cart.css"
 import { ShopContext } from "../context/ShopContext"
@@ -1291,65 +1511,67 @@ const Cart = () => {
 									<p>Items</p>
 									<p>Name</p>
 									<p>Price</p>
-									<p>Qty</p>
+									<p className="quantity_heading">Qty</p>
 									<p>Total:</p>
-									<p>Remove</p>
 								</div>
 								<br />
 								<hr />
 								{cartPoductList &&
 									cartPoductList.map((item, index) => (
-										<div key={index}>
-											<div className="cart-items-title cart-items-item">
+										<div className="all_added_cart_list">
+											{" "}
+											<p
+												className="cross"
+												onClick={() =>
+													removeAll(
+														item.productId._id,
+
+														item.quantity
+													)
+												}
+											>
+												{/* {item.quantity} */}
 												<img
-													src={item.productId.thumbnail}
+													className="remove-cart"
+													src={assets.cart_remove}
 													alt=""
 												/>
-												<p>{item.productId.name}</p>
-												<p>₹{item.productId.price}</p>
-												<div className="cartPageButton">
+											</p>
+											<div key={index}>
+												<div className="cart-items-title cart-items-item">
 													<img
-														loading="lazy"
-														src={assets.add_icon_red}
-														alt="RemoveIcon"
-														className="Icon_add_to_cart_main_cart_page cart_increase"
-														onClick={() => removeFromCart(item.productId._id)}
-													/>
-													<p>{item.quantity}</p>
-													<img
-														loading="lazy"
-														src={assets.add_icon_green}
-														alt="AddIcon"
-														className="Icon_add_to_cart_main_cart_page"
-														onClick={() =>
-															handleAddToCart(
-																item.productId._id,
-																item.quantity,
-																item.productId.quantity
-															)
-														}
-													/>
-												</div>
-												<p>₹{item.totalPrice}</p>
-												<p
-													className="cross"
-													onClick={() =>
-														removeAll(
-															item.productId._id,
-
-															item.quantity
-														)
-													}
-												>
-													{/* {item.quantity} */}
-													<img
-														className="remove-cart"
-														src={assets.cart_remove}
+														src={item.productId.thumbnail}
 														alt=""
 													/>
-												</p>
+													<p>{item.productId.name}</p>
+													<p>₹{item.productId.price}</p>
+													<div className="cartPageButton">
+														<img
+															loading="lazy"
+															src={assets.add_icon_red}
+															alt="RemoveIcon"
+															className="Icon_add_to_cart_main_cart_page cart_increase"
+															onClick={() => removeFromCart(item.productId._id)}
+														/>
+														<p>{item.quantity}</p>
+														<img
+															loading="lazy"
+															src={assets.add_icon_green}
+															alt="AddIcon"
+															className="Icon_add_to_cart_main_cart_page"
+															onClick={() =>
+																handleAddToCart(
+																	item.productId._id,
+																	item.quantity,
+																	item.productId.quantity
+																)
+															}
+														/>
+													</div>
+													<p>₹{item.totalPrice}</p>
+												</div>
+												{/* <hr /> */}
 											</div>
-											{/* <hr /> */}
 										</div>
 									))}
 							</div>

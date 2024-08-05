@@ -39,7 +39,7 @@
 
 .cart-items-title {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr 1.2fr 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr 1fr 1.2fr 1fr;
   align-items: center;
   color: gray;
   font-size: max(1vw, 12px);
@@ -49,9 +49,14 @@
   line-height: 44.65px;
   text-align: left;
   color: #E5087E;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
 }
 
 .cart-items-item {
+  margin: auto;
+  text-align: center;
   margin: 10px 0;
   color: #AE7B37;
   font-size: 22px;
@@ -63,6 +68,7 @@
 .cart-items-item img {
   width: 100px;
   height: 120px;
+  margin: auto;
   margin-top: -20px;
 }
 
@@ -311,16 +317,48 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin: auto;
 }
 
 .cartPageButton img {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  margin: auto;
 }
 
-.cross {
-  /* text-align: ; */
+.cartPageButton p {
+  margin: auto;
+}
+
+.cart-items-item p {
+  margin: auto;
+}
+
+.all_added_cart_list .cross {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: -60px;
+  border: 1px solid red;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.all_added_cart_list .cross img {
+  width: 30px;
+}
+
+.quantity_heading {
+  align-items: center;
+  /* margin-left: 27px; */
+}
+
+.cart-items-title {
+  align-items: center;
+
 }
 
 @media (max-width:950px) {
@@ -329,6 +367,7 @@
     min-height: 100vh;
     width: 100%;
     padding: 0 20px;
+    padding-left: 60px;
     margin: auto;
     background: #efe2d7;
     padding-top: 25vh;
@@ -372,9 +411,26 @@
     height: 30px;
     cursor: pointer;
   }
+
+  .all_added_cart_list .cross {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    margin-left: -45px;
+    border: 1px solid red;
+    border-radius: 50%;
+    padding: 4px;
+  }
+
+  .all_added_cart_list .cross img {
+    width: 25px;
+  }
+
 }
 
 @media (max-width:600px) {
+
   .cart-container {
 
     min-height: 100vh;
@@ -383,6 +439,7 @@
     margin: auto;
     background: #efe2d7;
     padding-top: 25vh;
+    padding-left: 40px;
   }
 
   .cart-items-title {
@@ -426,6 +483,22 @@
   .NO_cart_image {
     width: 100%;
   }
+
+  .all_added_cart_list .cross {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    margin-left: -34px;
+    border: 1px solid red;
+    border-radius: 50%;
+    padding: 4px;
+  }
+
+  .all_added_cart_list .cross img {
+    width: 20px;
+  }
+
 }
 
 @media (max-width:500px) {
