@@ -313,6 +313,10 @@ const EditUserProfile = () => {
 			setMobileNumberChanged(true)
 		}
 	}
+	const isValidMobileNumber = (number) => {
+		const regex = /^\d{10}$/ // Adjust the regex pattern as needed
+		return regex.test(number)
+	}
 
 	const onSubmitHandler = async (event) => {
 		event.preventDefault()
@@ -321,8 +325,8 @@ const EditUserProfile = () => {
 			if (!mobileNumberChanged) {
 				delete userDataToUpdate.mobileNumber
 			}
-			if (mobileNumberChanged && editData.mobileNumber.length < 10) {
-				toast.error("Please enter a valid mobile number")
+			if (mobileNumberChanged && !isValidMobileNumber(editData.mobileNumber)) {
+				toast.error("Please enter a valid 10-digit mobile number")
 				return
 			}
 			const response = await makeApi(

@@ -1165,6 +1165,7 @@ import {
 import useCoupon from "../hook/coupanHook"
 import CouponFunctions from "../utils/couponFunctions"
 import { makeApi } from "../api/callApi"
+import CartCalculation from "../components/CartCalculation/cartCalculation"
 
 const Cart = () => {
 	const {
@@ -1354,6 +1355,7 @@ const Cart = () => {
 							</div>
 
 							<CouponFunctions />
+							{/* <CartCalculation  /> */}
 						</div>
 					)}
 				</div>

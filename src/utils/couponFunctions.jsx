@@ -169,13 +169,25 @@ const CouponFunctions = () => {
 
 					{/* </div> */}
 
-					<CartCalculation
+					{/* <CartCalculation
 						tax={cartItem.taxPrice}
 						shipping={cartItem.shippingPrice}
 						total={cartItem.totalPrice}
 						CoupanApplied={appliedCoupon ? couponDiscount : totalDiscount}
 						Final={
 							cartItem.TotalProductPrice -
+							cartItem.TotalProductPrice * (couponDiscount / 100)
+						}
+						ButtonName="PROCEED TO CHECKOUT"
+					/> */}
+
+					<CartCalculation
+						tax={cartItem.taxPrice}
+						shipping={cartItem.shippingPrice}
+						Final={cartItem.TotalProductPrice}
+						CoupanApplied={appliedCoupon ? couponDiscount : totalDiscount}
+						total={
+							cartItem.totalPrice -
 							cartItem.TotalProductPrice * (couponDiscount / 100)
 						}
 						ButtonName="PROCEED TO CHECKOUT"

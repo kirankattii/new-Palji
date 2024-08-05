@@ -32,14 +32,16 @@
 .login-popup h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #E5087E;
 }
 
 .login-popup input {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #717070;
   border-radius: 5px;
+  outline: none;
 }
 
 .login-popup button {
@@ -47,17 +49,19 @@
   padding: 4px 8px;
   border: none;
   border-radius: 5px;
-  background-color: var(--navy-blue-color);
+  background-color: #E5087E;
   color: var(--white-color);
+
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   width: 90px;
   font-size: 18px;
   margin: auto;
   display: flex;
   margin-top: 10px;
   justify-content: center;
+  color: #fff;
 }
 
 .login-popup button:hover {

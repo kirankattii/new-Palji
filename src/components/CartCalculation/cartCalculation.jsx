@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "./cartCalculation.css"
+// import useCoupon from "../hook/coupanHook"
 function CartCalculation({
 	tax,
 	shipping,
@@ -26,7 +27,7 @@ function CartCalculation({
 						</div>
 						<div className="cart-billing-discount">
 							<p>DISCOUNT</p>
-							<p>₹ {0}</p>
+							<p>{CoupanApplied}%</p>
 						</div>
 						<div className="cart-billing-tax">
 							<p>TAX</p>

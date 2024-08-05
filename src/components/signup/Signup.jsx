@@ -109,11 +109,10 @@ const Signup = () => {
 			// Handle error
 			console.log("Error during signup:", error)
 			const errorMessage =
-				error.response?.data?.message || "An error occurred during signup."
+				error.response?.data?.message || "Enter a valid email"
 			toast.error(errorMessage)
 		}
 	}
-
 	return (
 		<>
 			<ToastContainer />
@@ -149,6 +148,7 @@ const Signup = () => {
 						placeholder="Email Address"
 						value={formData.email}
 						onChange={changeHandler}
+						required
 					/>
 					{state === "Sign Up" ? (
 						<input
