@@ -29,6 +29,7 @@ import Products from "./pages/products.jsx"
 import Checkout from "./components/pay/Checkout.jsx"
 import TestingCart from "./utils/TestingCart.jsx"
 import AddressForm from "./components/shippingAddress/AddressForm.jsx"
+import SignUp from "./components/authh/register/SighUp.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -90,6 +91,10 @@ function App() {
 				<Route
 					path="/signup"
 					element={<Signup />}
+				/>{" "}
+				<Route
+					path="/register"
+					element={<SignUp />}
 				/>
 				<Route
 					path="/userprofile"

@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
 }
 
 .login-popup-content {
@@ -65,9 +66,12 @@
 }
 
 .login-popup button:hover {
-  background-color: var(--golden-color);
+  /* background-color: var(--golden-color); */
 }
 
+.loginpopuptoast {
+  z-index: 55000;
+}
 
 .close_icon_login_popup {
   cursor: pointer;
