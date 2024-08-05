@@ -30,6 +30,8 @@ import Checkout from "./components/pay/Checkout.jsx"
 import TestingCart from "./utils/TestingCart.jsx"
 import AddressForm from "./components/shippingAddress/AddressForm.jsx"
 import SignUp from "./components/authh/register/SighUp.jsx"
+import AddShippingAddress from "./components/addressCheckout/ShippingAddress.jsx"
+import AddBillingAddress from "./components/addressCheckout/BillingAddress.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -128,6 +130,14 @@ function App() {
 				<Route
 					path="/billing-address"
 					element={<BillingAddress />}
+				/>{" "}
+				<Route
+					path="/add-shipping-address"
+					element={<AddShippingAddress />}
+				/>
+				<Route
+					path="/add-billing-address"
+					element={<AddBillingAddress />}
 				/>
 				<Route
 					path="/cart/checkout"

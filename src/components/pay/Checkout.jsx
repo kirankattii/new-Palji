@@ -852,9 +852,7 @@ function Checkout() {
 									<div>
 										<div className="shipping-address-title">
 											<h2>Shipping Address</h2>
-											<button
-												onClick={() => navigate("/userprofile/myaddress")}
-											>
+											<button onClick={() => navigate("/add-shipping-address")}>
 												Add New Address
 											</button>
 										</div>
@@ -891,9 +889,7 @@ function Checkout() {
 									<div>
 										<div className="shipping-address-title">
 											<h2>Billing Address</h2>
-											<button
-												onClick={() => navigate("/userprofile/myaddress")}
-											>
+											<button onClick={() => navigate("/add-billing-address")}>
 												Add New Address
 											</button>
 										</div>
