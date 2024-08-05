@@ -864,7 +864,7 @@ const ProductSidebar = () => {
 								/>
 								<div>₹{minPrice}</div>
 							</div>
-							<div>
+							<div className="SidebarMAXPRICE">
 								<span>Max Price</span>
 								<input
 									type="range"

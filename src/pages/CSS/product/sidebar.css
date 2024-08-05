@@ -133,6 +133,10 @@
   display: none;
 }
 
+.SidebarMAXPRICE {
+  text-align: end;
+}
+
 @media (max-width: 800px) {
   .main_product_sidebar_div {
     max-width: 200px;
