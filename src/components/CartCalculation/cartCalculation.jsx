@@ -29,7 +29,7 @@ function CartCalculation({
 	return (
 		<>
 			<div className="right-checkoutpayment cart-billing">
-				<div className="cart-promocode">
+				{/* <div className="cart-promocode">
 					<h2>HAVE A COUPON ?</h2>
 					<div className="cart-promocode-input">
 						<input
@@ -45,7 +45,7 @@ function CartCalculation({
 							<button onClick={(e) => applyCoupon(couponCode)}>APPLY</button>
 						)}
 					</div>
-				</div>
+				</div> */}
 				<div className="cart-order-summary">
 					<h2>order summary</h2>
 					<div className="cart-billing-charges">
