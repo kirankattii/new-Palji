@@ -319,6 +319,10 @@
   cursor: pointer;
 }
 
+.cross {
+  /* text-align: ; */
+}
+
 @media (max-width:950px) {
   .cart-container {
 

@@ -14,11 +14,13 @@ const Loader = () => {
 		return () => clearTimeout(timeoutId)
 	}, [])
 	return (
-		<div className={`loader ${animate ? "animate" : ""}`}>
-			<img
-				src={assets.logo2}
-				alt="Logo"
-			/>
+		<div className="home_landing_animation">
+			<div className={`loader ${animate ? "animate" : ""}`}>
+				<img
+					src={assets.logo2}
+					alt="Logo"
+				/>
+			</div>
 		</div>
 	)
 }
