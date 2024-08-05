@@ -27,6 +27,7 @@
 
 .loader img {
   width: 50%;
+  margin-top: 100px;
   transition: transform 1s ease-out;
 
 }
@@ -71,6 +72,10 @@
     /* margin-top: -35%; */
 
   }
+
+  .home_landing_animation {
+    display: none;
+  }
 }
 
 @media(max-width:425px) {
@@ -78,4 +83,5 @@
     /* margin-top: -58%; */
 
   }
+
 }
