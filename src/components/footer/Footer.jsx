@@ -1,9 +1,10 @@
 import React from "react"
 import "./footer.css"
 import { assets } from "../../assets/assets"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Footer = () => {
+	const navigate = useNavigate()
 	return (
 		<div className="footer-container">
 			<div className="footer">
@@ -12,6 +13,8 @@ const Footer = () => {
 						className="pulji-footer-logo"
 						src={assets.logo2}
 						alt=""
+						style={{ cursor: "pointer" }}
+						onClick={() => navigate("/")}
 					/>
 					{/* <hr /> */}
 					<div className="social-icons">
