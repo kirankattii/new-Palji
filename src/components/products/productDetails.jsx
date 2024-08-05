@@ -1133,12 +1133,12 @@ function ProductDetails() {
 									<div className="productdisplay-addtocart">
 										<div className="productdisplay-item-cart"></div>
 									</div>
-									<div className="">
+									<div className="product_details_price_off">
 										<p className="aproduct_display_price">
 											₹ {product.PriceAfterDiscount}{" "}
-											<span>{product?.price} Rs</span>
+											{/* <span>{product?.price} Rs</span> */}
+											<span>{product?.discountPercentage}%</span>
 										</p>
-										<p></p>
 									</div>
 									<div className="productdisplay-item-cart productdisplay-item-car1">
 										{!isInCart ? (

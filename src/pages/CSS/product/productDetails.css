@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 100px 80px 80px 80px;
+  padding: 130px 80px 80px 80px;
   min-height: 100vh;
 }
 
@@ -169,6 +169,11 @@
 .productdisplay-food-item-counter img {
   cursor: pointer;
   width: 30px;
+}
+
+.product_details_price_off {
+  /* display: flex; */
+  color: #AE7B37;
 }
 
 @media (max-width:1250px) {
@@ -371,8 +376,10 @@
 }
 
 .aproduct_display_price span {
-  font-size: 17px;
+  font-size: 20px;
   opacity: 0.8;
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
   padding-left: 5px;
+  margin-left: 20px;
+  color: #E5087E;
 }
