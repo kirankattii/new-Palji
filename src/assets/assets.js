@@ -50,6 +50,7 @@ import password_reset from "./Password Reset.png"
 import profile_reset from "./profile_reset.png"
 import userprofile_menu from "./menu_icon.png"
 import empty_cart from "./empty-cart.svg"
+import pieceOfCake from "./peiceofCake.png"
 
 export const assets = {
 	userprofile_menu,
@@ -104,4 +105,5 @@ export const assets = {
 	password_reset,
 	profile_reset,
 	empty_cart,
+	pieceOfCake,
 }

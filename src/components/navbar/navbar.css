@@ -382,18 +382,21 @@
     display: block;
     display: flex;
     align-items: center;
+    /* padding: 2px 4px; */
     border: 1px solid #000;
-    height: 35px;
+    height: 30px;
     border-radius: 50px;
     font-family: serif;
+    margin-top: 3px;
   }
 
   .responcive_profile_login img {
-    width: 35px;
+    width: 30px;
   }
 
   .responcive_profile_login p {
-    margin-top: 12px;
+    margin-top: 15px;
+    font-size: 14px;
     padding-right: 5px;
   }
 }

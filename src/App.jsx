@@ -32,6 +32,7 @@ import AddressForm from "./components/shippingAddress/AddressForm.jsx"
 import SignUp from "./components/authh/register/SighUp.jsx"
 import AddShippingAddress from "./components/addressCheckout/ShippingAddress.jsx"
 import AddBillingAddress from "./components/addressCheckout/BillingAddress.jsx"
+import TermsConditions from "./components/termsConditions/TermsConditions.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -166,6 +167,10 @@ function App() {
 				<Route
 					path="/Forgot-Password"
 					element={<ForgotPasswordForm />}
+				/>
+				<Route
+					path="/terms-conditions"
+					element={<TermsConditions />}
 				/>
 				<Route
 					path="/otp-verified"

@@ -64,13 +64,16 @@ const Footer = () => {
 								GIFT HAMPERS
 							</Link>
 						</li>
+
 						<li>
 							<Link to="/contact">CONTACT US</Link>
 						</li>
 						<li>
 							<Link to="/cart">CART</Link>
 						</li>
-						<li>TERMS & CONDITIONS</li>
+						<li>
+							<Link to="/terms-conditions">TERMS & CONDITIONS</Link>
+						</li>
 					</ul>
 				</div>
 				<hr className="right-hr" />
