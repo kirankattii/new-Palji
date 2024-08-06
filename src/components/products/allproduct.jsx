@@ -1258,18 +1258,11 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 	const [IsLogin, setIsLogin] = useState(false)
 	const [showPopup, setShowPopup] = useState(false)
 	const [productLoaders, setProductLoaders] = useState({})
-	// const [category, setCategory] = useState("")
 
 	useEffect(() => {
 		const token = localStorage.getItem("token")
 		setIsLogin(!!token)
 	}, [localStorage.getItem("token")])
-
-	// useEffect(() => {
-	// 	const params = new URLSearchParams(location.search)
-	// 	const categoryParam = params.get("category")
-	// 	setCategory(categoryParam || "")
-	// }, [location.search])
 
 	const fetchProduct = async (page = currentPage) => {
 		try {

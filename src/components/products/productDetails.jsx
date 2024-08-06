@@ -1139,9 +1139,11 @@ function ProductDetails() {
 											{product.discountPercentage > 0 && (
 												<span>{product?.price} Rs</span>
 											)}
-											<span className="discountPercentspan2">
-												{product?.discountPercentage}% Off
-											</span>
+											{product.discountPercentage > 0 && (
+												<span className="discountPercentspan2">
+													{product?.discountPercentage}% Off
+												</span>
+											)}
 										</p>
 									</div>
 									<div className="productdisplay-item-cart productdisplay-item-car1">
