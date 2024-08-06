@@ -1136,8 +1136,12 @@ function ProductDetails() {
 									<div className="product_details_price_off">
 										<p className="aproduct_display_price">
 											₹ {product.PriceAfterDiscount}{" "}
-											{/* <span>{product?.price} Rs</span> */}
-											<span>{product?.discountPercentage}%</span>
+											{product.discountPercentage > 0 && (
+												<span>{product?.price} Rs</span>
+											)}
+											<span className="discountPercentspan2">
+												{product?.discountPercentage}% Off
+											</span>
 										</p>
 									</div>
 									<div className="productdisplay-item-cart productdisplay-item-car1">
