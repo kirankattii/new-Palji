@@ -1415,7 +1415,9 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 												</div>
 												<div className="all_product_price">
 													₹{product.PriceAfterDiscount}{" "}
-													<span>{product?.price} Rs</span>
+													{product.discountPercentage > 0 && (
+														<span>{product?.price} Rs</span>
+													)}
 												</div>
 											</div>
 											<div className="Add_to_cart_and_watchlist_button">
