@@ -145,3 +145,9 @@
   /* Change to desired color */
 
 }
+
+@media(max-width:500px) {
+  .a_Main_Home_heading h1 {
+    font-size: 36px;
+  }
+}

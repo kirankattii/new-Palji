@@ -16,16 +16,22 @@ const Header = () => {
 		fakeDataFetch()
 	}, [])
 	return (
-		<div className={`header ${animate ? "initial" : ""}`}>
-			<h1>
-				Heaven<span>lyBake</span>
-			</h1>
-			<div className="cup-cakes">
-				<img
-					src={assets.cup_cakes}
-					alt=""
-				/>
-			</div>
+		// <div className={`header ${animate ? "initial" : ""}`}>
+		// 	<h1>
+		// 		Heaven<span>lyBake</span>
+		// 	</h1>
+		// 	<div className="cup-cakes">
+		// 		<img
+		// 			src={assets.cup_cakes}
+		// 			alt=""
+		// 		/>
+		// 	</div>
+		// </div>
+		<div className="homebanner2">
+			<img
+				src={assets.homeBanner2}
+				alt=""
+			/>
 		</div>
 	)
 }
