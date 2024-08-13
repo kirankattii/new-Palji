@@ -52,6 +52,9 @@ import userprofile_menu from "./menu_icon.png"
 import empty_cart from "./empty-cart.svg"
 import pieceOfCake from "./peiceofCake.png"
 import homeBanner2 from "./homebanner2.png"
+import homeBanner3 from "./homebanner3.png"
+import homeBanner4 from "./homebanner4.png"
+import aboutLandingbanner1 from "./aboutLandingPage1.png"
 
 export const assets = {
 	userprofile_menu,
@@ -107,4 +110,7 @@ export const assets = {
 	profile_reset,
 	empty_cart,
 	pieceOfCake,
+	aboutLandingbanner1,
+	homeBanner3,
+	homeBanner4,
 }

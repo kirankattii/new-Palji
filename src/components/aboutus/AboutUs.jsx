@@ -6,7 +6,7 @@ const AboutUs = () => {
 	// const [collaps,setCollaps] = useState(false)
 	return (
 		<div className="about-container">
-			<div className="aboutus">
+			{/* <div className="aboutus">
 				<h1>
 					ABOU<span>T US</span>
 				</h1>
@@ -16,6 +16,12 @@ const AboutUs = () => {
 						alt=""
 					/>
 				</div>
+			</div> */}
+			<div className="aboutus2">
+				<img
+					src={assets.aboutLandingbanner1}
+					alt=""
+				/>
 			</div>
 			<div className="company-history">
 				<h1>company history</h1>
