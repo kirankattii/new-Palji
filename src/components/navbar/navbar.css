@@ -46,7 +46,8 @@
   position: relative;
 }
 
-.left-navbar ul li, .right-navbar ul li {
+.left-navbar ul li,
+.right-navbar ul li {
   text-transform: uppercase;
   font-family: Kumbh Sans;
   font-size: 20px;
@@ -115,8 +116,8 @@
 
 .nav-cart span {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: 0px;
+  right: 0px;
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -134,6 +135,8 @@
   font-size: 35px;
   cursor: pointer;
   color: white;
+  width: 50px;
+  margin-top: 10px;
 
 }
 
@@ -182,11 +185,13 @@
   cursor: pointer;
 }
 
-.media-profile-icon, .media-login {
+.media-profile-icon,
+.media-login {
   display: none;
 }
 
-.menu-icon, .media-navbar {
+.menu-icon,
+.media-navbar {
   display: none;
   color: #000;
 }
@@ -269,11 +274,13 @@
     display: none;
   }
 
-  .left-navbar, .right-navbar ul {
+  .left-navbar,
+  .right-navbar ul {
     display: none;
   }
 
-  .media-profile-icon, .media-login {
+  .media-profile-icon,
+  .media-login {
     display: block;
   }
 
@@ -312,18 +319,21 @@
     backdrop-filter: none;
   }
 
-  .special-search, .search {
+  .special-search,
+  .search {
     display: none;
 
   }
 
-  .special-search, .search {
+  .special-search,
+  .search {
     border: 0;
     /* padding-left: 8px; */
 
   }
 
-  .special-menu-icon, .menu-icon {
+  .special-menu-icon,
+  .menu-icon {
     display: block;
     margin-right: 20px;
     font-size: 30px;
@@ -339,7 +349,8 @@
     color: black;
   }
 
-  .media-navbar ul, .media-navbar {
+  .media-navbar ul,
+  .media-navbar {
     display: block;
     backdrop-filter: none;
   }
@@ -383,15 +394,14 @@
     display: flex;
     align-items: center;
     /* padding: 2px 4px; */
-    border: 1px solid #000;
-    height: 30px;
+    /* border: 1px solid #000; */
     border-radius: 50px;
     font-family: serif;
-    margin-top: 3px;
+    margin-top: 7px;
   }
 
   .responcive_profile_login img {
-    width: 30px;
+    width: 42px;
   }
 
   .responcive_profile_login p {
@@ -425,16 +435,44 @@
     height: 75px;
   }
 
-  .cart-icon, .special-cart-icon {
+  .cart-icon,
+  .special-cart-icon {
     font-size: 30px;
   }
 
-  .menu-icon, .special-menu-icon {
+  .menu-icon,
+  .special-menu-icon {
     font-size: 25px;
   }
 
   .media-profile-icon img {
     width: 40px;
+  }
+
+  .nav-cart span {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 12px;
+    color: #fff;
+
+  }
+
+  .cart-icon {
+    font-size: 35px;
+    cursor: pointer;
+    color: white;
+    width: 40px;
+    margin-top: 10px;
+
   }
 }
 

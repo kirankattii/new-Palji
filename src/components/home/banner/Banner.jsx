@@ -1019,8 +1019,8 @@ const Banner = () => {
 
 		return () => {
 			// Cleanup event listeners
-			arrowLeft.removeEventListener("click", () => {})
-			arrowRight.removeEventListener("click", () => {})
+			arrowLeft.removeEventListener("click", () => { })
+			arrowRight.removeEventListener("click", () => { })
 		}
 	}, [])
 
@@ -1061,9 +1061,8 @@ const Banner = () => {
 								<div className="left-banner">
 									<div className="banner-info">
 										<div
-											className={`title ${
-												currentSlide === index ? "show" : ""
-											}`}
+											className={`title ${currentSlide === index ? "show" : ""
+												}`}
 										>
 											<h2>{item.name}</h2>
 											<p>Premium Cookies</p>

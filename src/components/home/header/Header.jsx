@@ -15,7 +15,7 @@ const Header = () => {
 		const fakeDataFetch = () => {
 			setTimeout(() => {
 				setIsLoading(false)
-			}, 1000)
+			}, 2000)
 		}
 		setAnimate(true)
 		fakeDataFetch()
@@ -48,6 +48,13 @@ const Header = () => {
 				className="mySwiper"
 			>
 				<SwiperSlide>
+					{" "}
+					<img
+						src={assets.homeBanner4}
+						alt=""
+					/>
+				</SwiperSlide>
+				<SwiperSlide>
 					<img
 						src={assets.homeBanner2}
 						alt=""
@@ -60,13 +67,7 @@ const Header = () => {
 						alt=""
 					/>
 				</SwiperSlide>
-				<SwiperSlide>
-					{" "}
-					<img
-						src={assets.homeBanner4}
-						alt=""
-					/>
-				</SwiperSlide>
+
 			</Swiper>
 		</div>
 	)

@@ -238,3 +238,18 @@ Link {
   background: #fff;
 
 }
+
+
+@font-face {
+  font-family: 'Bodoni-bk';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Eina03-Light'), url('../src/assets/home/bodonbk.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'Boomer';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Eina03-Light'), url('../src/assets/home/Boomerfont.otf') format('woff');
+}

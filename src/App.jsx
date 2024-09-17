@@ -33,6 +33,8 @@ import SignUp from "./components/authh/register/SighUp.jsx"
 import AddShippingAddress from "./components/addressCheckout/ShippingAddress.jsx"
 import AddBillingAddress from "./components/addressCheckout/BillingAddress.jsx"
 import TermsConditions from "./components/termsConditions/TermsConditions.jsx"
+import NewHome from "./components/NewHome/NewHome.jsx"
+import NewFooter from "./components/footer/NewFooter/NewFooter.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -56,7 +58,7 @@ function App() {
 			<Routes>
 				<Route
 					path="/"
-					element={<Home />}
+					element={<NewHome />}
 				/>
 				<Route
 					path="/aboutus"
@@ -193,7 +195,7 @@ function App() {
 					element={<AddressForm isBilling={false} />}
 				/>
 			</Routes>
-			<Footer />
+			<NewFooter />
 		</div>
 	)
 }

@@ -743,7 +743,7 @@ import React, { useEffect, useState } from "react"
 import "../../../pages/CSS/product/sidebar.css"
 import Allproduct from "../allproduct"
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { makeApi } from "../../../api/callApi"
 import { IoSearch } from "react-icons/io5"
 import FilterDropdown from "./FilterPopup"
@@ -751,6 +751,7 @@ import { RiArrowDropDownLine } from "react-icons/ri"
 
 const ProductSidebar = () => {
 	const history = useNavigate()
+	const location = useLocation()
 
 	const [minPrice, setMinPrice] = useState(0)
 	const [maxPrice, setMaxPrice] = useState(5000)
@@ -772,6 +773,19 @@ const ProductSidebar = () => {
 		}
 		fetchCategories()
 	}, [])
+
+
+	// This function updates the category and changes the URL with the query parameter
+	const handleCategoryChange = (newCategory) => {
+		setCategory(newCategory)
+
+		// Update the URL query parameter without changing the pathname
+		const queryParams = new URLSearchParams(location.search)
+		queryParams.set("category", newCategory)
+
+		history(`${location.pathname}?${queryParams.toString()}`) // Update URL
+	}
+
 
 	const handleApplyFilter = (filterData) => {
 		setMinPrice(Number(filterData.minPrice))
@@ -797,6 +811,15 @@ const ProductSidebar = () => {
 			setMaxPrice(value)
 		}
 	}
+
+	useEffect(() => {
+		const queryParams = new URLSearchParams(location.search)
+		const selectedCategory = queryParams.get("category")
+
+		if (selectedCategory) {
+			setCategory(selectedCategory)
+		}
+	}, [location.search])
 
 	return (
 		<>
@@ -826,7 +849,7 @@ const ProductSidebar = () => {
 								name="category"
 								id="category"
 								value={category}
-								onChange={(e) => setCategory(e.target.value)}
+								onChange={(e) => handleCategoryChange(e.target.value)}
 								className="input_for_category_sidebar a_input_for_category_sidebar "
 							>
 								<option
@@ -839,7 +862,7 @@ const ProductSidebar = () => {
 								{categories.map((category) => (
 									<option
 										key={category._id}
-										value={category._id}
+										value={category.name}
 										className="sidebar_options"
 									>
 										{category.name}
