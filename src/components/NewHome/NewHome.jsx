@@ -90,7 +90,7 @@ const NewHome = () => {
           </p>
 
           <div className={styles.category1}>
-            <div className={styles.categoryImgContainer}>
+            <div className={styles.categoryImgContainer} onClick={() => handleCategoryClick('GIFT+HAMPERS')}>
               <img src={homeImg.hamper_img} alt="" className={styles.categoryImg} />
               <div className={styles.textOverlay}>
                 <img src={homeImg.hamper_text} alt="" />
@@ -102,7 +102,7 @@ const NewHome = () => {
           </div>
 
           <div className={styles.category1}>
-            <div className={styles.categoryImgContainer}>
+            <div className={styles.categoryImgContainer} onClick={() => handleCategoryClick('SAVORY')}>
               <img src={homeImg.savory_img} alt="" className={styles.categoryImg} />
               <div className={styles.textOverlay}>
                 <img src={homeImg.savory_text} alt="" />
@@ -114,7 +114,7 @@ const NewHome = () => {
           </div>
 
           <div className={styles.category1}>
-            <div className={styles.categoryImgContainer}>
+            <div className={styles.categoryImgContainer} onClick={() => handleCategoryClick('Cookies')} >
               <img src={homeImg.cookies_img} alt="" className={styles.categoryImg} />
               <div className={styles.textOverlay}>
                 <img src={homeImg.cookies_text} alt="" />
@@ -126,7 +126,7 @@ const NewHome = () => {
           </div>
 
           <div className={styles.category1}>
-            <div className={styles.categoryImgContainer}>
+            <div className={styles.categoryImgContainer} onClick={() => handleCategoryClick('BISCUITS')}>
               <img src={homeImg.bucite_img} alt="" className={styles.categoryImg} />
               <div className={styles.textOverlay}>
                 <img src={homeImg.biscuits_text} alt="" />

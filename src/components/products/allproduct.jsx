@@ -1496,11 +1496,10 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 														</div>
 													) : (
 														<IoIosHeart
-															className={`watchlist-icon pointer-event ${
-																wishlistItems.includes(product._id)
+															className={`watchlist-icon pointer-event ${wishlistItems.includes(product._id)
 																	? "wishlist-active"
 																	: ""
-															}`}
+																}`}
 															onClick={() => toggleWishlist(product._id)}
 														/>
 													)}
@@ -1516,9 +1515,8 @@ function Allproduct({ search, category, minPrice, maxPrice }) {
 								(pageNumber) => (
 									<button
 										key={pageNumber}
-										className={`pagination-button ${
-											pageNumber === currentPage ? "active" : ""
-										}`}
+										className={`pagination-button ${pageNumber === currentPage ? "active" : ""
+											}`}
 										onClick={() => handlePageClick(pageNumber)}
 									>
 										{pageNumber}
