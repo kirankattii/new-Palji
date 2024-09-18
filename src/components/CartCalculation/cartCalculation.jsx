@@ -57,10 +57,10 @@ function CartCalculation({
 							<p>DISCOUNT</p>
 							<p>{appliedCoupon ? couponDiscount : 0}%</p>
 						</div>
-						<div className="cart-billing-tax">
+						{/* <div className="cart-billing-tax">
 							<p>TAX</p>
 							<p> 5%</p>
-						</div>
+						</div> */}
 						<div className="cart-billing-shipping">
 							<p>SHIPPING</p>
 							<p> {formatNumber(shipping)}</p>

@@ -37,12 +37,14 @@ const NewFooter = () => {
           <a href="mailto:paljibakery@gmail.com">paljibakery@gmail.com</a>
         </div>
         <div className={styles.addresses}>
-          <address>4GV, Main Hambran Rd. Mayur Vihar,
-            Dev Nagar, Ludhiana, Punjab 141027</address>
-          <address>1236, Kailash Cinema Rd. Kailash Chowk,
-            Civil Lines, Ludhiana, Punjab 141001</address>
-          <address>5A, Sat Paul Mittal Rd. A - Block,
-            Sarabha Nagar, Ludhiana, Punjab 141001</address>
+          <div>
+            <address>4GV, Main Hambran Rd. Mayur Vihar,
+              Dev Nagar, Ludhiana, Punjab 141027</address>
+            <address>1236, Kailash Cinema Rd. Kailash Chowk,
+              Civil Lines, Ludhiana, Punjab 141001</address>
+            <address>5A, Sat Paul Mittal Rd. A - Block,
+              Sarabha Nagar, Ludhiana, Punjab 141001</address>
+          </div>
           <h2>LOCATE US</h2>
         </div>
       </div>

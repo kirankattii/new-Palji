@@ -289,7 +289,7 @@ const Navbar = () => {
 									to="/product/all-products"
 									onClick={closeMenu}
 								>
-									PRODUCTS
+									SHOP
 								</Link>
 							</li>
 							<li className={location.pathname === "/aboutus" ? "active" : ""}>

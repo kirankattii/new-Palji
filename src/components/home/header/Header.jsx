@@ -38,7 +38,7 @@ const Header = () => {
 				alt=""
 			/> */}
 			<Swiper
-				navigation={false}
+				navigation={true}
 				modules={[Autoplay, Navigation]}
 				loop={true}
 				autoplay={{
