@@ -47,14 +47,14 @@ h1 span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #EFE2D7;
+  background: white;
   gap: 20px;
   padding: 50px;
 }
 
 .company-history h1 {
   text-transform: uppercase;
-  color: #E5087E;
+  color: var(--redPink);
   text-align: center;
   font-family: Perpetua Titling MT;
   font-size: 55px;
@@ -86,22 +86,26 @@ h1 span {
   flex-direction: column;
   align-items: center;
   color: white;
-  background: linear-gradient(to top,
+  /* background: linear-gradient(to top,
       #EFE2D7 0%,
       #EFE2D7 30%,
       #FEA59F 30%,
-      #FEA59F 100%);
+      #FEA59F 100%); */
+
+  background: var(--redPink);
 
 }
 
-.our-values, .our-mission {
+.our-values,
+.our-mission {
   display: flex;
   gap: 20px;
   flex-direction: column;
   align-items: center;
 }
 
-.our-values h2, .our-mission h2 {
+.our-values h2,
+.our-mission h2 {
   font-family: Perpetua Titling MT;
   /* margin-top: 20px; */
   font-size: 50px;
@@ -119,7 +123,7 @@ h1 span {
 .our-mission {
   /* background-image: url('../../assets/Rectangle with shadow 1.png'); */
   /* height: 100%; */
-  background: #FEA59F;
+  background: var(--redPink);
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
@@ -275,7 +279,8 @@ h1 span {
     /* height: 170vh; */
   }
 
-  .our-values h2, .our-mission h2 {
+  .our-values h2,
+  .our-mission h2 {
     font-size: 38px;
   }
 
@@ -317,7 +322,9 @@ h1 span {
 }
 
 @media screen and (max-width: 350px) {
-  .our-values h2, .our-mission h2 {
+
+  .our-values h2,
+  .our-mission h2 {
     font-size: 35px;
   }
 

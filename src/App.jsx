@@ -123,10 +123,10 @@ function App() {
 						path="/userprofile/myaddress"
 						element={<MyAddress />}
 					/>{" "}
-					<Route
+					{/* <Route
 						path="/userprofile/mywatchlist"
 						element={<MyWatchlist />}
-					/>
+					/> */}
 				</Route>
 				<Route
 					path="/edit-userprofile"

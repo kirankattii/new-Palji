@@ -23,6 +23,13 @@ import profile from './Profile_icon.png'
 import cart from './Cart_Icon.png'
 
 
+import blackHomeImg from './blackHomeImg.png'
+import blackUserProfile from './blackUserProfile.png'
+import blackShoppingCart from './blackShoppingimg.png'
+import blackPasswordImg from './blackPasswordImg.png'
+
+
+
 
 export const homeImg = {
   homeLanding,
@@ -47,5 +54,11 @@ export const homeImg = {
   x,
   facebook,
   profile,
-  cart
+  cart,
+
+
+  blackHomeImg,
+  blackUserProfile,
+  blackShoppingCart,
+  blackPasswordImg
 }

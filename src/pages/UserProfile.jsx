@@ -5,6 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom"
 import { TbLogout2 } from "react-icons/tb"
 
 import { makeApi } from "../api/callApi"
+import { homeImg } from "../assets/home/home"
 
 const UserProfile = () => {
 	const navigate = useNavigate()
@@ -55,12 +56,13 @@ const UserProfile = () => {
 						className="userprofile-name user-flexcol"
 						onClick={() => navigate("/userprofile")}
 					>
-						<img
-							className="myuser-profile-icon"
-							// src={assets.userprofile_icon}
-							src={userDatails?.userImage}
-							alt=""
-						/>
+						{userDatails?.userImage ?
+							<img
+								className="myuser-profile-icon"
+								// src={assets.userprofile_icon}
+								src={userDatails?.userImage}
+								alt=""
+							/> : <img src={homeImg.blackUserProfile} className="blackUserProfile" />}
 						{extended ? (
 							<div className="user-name">
 								<span>HELLO</span>
@@ -74,7 +76,7 @@ const UserProfile = () => {
 						onClick={() => navigate("/userprofile")}
 					>
 						<img
-							src={assets.user_account}
+							src={homeImg.blackPasswordImg}
 							alt="user_account"
 						/>
 						{extended ? <p>MY ACCOUNT</p> : null}
@@ -84,7 +86,7 @@ const UserProfile = () => {
 						onClick={() => navigate("/userprofile/myorders")}
 					>
 						<img
-							src={assets.user_orders}
+							src={homeImg.blackShoppingCart}
 							alt="user-orders"
 						/>
 						{extended ? <p>MY ORDERS</p> : null}
@@ -94,12 +96,12 @@ const UserProfile = () => {
 						onClick={() => navigate("/userprofile/myaddress")}
 					>
 						<img
-							src={assets.user_address}
+							src={homeImg.blackHomeImg}
 							alt="user_address"
 						/>
 						{extended ? <p>MY ADDRESS</p> : null}
 					</div>
-					<div
+					{/* <div
 						className="user-watchlist user-flexcol"
 						onClick={() => navigate("/userprofile/mywatchlist")}
 					>
@@ -108,7 +110,7 @@ const UserProfile = () => {
 							alt="user_watchlist"
 						/>
 						{extended ? <p>WISHLIST</p> : null}
-					</div>
+					</div> */}
 					<div
 						className="logouy_btn user-flexcol"
 						// onClick={() => navigate("/userprofile/mywatchlist")}

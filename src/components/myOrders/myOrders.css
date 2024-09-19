@@ -11,7 +11,7 @@
   font-weight: 500;
   line-height: 20.65px;
   text-align: left;
-  color: #E5087E;
+  color: black;
 }
 
 .order-summary2 {
@@ -21,11 +21,13 @@
   font-weight: 600;
   background: #fff;
   border-radius: 20px;
+  border: 1px solid #000;
 }
 
 .order-summary div {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
 
 }
 

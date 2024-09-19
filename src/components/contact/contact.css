@@ -22,7 +22,7 @@
   line-height: 116px;
   letter-spacing: 0em;
   text-align: left;
-  color: #FEA59F;
+  color: var(--redPink);
   /* background: #FDE9E5; */
   padding: 10px;
 }
@@ -30,7 +30,7 @@
 .contact-form {
   width: 100%;
   /* height: 100vh; */
-  background: #FEA59F;
+  background: var(--redPink);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,8 @@
 
 }
 
-.contact-form h1, .google-map h1 {
+.contact-form h1,
+.google-map h1 {
   font-family: Perpetua Titling MT;
   font-size: 40px;
   font-weight: 700;
@@ -78,7 +79,8 @@
   gap: 10px;
 }
 
-.fill-form form input, textarea {
+.fill-form form input,
+textarea {
   border: 2px solid #E5087E;
   width: 100%;
   outline: 0;
@@ -104,7 +106,7 @@
 
 .google-map {
   /* width: 80%; */
-  background: #FEA59F;
+  background: var(--redPink);
   padding: 50px 0;
 
 }
@@ -183,7 +185,8 @@ iframe {
     border-radius: 50px;
   }
 
-  .contact-form h1, .google-map h1 {
+  .contact-form h1,
+  .google-map h1 {
     width: 95%;
     font-size: 30px;
     line-height: 1.5;

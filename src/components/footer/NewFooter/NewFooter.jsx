@@ -12,23 +12,23 @@ const NewFooter = () => {
         </div>
         <div className={styles.links}>
           <div className={styles.social}>
-            <Link>
+            <Link to={"https://www.instagram.com/paljibakeryldh?igsh=eXV2bW12cmttdTg%3D"}>
               <img src={homeImg.insta} alt="" />
             </Link>
 
-            <Link>
+            <Link to={'https://twitter.com/paljibakery?lang=en'}>
               <img src={homeImg.x} alt="" />
             </Link>
-            <Link>
+            <Link to={'https://m.facebook.com/paljibakery'}>
               <img src={homeImg.facebook} alt="" />
             </Link>
           </div>
           <nav>
             <Link to="/">Home</Link>
-            <Link to={'/product'}>Products</Link>
+            <Link to={'/product/all-products'}>Products</Link>
             <Link to="/aboutus">About Us</Link>
             <Link to="/contact">Contact Us</Link>
-            <Link to="/Terms-Conditions">Terms & Conditions</Link>
+            <Link to="/terms-conditions">Terms & Conditions</Link>
           </nav>
         </div>
         <div className={styles.contact}>

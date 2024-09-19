@@ -8,7 +8,8 @@
 
 .shipping-billing-address {
   min-height: 55vh;
-  background: #F2D6CC;
+  background: white;
+  border: 1px solid #000;
   border-radius: 20px;
   padding: 20px 50px;
 
@@ -29,19 +30,22 @@
   gap: 20px;
 }
 
-.billing-address, .shipping-address {
+.billing-address,
+.shipping-address {
   /* width: 50%; */
   width: 350px;
 }
 
-.billing-address-flex, .shipping-address-flex {
+.billing-address-flex,
+.shipping-address-flex {
   display: flex;
   align-items: center;
   gap: 30px;
   margin-top: 50px;
 }
 
-.billing-address-flex div, .shipping-address-flex div {
+.billing-address-flex div,
+.shipping-address-flex div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -55,10 +59,11 @@
 .n_shipp_bill {
   font-size: 24px;
   color: #AE7B37;
-  width: 200%;
+  width: 100%;
 }
 
-.billing-address h3, .shipping-address h3 {
+.billing-address h3,
+.shipping-address h3 {
   font-family: Kumbh Sans;
   font-size: 15px;
   font-weight: 600;
@@ -69,7 +74,8 @@
 }
 
 
-.shipping-address p, .billing-address p {
+.shipping-address p,
+.billing-address p {
   font-family: Kumbh Sans;
   font-size: 15px;
   font-weight: 400;
@@ -80,7 +86,8 @@
   margin-top: 0px;
 }
 
-.shipping-address button, .billing-address button {
+.shipping-address button,
+.billing-address button {
   border-radius: 50px;
   padding: 5px 10px;
   font-size: 12px;
@@ -93,7 +100,8 @@
   outline: 0;
 }
 
-.billing-address h2, .shipping-address h2 {
+.billing-address h2,
+.shipping-address h2 {
   /* width: 0%; */
   font-size: 20px;
   color: #AE7B37;
@@ -119,7 +127,8 @@
     gap: 20px;
   }
 
-  .shipping-address p, .billing-address p {
+  .shipping-address p,
+  .billing-address p {
     font-family: Kumbh Sans;
     font-size: 15px;
     font-weight: 400;
@@ -137,7 +146,8 @@
     flex-direction: column;
   }
 
-  .shipping-address p, .billing-address p {
+  .shipping-address p,
+  .billing-address p {
     font-family: Kumbh Sans;
     font-size: 15px;
     font-weight: 400;

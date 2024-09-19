@@ -6,7 +6,8 @@
 }
 
 .userprofile-heading {
-  background: #F2D6CC;
+  background: white;
+  border: 1px solid #000;
   margin-top: 85px;
   width: 100%;
   border-radius: 20px;
@@ -22,15 +23,15 @@
   letter-spacing: 0.19em;
   text-align: left;
   padding: 10px;
+  padding-top: 15px;
   padding-left: 30px;
 
 }
 
 .userprofile-info-css {
   min-height: 55vh;
-  background: #F2D6CC;
+  background: white;
   border-radius: 20px;
-
 }
 
 .myaccount-info {

@@ -158,7 +158,7 @@ const Navbar = () => {
 				{/* {isloggedIn ? ( */}
 				<div>
 					<img
-						onClick={() => navigate(isloggedIn ? "/userprofile" : "/login")}
+						onClick={() => navigate(isloggedIn ? "/userprofile" : "/Signup")}
 						src={homeImg.profile}
 						alt=""
 					/>
@@ -261,7 +261,7 @@ const Navbar = () => {
 					</div>
 				)}
 				{/* {isloggedIn && ( */}
-				<Link to={isloggedIn ? "/cart" : "/login"}>
+				<Link to={isloggedIn ? "/cart" : "/Signup"}>
 					<div className="nav-cart">
 						<span className="cart-no">{cartCount}</span>
 						{/* <HiMiniShoppingBag className="cart-icon" /> */}

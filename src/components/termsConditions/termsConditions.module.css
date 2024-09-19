@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: #efe2d7;
+  background: white;
 }
 
 .termsection img {
@@ -21,14 +21,14 @@
   font-size: 7.2rem;
   text-align: center;
   margin-bottom: 5%;
-  color: #fea59f;
+  color: var(--redPink);
   font-weight: 700;
 }
 
 .termContent {
   display: flex;
   flex-direction: column;
-  background: #fea59f;
+  background: white;
   padding: 50px 280px;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .termIntroduce p {
-  color: #fff;
+  color: black;
   margin-left: 30px;
   font-size: 20px;
 }
@@ -53,7 +53,7 @@
 }
 
 .alltermsAndConditions li {
-  color: #fff;
+  color: #000;
   font-weight: 700px;
   margin-left: 30px;
 }
@@ -97,7 +97,7 @@
   .termContent {
     display: flex;
     flex-direction: column;
-    background: #fea59f;
+    background: var(--redPink);
     padding: 50px 100px;
   }
 
@@ -112,7 +112,7 @@
     font-size: 4.2rem;
     text-align: center;
     margin-bottom: 5%;
-    color: #fea59f;
+    color: var(--redPink);
     font-weight: 700;
     padding: 0 15px;
   }
@@ -133,7 +133,7 @@
     font-size: 4.2rem;
     text-align: center;
     margin-bottom: 30%;
-    color: #fea59f;
+    color: var(--redPink);
     font-weight: 700;
     padding: 0 15px;
   }
@@ -163,7 +163,7 @@
     font-size: 3rem;
     text-align: center;
     margin-bottom: 30%;
-    color: #fea59f;
+    color: var(--redPink);
     font-weight: 700;
     padding: 0 15px;
   }
@@ -171,7 +171,7 @@
   .termContent {
     display: flex;
     flex-direction: column;
-    background: #fea59f;
+    background: var(--redPink);
     padding: 50px 15px;
   }
 
