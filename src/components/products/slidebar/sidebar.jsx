@@ -815,6 +815,7 @@ const ProductSidebar = () => {
 	const [categories, setCategories] = useState([]);
 	const [search, setSearch] = useState("");
 	const [selectedCategory, setSelectedCategory] = useState("");
+	const [categoryName, setCategoryName] = useState("")
 	const [selectedPriceRange, setSelectedPriceRange] = useState({ min: 0, max: 1000000 }); // No filter by default
 
 	const [showDropdown, setShowDropdown] = useState(false);
@@ -833,8 +834,9 @@ const ProductSidebar = () => {
 		fetchCategories();
 	}, []);
 
-	const handleCategoryChange = (categoryId) => {
+	const handleCategoryChange = (categoryId, name) => {
 		setSelectedCategory(categoryId);
+		setCategoryName(name)
 	};
 
 	const handlePriceRangeChange = (min, max) => {
@@ -889,8 +891,8 @@ const ProductSidebar = () => {
 								{categories.map((category) => (
 									<p
 										key={category._id} // Use _id as key
-										onClick={() => handleCategoryChange(category._id)} // Use _id for filtering
-										className={selectedCategory === category._id ? styles.activeCategory : ""} // Use _id for comparison
+										onClick={() => handleCategoryChange(category._id, category.name)} // Use _id for filtering
+										className={selectedCategory === category._id ? styles.activeCategory : ""}
 									>
 										{category.name}
 									</p>
@@ -1003,7 +1005,7 @@ const ProductSidebar = () => {
 						category={selectedCategory}
 						minPrice={selectedPriceRange.min} // Use selected price range
 						maxPrice={selectedPriceRange.max} // Use selected price range
-						selectedCategory={selectedCategory}
+						categoryName={categoryName}
 					/>
 				</div>
 			</div>

@@ -15,7 +15,7 @@ const ProductDisplay = (props) => {
 	const handleAddToCart = () => {
 		const token = localStorage.getItem("token")
 		if (!token) {
-			navigate("/login") // Redirect to login page if not logged in
+			navigate("/login")
 			return
 		}
 		addToCart(props.product._id)
@@ -27,14 +27,7 @@ const ProductDisplay = (props) => {
 			<BackButton pageLocation="/products" />
 			<div className="product-display-left">
 				<div className="productdisplay-img-list">
-					{/* {props.product.image.map((item, i) => {
-						return (
-							<img
-								src={props.product.thumbnail}
-								alt=""
-							/>
-						)
-					})} */}
+
 					{props.product.image.map((item, id) => (
 						<img
 							key={id}
@@ -42,18 +35,7 @@ const ProductDisplay = (props) => {
 							alt=""
 						/>
 					))}
-					{/* <img
-						src={props.product.thumbnail}
-						alt=""
-					/>{" "}
-					<img
-						src={props.product.thumbnail}
-						alt=""
-					/>{" "}
-					<img
-						src={props.product.thumbnail}
-						alt=""
-					/> */}
+
 				</div>
 				<div className="productdisplay-img">
 					<img
@@ -69,27 +51,9 @@ const ProductDisplay = (props) => {
 				<p>{props.product.description}</p>
 				<div className="productdisplay-addtocart">
 					<div className="productdisplay-item-cart">
-						{/* <div className="productdisplay-food-item-counter">
-							<img
-								onClick={() => removeFromCart(props.id)}
-								src={assets.add_icon_red}
-								alt=""
-							/>
-							<p className="productdisplay-cart-item-no">
-								{cartItems[props.id]}
-							</p>
-							<img
-								onClick={() => addToCart(props.id)}
-								src={assets.add_icon_green}
-								alt=""
-							/>
-						</div> */}
-						{/* <div className="productdisplay-whislist">
-							<IoIosHeart />
-						</div> */}
 					</div>
 				</div>
-				{/* <button onClick={() => addToCart(props.id)}>ADD To CART</button> */}
+
 				<div className="productdisplay-item-cart">
 					{!cartItems[props.product._id] ? (
 						<div

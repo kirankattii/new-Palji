@@ -336,7 +336,7 @@ import {
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { toast } from "react-toastify"
 
-function Allproduct({ search, category, minPrice, maxPrice, selectedCategory }) {
+function Allproduct({ search, category, minPrice, maxPrice, categoryName }) {
 	const [products, setProducts] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [wishlistItems, setWishlistItems] = useState([])
@@ -481,7 +481,7 @@ function Allproduct({ search, category, minPrice, maxPrice, selectedCategory }) 
 			) : (
 				<div className={styles.container}>
 					<div className={styles.productsContainer}>
-						<h2>{selectedCategory}</h2>
+						<h2>{categoryName}</h2>
 						<div className={styles.allProductsList}>
 							{products.map(item => (
 								<div key={item._id} className={styles.products}>

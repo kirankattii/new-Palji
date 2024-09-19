@@ -6,6 +6,7 @@
 .categories div p {
   margin-top: -8px;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .activeCategory {
