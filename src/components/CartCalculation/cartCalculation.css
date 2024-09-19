@@ -4,7 +4,7 @@
     max-height: 400px;
     padding: 50px;
     border-radius: 30px;
-    color: var(--white-color);
+    /* color: var(--white-color); */
     font-family: var(--Rhodium--Libre-font);
     display: flex;
     flex-direction: column;
@@ -41,9 +41,40 @@
 
 }
 
+.cart-order-summary {
+    border: 1px solid #000;
+}
+
+.cart-order-summary h2 {
+    color: #000;
+    border-bottom: 1px solid #000;
+}
+
 .cart_calculation_button {
     color: #fff;
     font-size: 18px;
     font-weight: 500;
-    border: 1px solid #ddd;
+}
+
+.cart-order-summary {
+    background: white;
+    color: #000;
+}
+
+.cart_calculation_main_div {
+    color: black;
+}
+
+.cart-billing-charges p {
+    color: #000;
+}
+
+.cart-order-summary .cart_calculation_button {
+    background: #000;
+    border: 0;
+    color: #fff;
+}
+
+.cart-billing-shipping b {
+    color: #000;
 }
