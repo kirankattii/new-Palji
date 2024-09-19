@@ -13,6 +13,7 @@
   /* Adjust the blur radius as needed */
   /* border-radius: 10px; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  top: 0;
 }
 
 .left-navbar {

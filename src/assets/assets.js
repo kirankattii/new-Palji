@@ -55,6 +55,7 @@ import homeBanner2 from "./homebanner2.png"
 import homeBanner3 from "./homebanner3.png"
 import homeBanner4 from "./homebanner4.png"
 import aboutLandingbanner1 from "./aboutLandingPage1.png"
+import paljiMainImg from './paljiMainImg.png'
 
 export const assets = {
 	userprofile_menu,
@@ -113,4 +114,5 @@ export const assets = {
 	aboutLandingbanner1,
 	homeBanner3,
 	homeBanner4,
+	paljiMainImg
 }

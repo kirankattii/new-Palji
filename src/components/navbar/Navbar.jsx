@@ -229,14 +229,14 @@ const Navbar = () => {
 						input={input}
 					/>
 				</div>
-				{isloggedIn && (
+				{/* {isloggedIn && (
 					<div
 						className="navbar_wishlist"
 						onClick={() => navigate("/userprofile/mywatchlist")}
 					>
 						<FaRegHeart />
 					</div>
-				)}
+				)} */}
 				{isloggedIn ? (
 					<div className="media-profile-icon">
 						<img

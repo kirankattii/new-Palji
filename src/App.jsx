@@ -35,6 +35,8 @@ import AddBillingAddress from "./components/addressCheckout/BillingAddress.jsx"
 import TermsConditions from "./components/termsConditions/TermsConditions.jsx"
 import NewHome from "./components/NewHome/NewHome.jsx"
 import NewFooter from "./components/footer/NewFooter/NewFooter.jsx"
+import NewProductPage from "./components/NewProductPage/NewProductPage.jsx"
+import Product from "./pages/products.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -77,6 +79,10 @@ function App() {
 						element={<OpenProduct />}
 					/>
 				</Route> */}
+				{/* <Route
+					path="/product/*"
+					element={<Products />}
+				/> */}
 				<Route
 					path="/product/*"
 					element={<Products />}

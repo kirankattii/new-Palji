@@ -4,13 +4,14 @@ import { Route, Routes } from "react-router"
 import ProductSidebar from "../components/products/slidebar/sidebar"
 
 import ProductDetails from "../components/products/productDetails"
+import '../styles/product/products.css'
 import Ecombar from "../components/Header/ecombar"
 
 function Product() {
 	return (
 		<div
 			className="all-products-route"
-			// style={{ paddingTop: "10vh" }}
+
 		>
 			<Routes>
 				<Route
