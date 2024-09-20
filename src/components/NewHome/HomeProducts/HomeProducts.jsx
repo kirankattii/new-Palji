@@ -52,7 +52,7 @@ const HomeProducts = () => {
         <div className={styles.container}>
           {products.length > 0 && (
             <div className={styles.wrapper}>
-              {products.slice(0, 5).map((item, index) => ( // Slice to show only the first 6 products
+              {products.slice(1, 6).map((item, index) => ( // Slice to show only the first 6 products
                 <div className={styles.content} key={index}>
                   <div className={styles.imgContainer}>
                     <img src={item?.thumbnail} alt="" />
