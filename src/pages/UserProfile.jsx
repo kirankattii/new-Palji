@@ -47,7 +47,7 @@ const UserProfile = () => {
 						<img
 							src={assets.userprofile_menu}
 							alt=""
-							className="userprofiele-menu"
+							className={extended ? "userprofiele-menu" : "userprofiele-menu-close"}
 							onClick={() => setExtended((prev) => !prev)}
 						/>
 						<h1>PROFILE</h1>

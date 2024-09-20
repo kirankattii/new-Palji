@@ -1519,7 +1519,8 @@ const Cart = () => {
 								{cartPoductList &&
 									cartPoductList.map((item, index) => (
 										<div className="all_added_cart_list">
-											{" "}
+
+
 											<p
 												className="cross"
 												onClick={() =>
@@ -1540,11 +1541,11 @@ const Cart = () => {
 											<div key={index}>
 												<div className="cart-items-title cart-items-item">
 													<img
-														src={item.productId.thumbnail}
+														src={item?.productId?.thumbnail}
 														alt=""
 													/>
-													<p>{item.productId.name}</p>
-													<p>₹{item.productId.price}</p>
+													<p>{item.productId?.name}</p>
+													<p>₹{item.productId?.PriceAfterDiscount}</p>
 													<div className="cartPageButton">
 														<img
 															loading="lazy"

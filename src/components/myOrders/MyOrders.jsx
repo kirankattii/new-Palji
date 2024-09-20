@@ -141,13 +141,13 @@ const MyOrders = () => {
 							>
 								<div>
 									<img
-										src={item.productId.thumbnail}
-										alt={item.productId.name}
+										src={item?.productId?.thumbnail}
+										alt={item?.productId?.name}
 									/>
-									<p className="myproduct-name">{item.productId.name}</p>
+									<p className="myproduct-name">{item?.productId?.name}</p>
 								</div>
-								<p>₹{item.totalPrice}</p>
-								<p>{order.status}</p>
+								<p>₹{item?.totalPrice}</p>
+								<p>{order?.status}</p>
 								<Link to={`/userprofile/myorders/${order._id}`}>
 									<button>View</button>
 								</Link>

@@ -134,6 +134,11 @@ const FilterDropdown = ({ show, onClose, onApply }) => {
 	}
 
 	const handleApply = () => {
+		console.log({
+			selectedCategory,
+			minPrice: priceRange[0],
+			maxPrice: priceRange[1],
+		});
 		onApply({
 			selectedCategory,
 			minPrice: priceRange[0],

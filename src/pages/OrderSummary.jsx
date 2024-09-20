@@ -165,7 +165,7 @@ const OrderSummary = () => {
 							<div className="product-details">
 								<h3>{item.productId.name}</h3>
 								<p>
-									<strong>Price:</strong> ₹{item.singleProductPrice}
+									<strong>Price:</strong> ₹{item.productId.PriceAfterDiscount}
 								</p>
 								<p>
 									<strong>Quantity:</strong> {item.quantity}

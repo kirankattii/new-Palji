@@ -930,7 +930,9 @@ function Checkout() {
 										shipping={cartItem.shippingPrice}
 										total={cartItem.totalPrice}
 										CoupanApplied={appliedCoupon}
+										// Final={calculateFinalPrice()}
 										Final={calculateFinalPrice()}
+
 										ButtonName="PROCEED TO PAYMENT"
 									/>
 									{/* <CouponFunctions /> */}

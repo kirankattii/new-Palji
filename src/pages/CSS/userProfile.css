@@ -156,7 +156,7 @@
     min-height: 100vh;
     padding: 0 20px;
     padding-top: 20vh;
-    background: #efe2d7;
+    /* background: #efe2d7; */
 
     /* border-top: 2px solid black; */
   }
@@ -170,7 +170,7 @@
     min-height: 100vh;
     padding: 0 10px;
     padding-top: 10vh;
-    background: #efe2d7;
+    /* background: #efe2d7; */
 
 
     /* border-top: 2px solid black; */
@@ -236,7 +236,6 @@
 
   .userProfile-sidebar {
     position: absolute;
-    background: #efe2d7;
     /* box-shadow: 0; */
     /* padding-left: 10px; */
     /* padding-right: 30px; */
@@ -246,6 +245,10 @@
     z-index: 100;
   }
 
+  .userprofiele-menu-close {
+    background: #fff;
+
+  }
 
   .userProfile-info {
     margin-left: 50px;

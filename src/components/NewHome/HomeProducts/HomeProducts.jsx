@@ -18,7 +18,7 @@ const HomeProducts = () => {
 
       if (categories.length > 0) {
         // Use the 5th category (index 4)
-        const categoryId = categories[4]._id
+        const categoryId = categories[2]._id
         // Fetch products by category
         const response = await makeApi(
           `/api/get-all-products-by-category/${categoryId}`,
@@ -52,14 +52,16 @@ const HomeProducts = () => {
         <div className={styles.container}>
           {products.length > 0 && (
             <div className={styles.wrapper}>
-              {products.map((item, index) =>
+              {products.slice(0, 5).map((item, index) => ( // Slice to show only the first 6 products
                 <div className={styles.content} key={index}>
                   <div className={styles.imgContainer}>
                     <img src={item?.thumbnail} alt="" />
                   </div>
-                  <button onClick={() => navigate(`/product/product-details/${item._id}`)} >View More</button>
+                  <button onClick={() => navigate(`/product/product-details/${item._id}`)}>
+                    View More
+                  </button>
                 </div>
-              )}
+              ))}
             </div>
           )}
         </div>

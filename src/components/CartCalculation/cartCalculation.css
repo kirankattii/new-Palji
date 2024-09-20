@@ -67,6 +67,8 @@
 
 .cart-billing-charges p {
     color: #000;
+    word-wrap: break-word;
+
 }
 
 .cart-order-summary .cart_calculation_button {
@@ -77,4 +79,26 @@
 
 .cart-billing-shipping b {
     color: #000;
+}
+
+.cart-billing-subtotal {
+    word-wrap: none;
+}
+
+.cart-billing-subtotal p:last-child {
+    word-break: keep-all;
+    word-wrap: none;
+}
+
+
+.cart-billing-subtotal {
+    display: flex;
+    justify-content: space-between;
+    /* This will distribute the elements evenly */
+    align-items: center;
+    /* This will vertically center the elements */
+    gap: 10px;
+    /* Optional: Adds some space between elements */
+    word-wrap: none;
+    /* Prevent wrapping */
 }

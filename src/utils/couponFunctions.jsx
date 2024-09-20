@@ -186,9 +186,13 @@ const CouponFunctions = () => {
 						shipping={cartItem.shippingPrice}
 						Final={cartItem.TotalProductPrice}
 						CoupanApplied={appliedCoupon ? couponDiscount : totalDiscount}
+						// total={
+						// 	cartItem.totalPrice -
+						// 	cartItem.TotalProductPrice * (couponDiscount / 100)
+						// }
+
 						total={
-							cartItem.totalPrice -
-							cartItem.TotalProductPrice * (couponDiscount / 100)
+							cartItem.totalPrice
 						}
 						ButtonName="PROCEED TO CHECKOUT"
 					/>

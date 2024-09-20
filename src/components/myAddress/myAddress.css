@@ -113,7 +113,7 @@
 @media(max-width:700px) {
   .shipping-billing-address {
     min-height: 55vh;
-    background: #F2D6CC;
+    /* background: #F2D6CC; */
     border-radius: 20px;
     padding: 20px;
 

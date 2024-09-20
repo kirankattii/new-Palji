@@ -51,7 +51,7 @@ function CartCalculation({
 					<div className="cart-billing-charges">
 						<div className="cart-billing-subtotal">
 							<p>SUBTOTAL</p>
-							<p>₹ {formatNumber(Final)}</p>
+							<p>₹{formatNumber(Final)}</p>
 						</div>
 						<div className="cart-billing-discount">
 							<p>DISCOUNT</p>
@@ -67,7 +67,7 @@ function CartCalculation({
 						</div>
 						<div className="cart-billing-shipping">
 							<b>TOTAL</b>
-							<b>₹ {formatNumber(total - total * (couponDiscount / 100))}</b>
+							<b>₹{formatNumber(Final)}</b>
 						</div>
 					</div>
 					{/* <Link

@@ -341,7 +341,7 @@ function Allproduct({ search, category, minPrice, maxPrice, categoryName }) {
 	const [loading, setLoading] = useState(false)
 	const [wishlistItems, setWishlistItems] = useState([])
 	const [cartItems, setCartItems] = useState([])
-	const [ResultPerPage, setResultPerPage] = useState(12)
+	const [ResultPerPage, setResultPerPage] = useState(50)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState(0)
 	const [toalProduct, setToalProduct] = useState(0)
@@ -472,49 +472,57 @@ function Allproduct({ search, category, minPrice, maxPrice, categoryName }) {
 			{showPopup && <LoginPopup onClose={closePopup} />}
 			{AllProductLoader ? (
 
-				<div className="All_Product_loader">
+				<div className={styles.AllProductLoader}>
 					<div>
 						<Primaryloader />
 					</div>
 				</div>
 
 			) : (
+
+
 				<div className={styles.container}>
-					<div className={styles.productsContainer}>
-						<h2>{categoryName}</h2>
-						<div className={styles.allProductsList}>
-							{products.map(item => (
-								<div key={item._id} className={styles.products}>
-									<Link to={`/product/product-details/${item._id}`}>
-										<div className={styles.productImg}>
-											<img src={item.thumbnail} alt={item.name} />
+					{products.length === 0 ? (
+						<div className={styles.NoProductsFound}>No Products Found</div>
+					) : (
+						<div>
+							<div className={styles.productsContainer}>
+								<h2>{categoryName}</h2>
+								<div className={styles.allProductsList}>
+									{products.map(item => (
+										<div key={item._id} className={styles.products}>
+											<Link to={`/product/product-details/${item._id}`}>
+												<div className={styles.productImg}>
+													<img src={item.thumbnail} alt={item.name} />
+												</div>
+											</Link>
+											<div className={styles.productContent}>
+												<p className={styles.name}>{item.name}</p>
+												<p className={styles.productPrice}>₹{item.PriceAfterDiscount}
+													{item.discountPercentage > 0 && (
+														<span>{item?.price} </span>
+													)}
+												</p>
+											</div>
 										</div>
-									</Link>
-									<div className={styles.productContent}>
-										<p className={styles.name}>{item.name}</p>
-										<p className={styles.productPrice}>₹{item.PriceAfterDiscount}
-											{item.discountPercentage > 0 && (
-												<span>{item?.price} </span>
-											)}
-										</p>
-									</div>
+									))}
 								</div>
-							))}
+							</div>
+							<div className={styles.pagination}>
+								{Array.from({ length: totalPages }, (_, index) => index + 1).map(
+									(pageNumber) => (
+										<button
+											key={pageNumber}
+											className={`${styles.paginationButton} ${pageNumber === currentPage ? styles.active : ""}`}
+											onClick={() => handlePageClick(pageNumber)}
+										>
+											{pageNumber}
+										</button>
+									)
+								)}
+							</div>
 						</div>
-					</div>
-					<div className={styles.pagination}>
-						{Array.from({ length: totalPages }, (_, index) => index + 1).map(
-							(pageNumber) => (
-								<button
-									key={pageNumber}
-									className={`${styles.paginationButton} ${pageNumber === currentPage ? styles.active : ""}`}
-									onClick={() => handlePageClick(pageNumber)}
-								>
-									{pageNumber}
-								</button>
-							)
-						)}
-					</div>
+					)}
 				</div>
 			)}
 

@@ -460,7 +460,7 @@ function ProductDetails() {
 			{showPopup && <LoginPopup onClose={closePopup} />}
 			<ToastContainer />
 			{loading ? (
-				<div className="All_Product_loader">
+				<div className={styles.productLoader}>
 					<div
 						className="d-flex justify-content-center align-items-center"
 						style={{ height: "100vh" }}
