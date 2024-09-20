@@ -119,3 +119,8 @@
   list-style: decimal;
   font-size: 20px;
 }
+
+.countLoader {
+  width: 20px;
+  margin-top: -10px;
+}
