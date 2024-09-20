@@ -162,7 +162,7 @@
   display: none;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .main_product_sidebar_top_parent_div {
     flex-direction: column;
 
