@@ -578,10 +578,11 @@ function ProductDetails() {
 	const { productId } = useParams()
 	const [product, setProduct] = useState()
 	const [showPopup, setShowPopup] = useState(false)
-
+	const [includes, setIncludes] = useState()
 	const [selectedImage, setSelectedImage] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [AddTocartLoader, setAddTocartLoader] = useState(false)
+	const [checkIncludes, setCheckIncludes] = useState()
 	const [AddToWishlistLoader, setAddToWishlistLoader] = useState(false)
 	const [wishlistItems, setWishlistItems] = useState([])
 	const [cartItems, setCartItems] = useState([])
@@ -608,7 +609,9 @@ function ProductDetails() {
 				"GET"
 			)
 			setProduct(response.data.product)
-			setSelectedImage(response.data.product.thumbnail) // Set default selected image
+			setIncludes(response.data.include)
+			setSelectedImage(response.data.product.thumbnail)
+			setCheckIncludes(response.data)
 		} catch (error) {
 			console.error("Error fetching product details:", error)
 		} finally {
@@ -713,6 +716,8 @@ function ProductDetails() {
 		fetchCart(setCartItems)
 		fetchWishlist()
 	}, [productId])
+	console.log("Product include", checkIncludes)
+
 
 	return (
 		<>
@@ -787,24 +792,16 @@ function ProductDetails() {
 									<h2>DESCRIPTION</h2>
 									<p>{product.description}</p>
 								</div>
-								<div className={styles.includes}>
-									<h2>INCLUDES</h2>
-									<ul>
-										<li>Roasted Khatta Mitha Diet Poha</li>
-										<li>Butter Short Bread Biscuit</li>
-										<li>Oat Cookies</li>
-										<li>Achari Mathi</li>
-										<li>Salt Pepper Makhana</li>
-										<li>Butter Coin</li>
-										<li>Jaggery and Till Cookies</li>
-										<li>Caramel Popcorn</li>
-										<li>Paper Namkeen Biscuit</li>
-										<li>Gudh Till Biscuit</li>
-										<li>Choconut Cookies Premium</li>
-										<li>Corn Chips</li>
-										<li>Roasted Namkeen Packet</li>
-									</ul>
-								</div>
+								{includes && includes.length > 0 && (
+									<div className={styles.includes}>
+										<h2>INCLUDES</h2>
+										<ul>
+											{includes.map((item, id) => (
+												<li key={id}>{item?.include}</li>
+											))}
+										</ul>
+									</div>
+								)}
 							</div>
 						</div>
 					)}
