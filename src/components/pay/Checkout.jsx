@@ -437,10 +437,10 @@ function Checkout() {
 		if (!selectPaymentMethod) {
 			toast("Please select a payment method")
 			return
-		} 
+		}
 		event.preventDefault()
 		if (selectPaymentMethod === "Razorpay") {
-			createRazorpayOrder(1000); 
+			createRazorpayOrder(1000);
 		} else {
 			setIsSubmitDisabled(true)
 			const data = {
@@ -478,84 +478,85 @@ function Checkout() {
 	// Razopay
 	const loadRazorpayScript = (src) => {
 		return new Promise((resolve) => {
-		  const script = document.createElement("script");
-		  script.src = src;
-		  script.onload = () => {
-			resolve(true);
-		  };
-		  script.onerror = () => {
-			resolve(false);
-		  };
-		  document.body.appendChild(script);
+			const script = document.createElement("script");
+			script.src = src;
+			script.onload = () => {
+				resolve(true);
+			};
+			script.onerror = () => {
+				resolve(false);
+			};
+			document.body.appendChild(script);
 		});
-	  };
-	  const createRazorpayOrder = async (amount) => {
-		const data = ({
-		  amount: amount , 
-		  currency: "INR",
-		});
+	};
+	const createRazorpayOrder = async (amount) => {
+		const finalPrice = calculateFinalPrice(); // Get the final price including coupon discount if applied
+		const data = {
+			amount: finalPrice, // Razorpay accepts amount in paise, so multiply by 100
+			currency: "INR",
+		};
 		try {
-		  const response = await makeApi('/api/create-razorpay-order', 'POST', data);
-		  console.log("----------------------------",response);
-		  handleRazorpayScreen(response.data.amount, response.data.id,response.data.created_at);
+			const response = await makeApi('/api/create-razorpay-order', 'POST', data);
+			console.log("----------------------------", response);
+			handleRazorpayScreen(response.data.amount, response.data.id, response.data.created_at);
 		} catch (error) {
-		  console.log(error);
-		}finally {
+			console.log(error);
+		} finally {
 		}
-	  };
-	  const handleRazorpayScreen = async (amount, orderId,order_created_at) => {
+	};
+	const handleRazorpayScreen = async (amount, orderId, order_created_at) => {
 		const res = await loadRazorpayScript(
-		  "https://checkout.razorpay.com/v1/checkout.js"
+			"https://checkout.razorpay.com/v1/checkout.js"
 		);
 		if (!res) {
-		  alert("Razorpay SDK failed to load");
-		  return;
+			alert("Razorpay SDK failed to load");
+			return;
 		}
-	  
-		const options = {
-		  key: "rzp_test_DaA1MMEW2IUUYe", 
-		  currency: "INR",
-		  amount: amount,
-		  name: "USER ",
-		  description: "Test Transaction",
-		  image: "http://localhost:5173/src/assets/logo.png", 
-		  order_id: orderId,
-		  handler: function (response) {
-	
-			// setResponseId(response.razorpay_order_id);
-			
-			alert(response.razorpay_payment_id);
-			const data = {
-			  paymentId: response.razorpay_payment_id, 
-			  currency: "INR",
-			  paymentorderCratedAt: order_created_at,
-			  paymentDoneAt: new Date(),
-			  orderfromURL: window.location.href,
-			  DeviceType: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
-			  shippingAddress: selectedShippingAddress,
-				billingAddress: selectedBillingAddress,
-				paymentMethod: selectPaymentMethod,
-				CartId: cartItem._id,
-			};
-			console.log("-----1");
-			submitOrder(data, setLoading, setOrderPlaced,navigate)
-			console.log("-----2");
 
-			;
-		  },
-		  prefill: {
-			name: "Vaibhav", // Optional user details
-			email: "fZ5vA@example.com",
-			contact: "9999999999",
-		  },
-		  theme: {
-			color: "#EE5564", // Customize Razorpay theme color
-		  },
+		const options = {
+			key: "rzp_test_DaA1MMEW2IUUYe",
+			currency: "INR",
+			amount: amount,
+			name: "USER ",
+			description: "Test Transaction",
+			image: "http://localhost:5173/src/assets/logo.png",
+			order_id: orderId,
+			handler: function (response) {
+
+				// setResponseId(response.razorpay_order_id);
+
+				alert(response.razorpay_payment_id);
+				const data = {
+					paymentId: response.razorpay_payment_id,
+					currency: "INR",
+					paymentorderCratedAt: order_created_at,
+					paymentDoneAt: new Date(),
+					orderfromURL: window.location.href,
+					DeviceType: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
+					shippingAddress: selectedShippingAddress,
+					billingAddress: selectedBillingAddress,
+					paymentMethod: selectPaymentMethod,
+					CartId: cartItem._id,
+				};
+				console.log("-----1");
+				submitOrder(data, setLoading, setOrderPlaced, navigate)
+				console.log("-----2");
+
+				;
+			},
+			prefill: {
+				name: "Vaibhav", // Optional user details
+				email: "fZ5vA@example.com",
+				contact: "9999999999",
+			},
+			theme: {
+				color: "#EE5564", // Customize Razorpay theme color
+			},
 		};
-	  
+
 		const paymentObject = new window.Razorpay(options);
 		paymentObject.open();
-	  };
+	};
 
 
 
