@@ -37,6 +37,8 @@ import NewHome from "./components/NewHome/NewHome.jsx"
 import NewFooter from "./components/footer/NewFooter/NewFooter.jsx"
 import NewProductPage from "./components/NewProductPage/NewProductPage.jsx"
 import Product from "./pages/products.jsx"
+import PrivacyPolicy from "./PrivacyPolicy/PrivacyPolicy.jsx"
+import ShippingProcess from "./components/ShippingProcess/ShippingProcess.jsx"
 
 function App() {
 	// const [categories, setCategories] = useState([])
@@ -179,6 +181,14 @@ function App() {
 				<Route
 					path="/terms-conditions"
 					element={<TermsConditions />}
+				/>
+				<Route
+					path="/privacy-policy"
+					element={<PrivacyPolicy />}
+				/>
+				<Route
+					path="/shipping-policy"
+					element={<ShippingProcess />}
 				/>
 				<Route
 					path="/otp-verified"

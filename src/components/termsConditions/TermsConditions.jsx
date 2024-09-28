@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { assets } from "../../assets/assets"
 import styles from "./termsConditions.module.css"
 import { GoDotFill } from "react-icons/go"
@@ -105,7 +106,9 @@ const termsConditions = () => {
 						<span>9. Privacy Policy</span>
 						<li>
 							{" "}
-							Your use of the site is also governed by our Privacy Policy.
+							Your use of the site is also governed by our <Link to="/privacy-policy" style={{ color: "blue", textDecoration: "underline" }}>
+								Privacy Policy.
+							</Link>
 						</li>
 					</div>
 					<div>

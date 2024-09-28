@@ -28,6 +28,7 @@ const NewFooter = () => {
             <Link to={'/product/all-products'}>Products</Link>
             <Link to="/aboutus">About Us</Link>
             <Link to="/contact">Contact Us</Link>
+            <Link to='/shipping-policy'>Shipping Policy</Link>
             <Link to="/terms-conditions">Terms & Conditions</Link>
           </nav>
         </div>
