@@ -293,7 +293,7 @@
 }
 
 .empty_cart_div {
-  margin-top: -100px;
+  margin-top: -150px;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -301,7 +301,7 @@
 }
 
 .NO_cart_image {
-  width: 50%;
+  width: 40%;
 }
 
 .All_Product_loadera {

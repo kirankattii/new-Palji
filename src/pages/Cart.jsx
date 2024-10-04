@@ -1386,6 +1386,7 @@ import useCoupon from "../hook/coupanHook"
 import CouponFunctions from "../utils/couponFunctions"
 import { makeApi } from "../api/callApi"
 import CartCalculation from "../components/CartCalculation/cartCalculation"
+import { homeImg } from "../assets/home/home"
 
 const Cart = () => {
 	const {
@@ -1495,7 +1496,7 @@ const Cart = () => {
 					{IscartEmpty && (
 						<div className="empty_cart_div">
 							<img
-								src={assets.empty_cart}
+								src={assets.cart_gif}
 								alt="No cart "
 								className="NO_cart_image"
 							/>
