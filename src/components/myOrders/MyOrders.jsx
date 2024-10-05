@@ -143,6 +143,10 @@ const MyOrders = () => {
 							>
 								<div>
 									<img
+										style={{
+											marginTop: "0"
+										}}
+										className="order-img-product"
 										src={item?.productId?.thumbnail}
 										alt={item?.productId?.name}
 									/>
