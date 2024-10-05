@@ -33,7 +33,7 @@
 .login-popup h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #E5087E;
+  color: var(--redPink);
 }
 
 .login-popup input {
@@ -50,7 +50,7 @@
   padding: 4px 8px;
   border: none;
   border-radius: 5px;
-  background-color: #E5087E;
+  background-color: var(--redPink);
   color: var(--white-color);
 
   cursor: pointer;
@@ -63,6 +63,10 @@
   margin-top: 10px;
   justify-content: center;
   color: #fff;
+}
+
+.login-popup a {
+  color: var(--redPink);
 }
 
 .login-popup button:hover {

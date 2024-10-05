@@ -81,7 +81,7 @@
 
 .fill-form form input,
 textarea {
-  border: 2px solid #E5087E;
+  border: 2px solid var(--redPink);
   width: 100%;
   outline: 0;
   background: transparent;
@@ -96,7 +96,7 @@ textarea {
   width: 100%;
   padding: 10px;
   font-size: 17px;
-  background: #E5087E;
+  background: var(--redPink);
   border: 0;
   outline: 0;
   color: #fff;

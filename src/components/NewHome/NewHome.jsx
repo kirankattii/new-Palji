@@ -158,7 +158,7 @@ const NewHome = () => {
             <div className={styles.baked}>
               <h2>BAKED</h2>
               <div>
-                <button>VIEW ALL</button>
+                <button onClick={() => navigate('/product/all-products')}>VIEW ALL</button>
               </div>
             </div>
           </div>

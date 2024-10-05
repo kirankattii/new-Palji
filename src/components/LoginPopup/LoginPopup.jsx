@@ -281,12 +281,12 @@ const LoginPopup = ({ onClose }) => {
 					>
 						Login
 					</button>
-					<div className="text-center px-4 py-3">
+					<div className="text-center px-4 py-3 loginpopuplink">
 						<p>
 							Don't Have An Account?{" "}
 							<span>
 								<Link
-									style={{ color: "#E5087E" }}
+									style={{ color: "#EE5564" }}
 									className="css-for-link-tag golden-color-text"
 									to="/register"
 									onClick={() => {
