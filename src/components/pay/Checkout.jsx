@@ -526,7 +526,7 @@ function Checkout() {
 
 				// setResponseId(response.razorpay_order_id);
 
-				alert(response.razorpay_payment_id);
+				toast.success("Payment Successful");
 				const data = {
 					paymentId: response.razorpay_payment_id,
 					currency: "INR",
