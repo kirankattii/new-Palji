@@ -718,6 +718,7 @@ function ProductDetails() {
 	}, [productId])
 	console.log("Product include", checkIncludes)
 
+	console.log("Product details", product);
 
 	return (
 		<>
@@ -757,7 +758,11 @@ function ProductDetails() {
 									</div>
 								</div>
 								<div className={styles.title}>
-									<h1>{product.name}</h1>
+									<div className={styles.productPriceName}>
+										<h1>{product.name}</h1>
+										<h2>₹{product.price
+										}</h2>
+									</div>
 									<div className={styles.addToCartContainer}>
 										<div className={styles.counts}>
 
