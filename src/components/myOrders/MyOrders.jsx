@@ -106,6 +106,8 @@ const MyOrders = () => {
 		}
 		fetchOrders()
 	}, [])
+	console.log("All my orders atatus", orderStatus);
+
 
 	return (
 		<div className="myorders">

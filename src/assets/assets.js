@@ -57,6 +57,7 @@ import homeBanner4 from "./homebanner4.png"
 import aboutLandingbanner1 from "./aboutLandingPage1.png"
 import paljiMainImg from './paljiMainImg.png'
 import cart_gif from './home/cart gif.gif'
+import razorpay_logo from './razorpay.svg'
 
 export const assets = {
 	userprofile_menu,
@@ -116,5 +117,6 @@ export const assets = {
 	homeBanner3,
 	homeBanner4,
 	paljiMainImg,
-	cart_gif
+	cart_gif,
+	razorpay_logo
 }

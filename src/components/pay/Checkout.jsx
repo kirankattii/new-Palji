@@ -351,6 +351,7 @@ import BackButton from "../products/backButton.jsx"
 import useCoupon from "../../hook/coupanHook.jsx"
 // import { updateCartCount } from "../../utils/couponFunctions.jsx"
 import { submitOrder } from "../../utils/productFunction.js"
+import { assets } from "../../assets/assets.js"
 
 function Checkout() {
 	const navigate = useNavigate()
@@ -743,7 +744,8 @@ function Checkout() {
 												htmlFor="Razorpay"
 												className="address-label"
 											>
-												Razorpay
+												<img src={assets.razorpay_logo} alt="" />
+
 											</label>
 										</div>
 									</div>
