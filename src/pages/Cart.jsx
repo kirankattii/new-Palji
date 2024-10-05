@@ -1501,7 +1501,8 @@ const Cart = () => {
 								className="NO_cart_image"
 							/>
 							<Link to="/product/all-products">
-								<h2>Explore products</h2>
+								<p>Your Cart is Empty</p>
+								<h2>Start Shopping</h2>
 							</Link>
 						</div>
 					)}
