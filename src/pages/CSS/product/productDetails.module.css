@@ -142,6 +142,11 @@
   color: #EE5564;
 }
 
+.productPriceName span {
+  font-size: 20px;
+  margin-left: 15px;
+  text-decoration: line-through;
+}
 
 @media(max-width:800px) {
   .title h1 {
@@ -175,6 +180,7 @@
   .innerImgContainer {
     gap: 7px;
   }
+
 }
 
 @media(max-width:800px) {
@@ -259,6 +265,12 @@
   .description h2 {
     font-size: 2rem;
     font-weight: 800;
+  }
+
+  .productPriceName span {
+    font-size: 18px;
+    margin-left: 15px;
+    text-decoration: line-through;
   }
 }
 

@@ -29,7 +29,13 @@ const OrderSummary = () => {
 				className="loading All_Product_loader"
 				style={{ height: "90vh" }}
 			>
-				<div className="">
+				<div style={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					height: "100%",
+					width: "100%"
+				}}>
 					<Primaryloader />
 				</div>
 			</div>

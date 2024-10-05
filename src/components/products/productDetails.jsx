@@ -760,8 +760,8 @@ function ProductDetails() {
 								<div className={styles.title}>
 									<div className={styles.productPriceName}>
 										<h1>{product.name}</h1>
-										<h2>₹{product.price
-										}</h2>
+										<h2> ₹{Math.round(product.PriceAfterDiscount)}
+											{product.discountPercentage !== 0 && <span>₹{product.price}</span>}</h2>
 									</div>
 									<div className={styles.addToCartContainer}>
 										<div className={styles.counts}>
