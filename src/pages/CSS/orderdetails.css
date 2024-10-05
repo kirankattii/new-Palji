@@ -70,6 +70,10 @@
   font-size: 18px;
 }
 
+.ordered-products-name {
+  color: var(--redPink);
+}
+
 @media (max-width: 500px) {
 
   /* Order Details Page Styles */
