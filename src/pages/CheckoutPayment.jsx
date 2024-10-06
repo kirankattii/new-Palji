@@ -257,31 +257,7 @@ const CheckoutPayment = () => {
 									))}
 							</div>
 						</div>
-						{/* <div className="acheckout-shipping-address">
-							{!loading &&
-								shippingAddresses.map((address, index) => (
-									<div
-										key={index}
-										className="address-item"
-									>
-										<input
-											type="radio"
-											id={`address-${index}`}
-											name="shipping-address"
-											value={address._id}
-											checked={selectedAddress === address}
-											onChange={() => handleAddressSelect(address)}
-											className="address-radio"
-										/>
-										<label
-											htmlFor={`address-${index}`}
-											className="address-label"
-										>
-											{`${address.firstname} ${address.lastname}, ${address.address}, ${address.city}, ${address.state}, ${address.country}`}
-										</label>
-									</div>
-								))}
-						</div> */}
+
 					</div>
 					<div className="right-checkoutpayment cart-billing">
 						<div className="cart-order-summary">

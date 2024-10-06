@@ -56,7 +56,6 @@ const MyAccount = () => {
                                 <div className="left-myaccount-info">
                                     <img
                                         src={userDatails?.userImage}
-                                        // src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                                         alt=""
                                     />
                                     <div className="userprofilename">

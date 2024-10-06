@@ -1511,10 +1511,10 @@ const Cart = () => {
 							<div className="cart-item">
 								<div className="cart-items-title cart-items-title2">
 									<p>Items</p>
-									<p>Name</p>
+									<p className="productItemName2">Name</p>
 									<p>Price</p>
 									<p className="quantity_heading">Qty</p>
-									<p>Total:</p>
+									<p className="cartItemTotal">Total:</p>
 								</div>
 								<br />
 								<hr />
@@ -1542,11 +1542,14 @@ const Cart = () => {
 											</p>
 											<div key={index}>
 												<div className="cart-items-title cart-items-item">
-													<img
-														src={item?.productId?.thumbnail}
-														alt=""
-													/>
-													<p>{item.productId?.name}</p>
+													<div>
+														<img
+															src={item?.productId?.thumbnail}
+															alt=""
+														/>
+														<p className="productItemName1">{item.productId?.name}</p>
+													</div>
+													<p className="productItemName2">{item.productId?.name}</p>
 													<p>₹{item.productId?.PriceAfterDiscount}</p>
 													<div className="cartPageButton">
 														<img
@@ -1571,15 +1574,16 @@ const Cart = () => {
 															}
 														/>
 													</div>
-													<p>₹{item.totalPrice}</p>
+													<p className="cartItemTotal">₹{item.totalPrice}</p>
 												</div>
 												{/* <hr /> */}
 											</div>
 										</div>
 									))}
 							</div>
-
-							<CouponFunctions />
+							<div className='cartcalulaction-comp'>
+								<CouponFunctions />
+							</div>
 							{/* <CartCalculation  /> */}
 						</div>
 					)}

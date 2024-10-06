@@ -1,169 +1,84 @@
-// import React, { useContext, useEffect, useState } from "react"
-// import "./myOrders.css"
-// import { assets } from "../../assets/assets"
-// import { useNavigate } from "react-router"
-// import { makeApi } from "../../api/callApi.tsx"
 
-// import { Link } from "react-router-dom"
-// // api / get - my - order
-// const MyOrders = () => {
-// 	const navigate = useNavigate()
-// 	const [loading, setLoading] = useState(false)
-// 	const [orderStatus, setOrderStatus] = useState([])
-// 	useEffect(() => {
-// 		const fetchWishlist = async () => {
-// 			try {
-// 				setLoading(true)
-// 				const response = await makeApi(`/api/get-my-second-order`, "GET")
-// 				setOrderStatus(response.data.secondorders)
-// 			} catch (error) {
-// 				console.log(error)
-// 			} finally {
-// 				setLoading(false)
-// 			}
-// 		}
-// 		fetchWishlist()
-// 	}, [])
-// 	console.log(orderStatus)
-// 	// Check if orderStatus is populated correctly
 
-// 	// console.log("Order status", orderStatus[1])
-// 	return (
-// 		<div className="myorders">
-// 			<div className="userprofile-heading">
-// 				<h1>MY ORDERS</h1>
-// 			</div>
-// 			<div className="order-history">
-// 				<div className="order-summary order-summary1">
-// 					<div>
-// 						<p className="myproduct-name-heading">Items</p>
-// 						<p className="myproduct-name-heading1">Name</p>
-// 					</div>
-// 					<p className="myprice-product">Price</p>
-// 					<p className="mystatus-product">Status</p>
-// 					<p style={{ textAlign: "center", fontSize: "20px" }}></p>
-// 				</div>
-// 				<hr />
-// 				{/* <br /> */}
-// 			</div>
-
-// 			<div>
-// 				{orderStatus.map((order) => {
-// 					return order.CartId.orderItems.map((item) => {
-// 						return (
-// 							<div
-// 								className="order-summary order-summary2"
-// 								key={item._id}
-// 							>
-// 								<div>
-// 									<img
-// 										src={item.productId.thumbnail}
-// 										alt={item.productId.name}
-// 									/>
-// 									<p className="myproduct-name">{item.productId.name}</p>
-// 								</div>
-// 								<p>₹{item.totalPrice}</p>
-
-// 								<p>{order.status}</p>
-// 								<Link to={`/userprofile/myorders/${order._id}`}>
-// 									<button>View</button>
-// 								</Link>
-// 							</div>
-// 						)
-// 					})
-// 				})}
-// 			</div>
-// 		</div>
-// 	)
-// }
-
-// export default MyOrders
-
-import React, { useEffect, useState } from "react"
-import "./myOrders.css"
-import { assets } from "../../assets/assets"
-import { useNavigate } from "react-router"
-import { makeApi } from "../../api/callApi.tsx"
-import { Link } from "react-router-dom"
-import Primaryloader from "../loaders/primaryloader.jsx"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { makeApi } from "../../api/callApi.tsx";
+import Primaryloader from "../loaders/primaryloader.jsx";
+import styles from "./MyOrders.module.css";
 
 const MyOrders = () => {
-	const navigate = useNavigate()
-	const [loading, setLoading] = useState(false)
-	const [orderStatus, setOrderStatus] = useState([])
+	const [loading, setLoading] = useState(false);
+	const [orders, setOrders] = useState([]);
 
 	useEffect(() => {
 		const fetchOrders = async () => {
 			try {
-				setLoading(true)
-				const response = await makeApi(`/api/get-my-second-order`, "GET")
-				setOrderStatus(response.data.secondorders)
+				setLoading(true);
+				const response = await makeApi("/api/get-my-second-order", "GET");
+				setOrders(response.data.secondorders);
 			} catch (error) {
-				console.log(error)
+				console.error("Error fetching orders:", error);
 			} finally {
-				setLoading(false)
+				setLoading(false);
 			}
-		}
-		fetchOrders()
-	}, [])
-	console.log("All my orders atatus", orderStatus);
+		};
+		fetchOrders();
+	}, []);
+
 
 
 	return (
-		<div className="myorders">
+		<div className={styles.myOrders}>
 			<div className="userprofile-heading">
 				<h1>MY ORDERS</h1>
 			</div>
-			<div className="order-history">
-				<div className="order-summary order-summary1">
-					<div>
-						<p className="myproduct-name-heading">Items</p>
-						<p className="myproduct-name-heading1">Name</p>
-					</div>
-					<p className="myprice-product">Price</p>
-					<p className="mystatus-product">Status</p>
-					<p style={{ textAlign: "center", fontSize: "20px" }}></p>
-				</div>
-				<hr />
-			</div>
-
 			{loading ? (
-				<div className="all_oredrs_loader">
+				<div className={styles.loader}>
 					<Primaryloader />
 				</div>
-			) : orderStatus.length === 0 ? (
-				<div className="no-orders-found">No orders found</div>
+			) : orders.length === 0 ? (
+				<div className={styles.noOrders}>No orders found</div>
 			) : (
-				orderStatus.map((order) => {
-					return order.CartId.orderItems.map((item) => {
-						return (
-							<div
-								className="order-summary order-summary2"
-								key={item._id}
-							>
-								<div>
-									<img
-										style={{
-											marginTop: "0"
-										}}
-										className="order-img-product"
-										src={item?.productId?.thumbnail}
-										alt={item?.productId?.name}
-									/>
-									<p className="myproduct-name">{item?.productId?.name}</p>
-								</div>
-								<p>₹{item?.totalPrice}</p>
-								<p>{order?.status}</p>
-								<Link to={`/userprofile/myorders/${order._id}`}>
-									<button>View</button>
+				<div className={styles.orderList}>
+					{orders.map((order) => (
+						<div key={order._id} className={styles.orderCard}>
+							<div className={styles.orderHeader}>
+								<span className={styles.orderId}>Order #{order._id.slice(-6)}</span>
+								<span className={styles.orderDate}>{new Date(order.createdAt).toLocaleDateString()}</span>
+								<span className={`${styles.orderStatus} ${styles[order.status.toLowerCase()]}`}>
+									{order.status}
+								</span>
+							</div>
+							<div className={styles.orderItems}>
+								{order.CartId.orderItems.map((item) => (
+									<div key={item._id} className={styles.orderItem}>
+										<img
+											src={item.productId.thumbnail}
+											alt={item.productId.name}
+											className={styles.productImage}
+										/>
+										<div className={styles.productInfo}>
+											<h3>{item.productId.name}</h3>
+											<p>Quantity: {item.quantity}</p>
+											<p className={styles.itemPrice}>₹{item.totalPrice}</p>
+										</div>
+									</div>
+								))}
+							</div>
+							<div className={styles.orderFooter}>
+								<span className={styles.orderTotal}>
+									Total: ₹{order.CartId.TotalProductPrice}
+								</span>
+								<Link to={`/userprofile/myorders/${order._id}`} className={styles.viewButton}>
+									View Details
 								</Link>
 							</div>
-						)
-					})
-				})
+						</div>
+					))}
+				</div>
 			)}
 		</div>
-	)
-}
+	);
+};
 
-export default MyOrders
+export default MyOrders;

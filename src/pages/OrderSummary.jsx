@@ -207,6 +207,8 @@ import styles from "./OrderSummary.module.css";
 const OrderSummary = () => {
 	const [orderSummary, setOrderSummary] = useState(null);
 	const { ordersummary } = useParams();
+	const isCashOnDelivery = orderSummary?.paymentMethod.toLowerCase() === "cash on delivery";
+	const isRazorpay = orderSummary?.paymentMethod.toLowerCase() === "razorpay";
 
 	useEffect(() => {
 		const fetchOrderSummary = async () => {
@@ -246,9 +248,36 @@ const OrderSummary = () => {
 
 					<p><strong>Status:</strong> {orderSummary.status}</p>
 					<p><strong>Payment Method:</strong> {orderSummary.paymentMethod}</p>
+					{isRazorpay && (
+						<p><strong>Payment ID:</strong> {orderSummary.paymentId}</p>
+					)}
 					<p><strong>Issued:</strong> {new Date(orderSummary.createdAt).toLocaleDateString()}</p>
+					<p><strong>Shipping Address: </strong>
+						{orderSummary.shippingAddress.firstname} {" "}{orderSummary.shippingAddress.lastname} {" "}
+						{orderSummary.shippingAddress.address}
+						<br />
+						{orderSummary.shippingAddress.city}, {orderSummary.shippingAddress.state} {orderSummary.shippingAddress.pincode}{" "}
+						{orderSummary.shippingAddress.country}
+						<br />
+						Phone: {orderSummary.shippingAddress.phonenumber}
+					</p>
+					{isCashOnDelivery && (
+						<div className={styles.billingAddress}>
+							<p><strong>Billing Address: </strong>
+								{orderSummary.billingAddress.name} {" "}
+								{orderSummary.billingAddress.address}<br />
+								{orderSummary.billingAddress.city}, {orderSummary.billingAddress.state} {orderSummary.billingAddress.pincode}{" "}
+								{orderSummary.billingAddress.country}<br />
+								Phone: {orderSummary.billingAddress.phonenumber}
+							</p>
+						</div>
+					)}
+
+
 				</div>
+
 			</div>
+
 
 			<table className={styles.productTable}>
 				<thead>
@@ -279,15 +308,15 @@ const OrderSummary = () => {
 				<div className={styles.totalSection}>
 					<div className={styles.totalRow}>
 						<span><strong>Subtotal:</strong></span>
-						<span>{orderSummary.CartId.TotalProductPrice} ₹</span>
+						<span>₹ {orderSummary.CartId.TotalProductPrice} </span>
 					</div>
 					<div className={styles.totalRow}>
 						<span><strong>Shipping Price:</strong></span>
-						<span>{orderSummary.CartId.shippingPrice} ₹</span>
+						<span>₹ {orderSummary.CartId.shippingPrice} </span>
 					</div>
 					<div className={styles.totalRow}>
 						<span><strong>Total:</strong></span>
-						<span>{orderSummary.CartId.TotalProductPrice} ₹</span>
+						<span>₹ {orderSummary.CartId.TotalProductPrice} </span>
 					</div>
 				</div>
 			</div>

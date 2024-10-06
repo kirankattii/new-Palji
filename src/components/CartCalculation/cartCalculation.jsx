@@ -1,8 +1,92 @@
-import React from "react"
-import { Link, useNavigate } from "react-router-dom"
-import "./cartCalculation.css"
-import useCoupon from "../../hook/coupanHook"
-// import useCoupon from "../hook/coupanHook"
+// import React from "react"
+// import { Link, useNavigate } from "react-router-dom"
+// // import "./cartCalculation.css"
+// import useCoupon from "../../hook/coupanHook"
+// import styles from './OrderSummary.module.css';
+
+// // import useCoupon from "../hook/coupanHook"
+
+
+// function CartCalculation({
+// 	tax,
+// 	shipping,
+// 	CoupanApplied,
+// 	total,
+// 	Final,
+// 	ButtonName,
+// 	disabled,
+// }) {
+// 	const formatNumber = (number) => {
+// 		return Math.round(number).toString()
+// 	}
+
+// 	const {
+// 		couponCode,
+// 		setCouponCode,
+// 		appliedCoupon,
+// 		couponDiscount,
+// 		applyCoupon,
+// 		removeCoupon,
+// 	} = useCoupon()
+// 	const navigate = useNavigate()
+// 	return (
+// 		<>
+// 			<div className="right-checkoutpayment cart-billing">
+// 				<div className="cart-order-summary">
+// 					<h2>order summary</h2>
+// 					<div className="cart-billing-charges">
+// 						<div className="cart-billing-subtotal">
+// 							<p>SUBTOTAL</p>
+// 							<p>₹{formatNumber(Final)}</p>
+// 						</div>
+// 						<div className="cart-billing-discount">
+// 							<p>DISCOUNT</p>
+// 							<p>{appliedCoupon ? couponDiscount : 0}%</p>
+// 						</div>
+// 						{/* <div className="cart-billing-tax">
+// 							<p>TAX</p>
+// 							<p> 5%</p>
+// 						</div> */}
+// 						<div className="cart-billing-shipping">
+// 							<p>SHIPPING</p>
+// 							<p> {formatNumber(shipping)}</p>
+// 						</div>
+// 						<div className="cart-billing-shipping">
+// 							<b>TOTAL</b>
+// 							<b>₹{formatNumber(Final)}</b>
+// 						</div>
+// 					</div>
+
+// 					<button
+// 						className="cart_calculation_button"
+// 						disabled={disabled} // Apply the disabled attribute
+// 						style={{ opacity: disabled ? 0.5 : 1 }}
+// 						onClick={() => navigate("/cart/checkout/")}
+// 					>
+// 						{ButtonName}
+// 					</button>
+// 					<hr />
+
+// 				</div>
+// 			</div>
+
+// 			<div></div>
+// 		</>
+// 	)
+// }
+
+// export default CartCalculation
+// {
+// 	/* <div className="right-checkoutpayment cart-billing"> */
+// }
+
+
+
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useCoupon from "../../hook/coupanHook";
+import styles from './CartCalculation.module.css';
 
 function CartCalculation({
 	tax,
@@ -14,8 +98,8 @@ function CartCalculation({
 	disabled,
 }) {
 	const formatNumber = (number) => {
-		return Math.round(number).toString()
-	}
+		return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(number);
+	};
 
 	const {
 		couponCode,
@@ -24,79 +108,66 @@ function CartCalculation({
 		couponDiscount,
 		applyCoupon,
 		removeCoupon,
-	} = useCoupon()
-	const navigate = useNavigate()
+	} = useCoupon();
+	const navigate = useNavigate();
+
 	return (
-		<>
-			<div className="right-checkoutpayment cart-billing">
-				{/* <div className="cart-promocode">
-					<h2>HAVE A COUPON ?</h2>
-					<div className="cart-promocode-input">
-						<input
-							type="text"
-							placeholder="COUPON CODE"
-							value={couponCode}
-							onChange={(e) => setCouponCode(e.target.value)}
-							disabled={appliedCoupon !== null}
-						/>
-						{appliedCoupon ? (
-							<button onClick={removeCoupon}>REMOVE</button>
-						) : (
-							<button onClick={(e) => applyCoupon(couponCode)}>APPLY</button>
-						)}
-					</div>
+		<div className={styles.orderSummary}>
+			<h2 className={styles.title}>Order  Details</h2>
+
+			<div className={styles.details}>
+				<div className={styles.row}>
+					<span>Order Amount:</span>
+					<span>{formatNumber(Final)}</span>
+				</div>
+				<div className={styles.row}>
+					<span>Discount:</span>
+					<span className={styles.savings}>-{formatNumber(0)}</span>
+				</div>
+				{/* <div className={styles.row}>
+					<span>Coupon Savings:</span>
+					<span className={styles.savings}>-{formatNumber(appliedCoupon ? (Final * couponDiscount / 100) : 0)}</span>
 				</div> */}
-				<div className="cart-order-summary">
-					<h2>order summary</h2>
-					<div className="cart-billing-charges">
-						<div className="cart-billing-subtotal">
-							<p>SUBTOTAL</p>
-							<p>₹{formatNumber(Final)}</p>
-						</div>
-						<div className="cart-billing-discount">
-							<p>DISCOUNT</p>
-							<p>{appliedCoupon ? couponDiscount : 0}%</p>
-						</div>
-						{/* <div className="cart-billing-tax">
-							<p>TAX</p>
-							<p> 5%</p>
-						</div> */}
-						<div className="cart-billing-shipping">
-							<p>SHIPPING</p>
-							<p> {formatNumber(shipping)}</p>
-						</div>
-						<div className="cart-billing-shipping">
-							<b>TOTAL</b>
-							<b>₹{formatNumber(Final)}</b>
-						</div>
-					</div>
-					{/* <Link
-						to="/cart/checkout/"
-						className="css-for-link-tag"
-					>
-						<div className="cart_calculation_button">{ButtonName}</div>
-					</Link> */}
-					<button
-						className="cart_calculation_button"
-						disabled={disabled} // Apply the disabled attribute
-						style={{ opacity: disabled ? 0.5 : 1 }}
-						onClick={() => navigate("/cart/checkout/")}
-					>
-						{ButtonName}
-					</button>
-					<hr />
-					{/* <p className="cart-delivery-day">
-						Delivery In <span>4 to 5 Days</span>
-					</p> */}
+				{/* <div className={styles.row}>
+					<span>Convenience Fee:</span>
+					<span className={styles.whatsThis}>WHAT'S THIS?</span>
+				</div> */}
+				<div className={styles.row}>
+					<span>Delivery Fee:</span>
+					<span>
+						{shipping === 0 ? (
+							<>
+								Free
+								{/* <span className={styles.strikethrough}>{formatNumber(399)}</span> */}
+							</>
+						) : (
+							formatNumber(shipping)
+						)}
+					</span>
 				</div>
 			</div>
 
-			<div></div>
-		</>
-	)
+			<div className={styles.total}>
+				<span>Order Total:</span>
+				<span>{formatNumber(Final)}</span>
+			</div>
+
+			{/* <div className={styles.savings}>
+				Cheers! You saved: {formatNumber(appliedCoupon ? (Final * couponDiscount / 100) : 0)}
+			</div> */}
+
+			<div className={styles.actions}>
+				<button
+					className={styles.signUp}
+					disabled={disabled}
+					style={{ opacity: disabled ? 0.5 : 1 }}
+					onClick={() => navigate("/cart/checkout/")}
+				>
+					{ButtonName}
+				</button>
+			</div>
+		</div>
+	);
 }
 
-export default CartCalculation
-{
-	/* <div className="right-checkoutpayment cart-billing"> */
-}
+export default CartCalculation;

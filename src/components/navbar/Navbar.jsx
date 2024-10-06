@@ -24,12 +24,14 @@ const Navbar = () => {
 	const [categoryDropdownVisible, setCategoryDropdownVisible] = useState(false)
 	const [cartItem, setCartItem] = useState([])
 	const [myCartData, setMyCartData] = useState([])
+	const [userDatails, setUserDetails] = useState()
 
 	const [isloggedIn, setIsloggedIn] = useState(false)
 	const [totalQuantities, setTotalQuantities] = useState(0)
 	const [cartUpdated, setCartUpdated] = useState(false)
 	const { getTotalCartItems } = useContext(ShopContext)
 	const [cartCount, setCartCount] = useState(0)
+	const [isLoading, setIsLoading] = useState(false);
 
 	const location = useLocation()
 	const navigate = useNavigate()
@@ -43,6 +45,7 @@ const Navbar = () => {
 
 	const fetchData = async (value) => {
 		try {
+			setIsLoading(true);
 			const response = await makeApi(
 				`/api/get-all-products?perPage=1550&page=1`,
 				"GET"
@@ -60,6 +63,8 @@ const Navbar = () => {
 			setProducts(result)
 		} catch (error) {
 			console.error("Error fetching products:", error)
+		} finally {
+			setIsLoading(false);
 		}
 	}
 
@@ -85,17 +90,7 @@ const Navbar = () => {
 		setCategoryDropdownVisible(!categoryDropdownVisible)
 	}
 
-	const shouldApplySpecialStyles = () => {
-		return (
-			location.pathname === "/contact" ||
-			location.pathname === "/login" ||
-			location.pathname === "/Signup" ||
-			location.pathname === "/products" ||
-			location.pathname === "/products/savory" ||
-			location.pathname === "/products/biscuits" ||
-			location.pathname === "/cart"
-		)
-	}
+
 
 	useEffect(() => {
 		async function fetchCategories() {
@@ -152,33 +147,34 @@ const Navbar = () => {
 		}
 	}, [])
 
+	const fetchUserDetail = async () => {
+		try {
+			const responce = await makeApi("/api/my-profile", "GET")
+			setUserDetails(responce.data.user)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	useEffect(() => {
+		fetchUserDetail()
+	}, [userDatails?.userImage])
+
 	return showNavbar ? (
 		<div className="navbar">
 			<div className="left-navbar">
 				{/* {isloggedIn ? ( */}
-				<div>
-					<img
-						onClick={() => navigate(isloggedIn ? "/userprofile" : "/Signup")}
-						src={homeImg.profile}
-						alt=""
-					/>
+				<div style={{ cursor: "pointer", width: "40px", height: "40px" }}>
+					{userDatails?.userImage ?
+						<img src={userDatails?.userImage} alt="" style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+							onClick={() => navigate(isloggedIn ? "/userprofile" : "/Signup")}
+						/> :
+						<img
+							onClick={() => navigate(isloggedIn ? "/userprofile" : "/Signup")}
+							src={homeImg.profile}
+							alt=""
+						/>
+					}
 				</div>
-				{/* ) : (
-					<p className="btn-btn-primary">
-						<Link
-							to="/Signup"
-							className="user_icon_login"
-						>
-							<img
-								// onClick={() => navigate("/userprofile")}
-								src={user_icon}
-								alt=""
-							/>
-							<p>LOGIN</p>
-						</Link>
-					</p> */}
-				{/* )} */}
-
 				<ul>
 					<li className={location.pathname === "/" ? "active" : ""}>
 						<Link to="/">HOME</Link>
@@ -205,15 +201,13 @@ const Navbar = () => {
 			<div className="right-navbar">
 				<ul>
 					<li
-						className={`${shouldApplySpecialStyles() ? "special-navbar" : ""} ${location.pathname === "/contact" ? "active" : ""
-							}`}
 					>
 						<Link to="/contact">CONTACT US</Link>
 					</li>
 				</ul>
 				<div className="nav-search-bar">
 					<div
-						className={shouldApplySpecialStyles() ? "special-search" : "search"}
+						className={"special-search  search"}
 					>
 						<input
 							type="text"
@@ -223,20 +217,16 @@ const Navbar = () => {
 						/>
 						<IoSearch className="search_icon" />
 					</div>
-					<NavSearchList
-						product={products}
-						clearSearchInput={clearSearchInput}
-						input={input}
-					/>
-				</div>
-				{/* {isloggedIn && (
-					<div
-						className="navbar_wishlist"
-						onClick={() => navigate("/userprofile/mywatchlist")}
-					>
-						<FaRegHeart />
+					<div className="search-list-result">
+						<NavSearchList
+							product={products}
+							clearSearchInput={clearSearchInput}
+							input={input}
+							isLoading={isLoading}
+						/>
 					</div>
-				)} */}
+				</div>
+
 				{isloggedIn ? (
 					<div className="media-profile-icon">
 						<img
@@ -250,14 +240,14 @@ const Navbar = () => {
 					<div
 						className="responcive_profile_login"
 						style={{ cursor: "pointer" }}
-						onClick={() => navigate(isloggedIn ? "/userprofile" : "/login")}
+						onClick={() => navigate(isloggedIn ? "/userprofile" : "/Signup")}
 					>
 						<img
 							// onClick={() => navigate("/userprofile")}
 							src={homeImg.profile}
 							alt=""
 						/>
-						{/* <p>LOGIN</p> */}
+
 					</div>
 				)}
 				{/* {isloggedIn && ( */}
@@ -310,22 +300,13 @@ const Navbar = () => {
 							</li>
 						</ul>
 						<GiHamburgerMenu
-							className={
-								shouldApplySpecialStyles() ? "special-menu-icon" : "menu-icon"
-							}
+							className="menu-icon"
 							onClick={toggleMenu}
 						/>
 					</nav>
 				</div>
 			</div>
-			{openProfile &&
-			{
-				/* <ProfileDropdown
-				openProfile={setOpenProfile}
-				setOpenProfile={setOpenProfile}
-				className="nav-profile-dropdown"
-			/> */
-			}}
+
 		</div>
 	) : null
 }

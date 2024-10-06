@@ -4,7 +4,7 @@ const ShippingProcess = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Shipping Process</h1>
-      <p className={styles.paragraph}>At Maalana Foods Private Limited, we ensure that our delicious confectionery products, including candies, lollipops, and Imli candy, are delivered to you in the best possible condition. Below are the details of our shipping process:
+      <p className={styles.paragraph}>At Palji Bakery, we ensure that our delicious confectionery products, GIFT HAMPERS,        SAVORY and PREMIUM COOKIES, are delivered to you in the best possible condition. Below are the details of our shipping process:
       </p>
       <div>
         <h2>1. Order Processing</h2>
@@ -75,7 +75,7 @@ const ShippingProcess = () => {
         </ul>
       </div>
       <p>We aim to ensure a seamless shipping experience for all our customers. Should you have any questions regarding shipping, please feel free to contact us.</p>
-      <p>Thank you for choosing Maalana Foods Private Limited. We look forward to delivering sweetness to your doorstep!</p>
+      <p>Thank you for choosing Palji Bakery. We look forward to delivering sweetness to your doorstep!</p>
     </div>
   )
 }

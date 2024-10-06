@@ -10,33 +10,27 @@
   height: 90px;
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
-  /* Adjust the blur radius as needed */
-  /* border-radius: 10px; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   top: 0;
 }
 
+
+
 .left-navbar {
-  /* flex: 1; */
   width: 44%;
   display: flex;
   align-items: center;
   padding-bottom: 15px;
-  /* margin-bottom: 15px; */
-
 }
 
 .left-navbar img {
   width: 50px;
   cursor: pointer;
-  /* margin-top: -15px; */
-  padding-bottom: 15px;
+  margin-top: -8px;
 }
 
 .left-navbar ul {
-  /* flex: 1; */
   display: flex;
-  /* gap: 50px; */
   width: 100%;
   align-items: center;
   list-style: none;
@@ -62,9 +56,6 @@
 .center-logo {
   width: 110px;
   margin-bottom: 10px;
-  /* place-self: center; */
-  /* display: flex; */
-
 }
 
 .right-navbar {
@@ -86,7 +77,6 @@
   border: 2px solid black;
   border-radius: 50px;
   margin-bottom: 20px;
-  /* gap: 5px; */
 }
 
 .search input {
@@ -144,7 +134,6 @@
 .animate-logo .center-logo {
   transition: transform 1s ease-out;
   transform: scale(0.7);
-  /* Adjust the scale value as needed */
 }
 
 .special-navbar {
@@ -198,7 +187,6 @@
 }
 
 .nav-search-bar .nav-search {
-  /* display: none; */
   position: absolute;
 }
 
@@ -210,7 +198,6 @@
 .navbar ul li.active a {
 
   border-bottom: 3px solid #fea49f;
-  /* Example underline for active link */
 }
 
 .media_nav_login_button {
@@ -258,16 +245,26 @@
   display: none;
 }
 
+.media-profile-icon {
+  margin: 0;
+  padding: 0;
+}
+
+.media-profile-iconImg img {
+  border-radius: 50%;
+  margin: 0;
+}
+
+.search-list-result {
+  position: absolute;
+  bottom: 6%;
+}
+
 @media screen and (max-width: 1100px) {
   .navbar {
     background: none;
     background-color: var(--redPink);
     backdrop-filter: none;
-    /* Adjust the blur radius as needed */
-    /* border-radius: 10px; */
-    /* backdrop-filter: blur(10px); */
-    /* Adjust the blur radius as needed */
-    /* border-radius: 10px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
@@ -329,8 +326,6 @@
   .special-search,
   .search {
     border: 0;
-    /* padding-left: 8px; */
-
   }
 
   .special-menu-icon,
@@ -340,6 +335,7 @@
     font-size: 30px;
     cursor: pointer;
     z-index: 5;
+    color: #fff;
   }
 
   .menu-icon {
@@ -369,7 +365,6 @@
 
   nav ul {
     position: fixed;
-    /* display: block; */
     top: 0;
     backdrop-filter: none;
     right: 0;
@@ -394,8 +389,6 @@
     display: block;
     display: flex;
     align-items: center;
-    /* padding: 2px 4px; */
-    /* border: 1px solid #000; */
     border-radius: 50px;
     font-family: serif;
     margin-top: 7px;
@@ -495,20 +488,14 @@
 }
 
 .drop-down-menu {
-  /* display: inline-flex; */
   display: flex;
   flex-direction: column;
   align-items: start;
   position: absolute;
   background: #efe2d7;
-  /* font-size: 18px; */
-  /* width: 150px; */
-  /* width: 250px; */
   width: 100%;
-  /* margin-top: 10px; */
   justify-content: center;
   transition: 0.5s ease;
-  /* color: bla; */
 
 }
 
@@ -518,9 +505,7 @@
 }
 
 .dropdown-li {
-  /* font-size: 18px; */
   border-bottom: 1px solid white;
-  /* width: 800px; */
   line-height: 1.5;
   font-weight: 500;
   display: flex;

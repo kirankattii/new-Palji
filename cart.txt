@@ -105,11 +105,92 @@ const CouponFunctions = () => {
 				</div>
 
 				<div className="cart-billing">
+					{/* <div className="cart-promocode">
+						<h2>HAVE A COUPON ?</h2>
+						<div className="cart-promocode-input">
+							<input
+								type="text"
+								placeholder="COUPON CODE"
+								value={couponCode}
+								onChange={(e) => setCouponCode(e.target.value)}
+								disabled={appliedCoupon !== null}
+							/>
+							{appliedCoupon ? (
+								<button onClick={removeCoupon}>REMOVE</button>
+							) : (
+								<button onClick={(e) => applyCoupon(couponCode)}>APPLY</button>
+							)}
+						</div>
+					</div> */}
+					{/* <div className="cart-order-summary">
+						<h2>order summary</h2>
+						<div className="cart-billing-charges">
+							<div className="cart-billing-subtotal">
+								<p>SUBTOTAL</p>
+								<p>
+									₹
+									{cartItem.totalPrice
+										? cartItem.totalPrice.toFixed(2)
+										: "0.00"}
+								</p>
+							</div>
+							<div className="cart-billing-discount">
+								<p>DISCOUNT</p>
+								<p>{appliedCoupon ? couponDiscount : totalDiscount}%</p>
+							</div>
+							<div className="cart-billing-tax">
+								<p>TAX</p>
+								<p>{18}%</p>
+							</div>
+							<div className="cart-billing-shipping">
+								<p>SHIPPING</p>
+								<p>{cartItem.shippingPrice}</p>
+							</div>
+							<div className="cart-billing-shipping">
+								<b>TOTAL</b>
+								<b>
+									₹
+									{cartItem.TotalProductPrice -
+										cartItem.TotalProductPrice * (couponDiscount / 100)}
+								</b>
+							</div>
+						</div>
+						<button
+							className="proceed_to_payment_button"
+							onClick={() => navigate("./checkout")}
+						>
+							proceed to checkout
+						</button>
+						<hr />
+						<p className="cart-delivery-day">
+							Estimated delivery in <span>3 to 5</span> Days
+						</p>
+					</div> */}
+
+					{/* </div> */}
+
+					{/* <CartCalculation
+						tax={cartItem.taxPrice}
+						shipping={cartItem.shippingPrice}
+						total={cartItem.totalPrice}
+						CoupanApplied={appliedCoupon ? couponDiscount : totalDiscount}
+						Final={
+							cartItem.TotalProductPrice -
+							cartItem.TotalProductPrice * (couponDiscount / 100)
+						}
+						ButtonName="PROCEED TO CHECKOUT"
+					/> */}
+
 					<CartCalculation
 						tax={cartItem.taxPrice}
 						shipping={cartItem.shippingPrice}
 						Final={cartItem.TotalProductPrice}
 						CoupanApplied={appliedCoupon ? couponDiscount : totalDiscount}
+						// total={
+						// 	cartItem.totalPrice -
+						// 	cartItem.TotalProductPrice * (couponDiscount / 100)
+						// }
+
 						total={
 							cartItem.totalPrice
 						}

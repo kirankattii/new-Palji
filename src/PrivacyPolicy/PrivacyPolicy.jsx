@@ -4,7 +4,7 @@ const PrivacyPolicy = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Privacy Policy</h1>
-      <p className={styles.paragraph}>At Maalana Foods Private Limited, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and protect the information you provide when using our e-commerce website.
+      <p className={styles.paragraph}>At Palji Bakery, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and protect the information you provide when using our e-commerce website.
       </p>
       <div className={styles.one}>
         <h2>1. Information We Collect
