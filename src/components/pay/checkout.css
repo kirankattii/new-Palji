@@ -34,3 +34,10 @@
 .address-label img {
   width: 150px;
 }
+
+@media(max-width:600px) {
+  .checkout_to_cart {
+    margin-left: 5px;
+    margin-top: -20px;
+  }
+}

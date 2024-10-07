@@ -1482,6 +1482,9 @@ const Cart = () => {
 		fetchCartItem()
 	}, [])
 
+	console.log(cartPoductList);
+
+
 	return (
 		<>
 			<ToastContainer />
