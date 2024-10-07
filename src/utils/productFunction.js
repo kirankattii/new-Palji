@@ -110,7 +110,7 @@ export const submitOrder = async (
 
 		setTimeout(() => {
 			setOrderPlaced(false)
-			navigation("/product/all-products")
+			navigation("/userprofile/myorders")
 		}, 5000)
 	} catch (error) {
 		console.error("Error creating order: ", error)
