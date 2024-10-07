@@ -79,7 +79,7 @@ const Contact = () => {
 					})
 				},
 			})
-			toast.info("Thank you for sharing your thoughts with us")
+			// toast.info("Thank you for sharing your thoughts with us")
 		} catch (error) {
 			toast.error(error)
 			console.error("Error sending data:", error.response.data.message)
@@ -150,8 +150,8 @@ const Contact = () => {
 							// allowfullscreen=""
 							loading="lazy"
 
-							// frameborder={0}
-							// referrerpolicy="no-referrer-when-downgrade"
+						// frameborder={0}
+						// referrerpolicy="no-referrer-when-downgrade"
 						></iframe>
 					</div>
 				</div>

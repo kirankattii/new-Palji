@@ -91,17 +91,24 @@ import "./myAccount.css"
 import { assets } from "../../assets/assets"
 import { useNavigate } from "react-router"
 import { makeApi } from "../../api/callApi"
+import Primaryloader from "../loaders/primaryloader"
 
 const MyAccount = () => {
 	const navigate = useNavigate()
 	const [userDetails, setUserDetails] = useState(null)
+	const [loading, setLoading] = useState(false);
+
 
 	const fetchUserDetail = async () => {
 		try {
+			setLoading(true);
+
 			const response = await makeApi("/api/my-profile", "GET")
 			setUserDetails(response.data.user)
 		} catch (error) {
 			console.log(error)
+		} finally {
+			setLoading(false);
 		}
 	}
 
@@ -129,50 +136,57 @@ const MyAccount = () => {
 			<div className="userprofile-heading">
 				<h1>PERSONAL INFORMATION</h1>
 			</div>
-			{userDetails && (
-				<div className="myaccount-info userprofile-info-css">
-					<div className="left-myaccount-info">
-						<img
-							src={userDetails.userImage}
-							alt=""
-						/>
-						<div className="userprofilename">
-							<span>NAME</span>
-							<p>{userDetails.firstName + " " + userDetails.lastName}</p>
-						</div>
-						<div className="userprofile-birthdate">
-							<span>DATE OF BIRTH</span>
-							<p>
-								{userDetails?.dateofbirth
-									? userDetails?.dateofbirth?.substr(0, 10)
-									: "Date Of Birth"}
-							</p>
-						</div>
-						<div className="userprofile-gender">
-							<span>GENDER</span>
-							<p>{userDetails.gender ? userDetails.gender : "Gender"}</p>
-						</div>
-						<div className="userprofile-no">
-							<span>CONTACT NUMBER</span>
-							<p>{userDetails.mobileNumber}</p>
-						</div>
-						<div className="userprofile-email">
-							<span>EMAIL ADDRESS</span>
-							<p>{userDetails.email}</p>
-						</div>
-					</div>
-					<div className="right-myaccount-info">
-						<div
-							className="change-profileinfo"
-							onClick={() => navigate("/edit-userprofile")}
-						>
-							<img
-								src={assets.profile_reset}
-								alt=""
-							/>
-							<p>Change profile information</p>
-						</div>
-						{/* <div
+
+			{loading ?
+				<div className='' style={{ display: "flex", justifyContent: "center", height: "40vh", alignItems: "center" }}>
+					<Primaryloader />
+				</div> :
+				<>
+					{userDetails && (
+
+						<div className="myaccount-info userprofile-info-css">
+							<div className="left-myaccount-info">
+								<img
+									src={userDetails.userImage}
+									alt=""
+								/>
+								<div className="userprofilename">
+									<span>NAME</span>
+									<p>{userDetails.firstName + " " + userDetails.lastName}</p>
+								</div>
+								<div className="userprofile-birthdate">
+									<span>DATE OF BIRTH</span>
+									<p>
+										{userDetails?.dateofbirth
+											? userDetails?.dateofbirth?.substr(0, 10)
+											: "Date Of Birth"}
+									</p>
+								</div>
+								<div className="userprofile-gender">
+									<span>GENDER</span>
+									<p>{userDetails.gender ? userDetails.gender : "Gender"}</p>
+								</div>
+								<div className="userprofile-no">
+									<span>CONTACT NUMBER</span>
+									<p>{userDetails.mobileNumber}</p>
+								</div>
+								<div className="userprofile-email">
+									<span>EMAIL ADDRESS</span>
+									<p>{userDetails.email}</p>
+								</div>
+							</div>
+							<div className="right-myaccount-info">
+								<div
+									className="change-profileinfo"
+									onClick={() => navigate("/edit-userprofile")}
+								>
+									<img
+										src={assets.profile_reset}
+										alt=""
+									/>
+									<p>Change profile information</p>
+								</div>
+								{/* <div
 							className="change-profilepwd"
 							onClick={() => navigate("/edit-userprofile")}
 						>
@@ -182,9 +196,11 @@ const MyAccount = () => {
 							/>
 							<p>Change password</p>
 						</div> */}
-					</div>
-				</div>
-			)}
+							</div>
+						</div>
+					)}
+				</>
+			}
 		</div>
 	)
 }

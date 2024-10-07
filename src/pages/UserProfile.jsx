@@ -11,6 +11,8 @@ const UserProfile = () => {
 	const navigate = useNavigate()
 	const [extended, setExtended] = useState(window.innerWidth > 800)
 	const [userDatails, setUserDetails] = useState()
+	const [isLoading, setIsLoading] = useState(true);
+
 
 	const handleResize = () => {
 		setExtended(window.innerWidth > 800)
@@ -26,10 +28,13 @@ const UserProfile = () => {
 
 	const fetchUserDetail = async () => {
 		try {
+			setIsLoading(true);
 			const responce = await makeApi("/api/my-profile", "GET")
 			setUserDetails(responce.data.user)
 		} catch (error) {
 			console.log(error)
+		} finally {
+			setIsLoading(false);
 		}
 	}
 
@@ -67,7 +72,12 @@ const UserProfile = () => {
 							<div className="user-name">
 								<span>HELLO</span>
 
-								<p>{`${userDatails?.firstName} ${userDatails?.lastName}`}</p>
+								{/* <p>{`${userDatails?.firstName} ${userDatails?.lastName}`}</p> */}
+								{isLoading ? (
+									<p className="loading-name"></p>
+								) : (
+									<p>{`${userDatails?.firstName || ''} ${userDatails?.lastName || ''}`}</p>
+								)}
 							</div>
 						) : null}
 					</div>
