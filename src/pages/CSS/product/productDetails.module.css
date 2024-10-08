@@ -452,6 +452,8 @@
     border: 1px solid var(--redPink);
   }
 
+
+
   .subImg img {
     width: 80px;
     height: 80px;
@@ -481,5 +483,30 @@
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media(max-width:1100px) {
+  .productContainer {
+    padding-top: 150px;
+    margin: auto;
+    width: 95%;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .imgContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    gap: 0;
+  }
+
+  .productContant {
+    width: 100%;
   }
 }

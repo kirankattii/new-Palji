@@ -1014,7 +1014,7 @@ function ProductDetails() {
 										>
 											<img src={product.thumbnail} alt="Thumbnail" />
 										</div>
-										{product.image.map((imgUrl, index) => (
+										{product.image.slice(0, 3).map((imgUrl, index) => (
 											<div
 												key={index}
 												className={`${styles.subImg1} ${selectedImage === imgUrl ? styles.activeImage : ""
