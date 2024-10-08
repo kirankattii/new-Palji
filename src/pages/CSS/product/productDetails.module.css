@@ -169,6 +169,15 @@
   text-decoration: line-through;
 }
 
+.productContainer {
+  padding-top: 150px;
+  margin: auto;
+  width: 95%;
+  display: flex;
+  gap: 30px;
+  position: relative;
+}
+
 .imgContainer {
   width: 50%;
   position: -webkit-sticky;
@@ -530,14 +539,6 @@
   }
 }
 
-.productContainer {
-  padding-top: 150px;
-  margin: auto;
-  width: 95%;
-  display: flex;
-  gap: 30px;
-  position: relative;
-}
 
 
 
