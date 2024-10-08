@@ -1116,18 +1116,18 @@ function ProductDetails() {
 									<h2>DESCRIPTION</h2>
 									<p>{product.description}</p>
 								</div>
+								{includes && includes.length > 0 && (
+									<div className={styles.includes}>
+										<h2>INCLUDES</h2>
+										<ul>
+											{includes.map((item, id) => (
+												<li key={id}>{item?.include}</li>
+											))}
+										</ul>
+									</div>
+								)}
 							</div>
 						</div>
-						{includes && includes.length > 0 && (
-							<div className={styles.includes}>
-								<h2>INCLUDES</h2>
-								<ul>
-									{includes.map((item, id) => (
-										<li key={id}>{item?.include}</li>
-									))}
-								</ul>
-							</div>
-						)}
 					</div>
 				)
 			)}

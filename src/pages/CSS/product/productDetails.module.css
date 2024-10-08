@@ -3,8 +3,9 @@
   margin: auto;
   width: 95%;
   display: flex;
-  align-items: start;
+  /* align-items: start; */
   gap: 30px;
+  position: relative;
 }
 
 
@@ -12,9 +13,11 @@
 .imgContainer {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* margin: auto; */
+  top: 20%;
+  align-items: start;
   gap: 0;
   width: 50%;
 }
@@ -381,7 +384,7 @@
 .innerImgContainer {
   display: flex;
   align-items: center;
-  margin: auto;
+  margin: 0 auto;
 }
 
 
