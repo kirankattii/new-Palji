@@ -513,3 +513,39 @@
     width: 100%;
   }
 }
+
+.productContainer {
+  padding-top: 150px;
+  margin: auto;
+  width: 95%;
+  display: flex;
+  gap: 30px;
+  position: relative;
+}
+
+.imgContainer {
+  width: 50%;
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 100px;
+  /* Adjust this value to set how far from the top you want the container to stick */
+  align-items: start;
+  gap: 0;
+  height: 100%;
+}
+
+.productContant {
+  width: 50%;
+}
+
+@media (max-width: 1100px) {
+  .productContainer {
+    flex-direction: column;
+  }
+
+  .imgContainer {
+    position: static;
+    /* Remove sticky for smaller screens */
+  }
+}
