@@ -554,53 +554,313 @@
 
 
 
-import React, { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import "../../pages/CSS/product/productDetails.css"
-import LoginPopup from "../../components/LoginPopup/LoginPopup.jsx"
-import AddIcon from "../../assets/add_icon_green.png"
-import RemoveIcon from "../../assets/remove_icon_red.png"
-import Primaryloader from "../loaders/primaryloader.jsx"
-import BackButton from "./backButton.jsx"
-import HorizotalLoader from "../loaders/horizotalLoader.jsx"
-import { makeApi } from "../../api/callApi"
-import { ToastContainer, toast } from "react-toastify"
+// import React, { useEffect, useState } from "react"
+// import { useNavigate, useParams } from "react-router-dom"
+// import "../../pages/CSS/product/productDetails.css"
+// import LoginPopup from "../../components/LoginPopup/LoginPopup.jsx"
+// import AddIcon from "../../assets/add_icon_green.png"
+// import RemoveIcon from "../../assets/remove_icon_red.png"
+// import Primaryloader from "../loaders/primaryloader.jsx"
+// import BackButton from "./backButton.jsx"
+// import HorizotalLoader from "../loaders/horizotalLoader.jsx"
+// import { makeApi } from "../../api/callApi"
+// import { ToastContainer, toast } from "react-toastify"
+// import styles from '../../pages/CSS/product/productDetails.module.css'
+// import {
+// 	addToCart,
+// 	removeFromCart,
+// 	fetchCart,
+// } from "../../utils/productFunction.js"
+
+// function ProductDetails() {
+// 	const navigate = useNavigate()
+// 	const { productId } = useParams()
+// 	const [product, setProduct] = useState()
+// 	const [showPopup, setShowPopup] = useState(false)
+// 	const [includes, setIncludes] = useState()
+// 	const [selectedImage, setSelectedImage] = useState("")
+// 	const [loading, setLoading] = useState(false)
+// 	const [AddTocartLoader, setAddTocartLoader] = useState(false)
+// 	const [checkIncludes, setCheckIncludes] = useState()
+// 	const [AddToWishlistLoader, setAddToWishlistLoader] = useState(false)
+// 	const [wishlistItems, setWishlistItems] = useState([])
+// 	const [cartItems, setCartItems] = useState([])
+// 	const [isInCart, setIsInCart] = useState(false)
+// 	const [IsLogin, setIsLogin] = useState(false)
+// 	const [productLoaders, setProductLoaders] = useState({})
+// 	const [countLoader, setCountLoader] = useState({}) // State to track count loader
+
+// 	useEffect(() => {
+// 		const token = localStorage.getItem("token")
+
+// 		if (token) {
+// 			setIsLogin(true)
+// 		} else {
+// 			setIsLogin(false)
+// 		}
+// 	}, [])
+
+// 	const fetchProduct = async () => {
+// 		try {
+// 			setLoading(true)
+// 			const response = await makeApi(
+// 				`/api/get-single-product/${productId}`,
+// 				"GET"
+// 			)
+// 			setProduct(response.data.product)
+// 			setIncludes(response.data.include)
+// 			setSelectedImage(response.data.product.thumbnail)
+// 			setCheckIncludes(response.data)
+// 		} catch (error) {
+// 			console.error("Error fetching product details:", error)
+// 		} finally {
+// 			setLoading(false)
+// 		}
+// 	}
+
+// 	const fetchWishlist = async () => {
+// 		try {
+// 			setAddToWishlistLoader(true)
+// 			const response = await makeApi("/api/get-my-wishlist", "GET")
+// 			const wishlistIds = response.data.wishlist
+// 				.filter((item) => item.products !== null)
+// 				.map((item) => item.products._id)
+// 			setWishlistItems(wishlistIds)
+// 		} catch (error) {
+// 			console.log(error)
+// 		} finally {
+// 			setAddToWishlistLoader(false)
+// 		}
+// 	}
+
+// 	useEffect(() => {
+// 		const checkCart = async () => {
+// 			const isInCart = cartItems.some((item) => item.productId === productId)
+// 			setIsInCart(isInCart)
+// 		}
+// 		checkCart()
+// 	}, [cartItems, productId])
+
+// 	const handleImageClick = (imageUrl) => {
+// 		setSelectedImage(imageUrl)
+// 	}
+
+// 	const closePopup = () => {
+// 		setShowPopup(false)
+// 	}
+
+// 	const handleBuyNow = async () => {
+// 		if (!IsLogin) {
+// 			setShowPopup(true)
+// 		} else {
+// 			try {
+// 				if (!isInCart) {
+// 					await addToCart(
+// 						productId,
+// 						setIsLogin,
+// 						setShowPopup,
+// 						fetchCart,
+// 						setCartItems,
+// 						setProductLoaders
+// 					)
+// 					navigate("/cart")
+// 				} else {
+// 					navigate("/cart")
+// 				}
+// 			} catch (error) {
+// 				console.log(error)
+// 			} finally {
+// 				// Remove loader state after adding to cart or navigating
+// 				setAddTocartLoader(false)
+// 				setProductLoaders((prevLoaders) => ({
+// 					...prevLoaders,
+// 					[productId]: false,
+// 				}))
+// 			}
+// 		}
+// 	}
+
+// 	const handleAddToCart = (productId, quantity, availableQuantity) => {
+// 		if (quantity < availableQuantity) {
+// 			setCountLoader((prevState) => ({ ...prevState, [productId]: true })) // Start loader
+// 			addToCart(
+// 				productId,
+// 				setIsLogin,
+// 				setShowPopup,
+// 				fetchCart,
+// 				setCartItems,
+// 				setProductLoaders
+// 			).finally(() => {
+// 				setCountLoader((prevState) => ({ ...prevState, [productId]: false })) // Stop loader
+// 			})
+// 		} else {
+// 			toast("Cannot add more than available quantity.", { type: "error" })
+// 		}
+// 	}
+
+// 	const handleRemoveFromCart = (productId) => {
+// 		setCountLoader((prevState) => ({ ...prevState, [productId]: true })) // Start loader
+// 		removeFromCart(productId, setProductLoaders, setCartItems, fetchCart).finally(() => {
+// 			setCountLoader((prevState) => ({ ...prevState, [productId]: false })) // Stop loader
+// 		})
+// 	}
+
+// 	const getProductQuantity = (productId) => {
+// 		const cartItem = cartItems.find((item) => item.productId === productId)
+// 		return cartItem ? cartItem.quantity : 0
+// 	}
+
+// 	useEffect(() => {
+// 		fetchProduct()
+// 		fetchCart(setCartItems)
+// 		fetchWishlist()
+// 	}, [productId])
+// 	console.log("Product include", checkIncludes)
+
+// 	console.log("Product details", product);
+
+// 	return (
+// 		<>
+// 			{showPopup && <LoginPopup onClose={closePopup} />}
+// 			<ToastContainer />
+// 			{loading ? (
+// 				<div className={styles.productLoader}>
+// 					<div
+// 						className="d-flex justify-content-center align-items-center"
+// 						style={{ height: "100vh" }}
+// 					>
+// 						<Primaryloader />
+// 					</div>
+// 				</div>
+// 			) : (
+// 				<div>
+// 					{product && (
+// 						<div>
+// 							<div className="product_display_back_btn">
+// 								<BackButton pageLocation="/product/all-products" />
+// 							</div>
+
+// 							<div className={styles.productContainer}>
+// 								<div className={styles.imgContainer}>
+// 									<div className={styles.innerImgContainer}>
+// 										<div className={styles.mainImg}>
+// 											<img src={product.thumbnail} alt="" />
+// 										</div>
+// 										<div className={styles.subImg}>
+// 											<div className={styles.subImg1}>
+// 												<img src={product.image[0]} alt="" />
+// 											</div>
+// 											<div className={styles.subImg1}>
+// 												<img src={product.image[1]} alt="" />
+// 											</div>
+// 										</div>
+// 									</div>
+// 								</div>
+// 								<div className={styles.title}>
+// 									<div className={styles.productPriceName}>
+// 										<h1>{product.name}</h1>
+// 										<h2> ₹{Math.round(product.PriceAfterDiscount)}
+// 											{product.discountPercentage !== 0 && <span>₹{product.price}</span>}</h2>
+// 									</div>
+// 									<div className={styles.addToCartContainer}>
+// 										<div className={styles.counts}>
+
+// 											<>
+// 												<span onClick={() => handleRemoveFromCart(product._id)}>-</span>
+// 												{countLoader[product._id] ? (<div className={styles.countLoader}>
+// 													<Primaryloader />
+// 												</div>
+// 												) : (
+// 													<p>{getProductQuantity(productId)}</p>
+// 												)}
+// 												<span onClick={() =>
+// 													handleAddToCart(
+// 														product._id,
+// 														getProductQuantity(product._id),
+// 														product.quantity
+// 													)
+// 												}>+</span>
+// 											</>
+
+// 										</div>
+// 										<button onClick={() =>
+// 											handleAddToCart(
+// 												product._id,
+// 												getProductQuantity(product._id),
+// 												product.quantity
+// 											)
+// 										}>Add To Cart</button>
+// 									</div>
+// 								</div>
+// 								<div className={styles.description}>
+// 									<h2>DESCRIPTION</h2>
+// 									<p>{product.description}</p>
+// 								</div>
+// 								{includes && includes.length > 0 && (
+// 									<div className={styles.includes}>
+// 										<h2>INCLUDES</h2>
+// 										<ul>
+// 											{includes.map((item, id) => (
+// 												<li key={id}>{item?.include}</li>
+// 											))}
+// 										</ul>
+// 									</div>
+// 								)}
+// 							</div>
+// 						</div>
+// 					)}
+// 				</div>
+// 			)}
+// 		</>
+// 	)
+// }
+
+// export default ProductDetails
+
+
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import "../../pages/CSS/product/productDetails.css";
+import LoginPopup from "../../components/LoginPopup/LoginPopup.jsx";
+import AddIcon from "../../assets/add_icon_green.png";
+import RemoveIcon from "../../assets/remove_icon_red.png";
+import Primaryloader from "../loaders/primaryloader.jsx";
+import BackButton from "./backButton.jsx";
+import HorizotalLoader from "../loaders/horizotalLoader.jsx";
+import { makeApi } from "../../api/callApi";
+import { ToastContainer, toast } from "react-toastify";
+import styles from "../../pages/CSS/product/productDetails.module.css";
+import { addToCart, removeFromCart, fetchCart } from "../../utils/productFunction.js";
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import styles from '../../pages/CSS/product/productDetails.module.css'
-import {
-	addToCart,
-	removeFromCart,
-	fetchCart,
-} from "../../utils/productFunction.js"
+
 
 function ProductDetails() {
-	const navigate = useNavigate()
-	const { productId } = useParams()
-	const [product, setProduct] = useState()
-	const [showPopup, setShowPopup] = useState(false)
-	const [includes, setIncludes] = useState()
-	const [selectedImage, setSelectedImage] = useState("")
-	const [loading, setLoading] = useState(false)
-	const [AddTocartLoader, setAddTocartLoader] = useState(false)
-	const [checkIncludes, setCheckIncludes] = useState()
-	const [AddToWishlistLoader, setAddToWishlistLoader] = useState(false)
-	const [wishlistItems, setWishlistItems] = useState([])
-	const [cartItems, setCartItems] = useState([])
-	const [isInCart, setIsInCart] = useState(false)
-	const [IsLogin, setIsLogin] = useState(false)
-	const [productLoaders, setProductLoaders] = useState({})
-	const [countLoader, setCountLoader] = useState({}) // State to track count loader
+	const navigate = useNavigate();
+	const { productId } = useParams();
+	const [product, setProduct] = useState();
+	const [showPopup, setShowPopup] = useState(false);
+	const [includes, setIncludes] = useState();
+	const [selectedImage, setSelectedImage] = useState("");
+	const [loading, setLoading] = useState(false);
+	const [AddTocartLoader, setAddTocartLoader] = useState(false);
+	const [checkIncludes, setCheckIncludes] = useState();
+	const [AddToWishlistLoader, setAddToWishlistLoader] = useState(false);
+	const [wishlistItems, setWishlistItems] = useState([]);
+	const [cartItems, setCartItems] = useState([]);
+	const [isInCart, setIsInCart] = useState(false);
+	const [IsLogin, setIsLogin] = useState(false);
+	const [productLoaders, setProductLoaders] = useState({});
+	const [countLoader, setCountLoader] = useState({});
 
 	useEffect(() => {
-		const token = localStorage.getItem("token")
+		const token = localStorage.getItem("token");
 
 		if (token) {
-			setIsLogin(true)
+			setIsLogin(true);
 		} else {
-			setIsLogin(false)
+			setIsLogin(false);
 		}
-	}, [])
-
+	}, []);
 	const fetchProduct = async () => {
 		try {
 			setLoading(true)
@@ -722,98 +982,157 @@ function ProductDetails() {
 
 	return (
 		<>
-			{showPopup && <LoginPopup onClose={closePopup} />}
+			{showPopup && <LoginPopup onClose={() => setShowPopup(false)} />}
 			<ToastContainer />
 			{loading ? (
 				<div className={styles.productLoader}>
-					<div
-						className="d-flex justify-content-center align-items-center"
-						style={{ height: "100vh" }}
-					>
+					<div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
 						<Primaryloader />
 					</div>
 				</div>
 			) : (
-				<div>
-					{product && (
-						<div>
-							<div className="product_display_back_btn">
-								<BackButton pageLocation="/product/all-products" />
-							</div>
+				product && (
+					<div>
+						<div className="product_display_back_btn">
+							<BackButton pageLocation="/product/all-products" />
+						</div>
 
-							<div className={styles.productContainer}>
-								<div className={styles.imgContainer}>
-									<div className={styles.innerImgContainer}>
-										<div className={styles.mainImg}>
-											<img src={product.thumbnail} alt="" />
+						<div className={styles.productContainer}>
+							<div className={styles.imgContainer}>
+								<div className={styles.innerImgContainer}>
+									{/* Selected Image */}
+									<div className={styles.mainImg}>
+										<img src={selectedImage} alt="Selected" />
+									</div>
+
+									{/* Thumbnails */}
+									<div className={styles.subImg}>
+										<div
+											className={`${styles.subImg1} ${selectedImage === product.thumbnail ? styles.activeImage : ""
+												}`}
+											onClick={() => handleImageClick(product.thumbnail)}
+										>
+											<img src={product.thumbnail} alt="Thumbnail" />
 										</div>
-										<div className={styles.subImg}>
-											<div className={styles.subImg1}>
-												<img src={product.image[0]} alt="" />
+										{product.image.map((imgUrl, index) => (
+											<div
+												key={index}
+												className={`${styles.subImg1} ${selectedImage === imgUrl ? styles.activeImage : ""
+													}`}
+												onClick={() => handleImageClick(imgUrl)}
+											>
+												<img src={imgUrl} alt={`Product Image ${index + 1}`} />
 											</div>
-											<div className={styles.subImg1}>
-												<img src={product.image[1]} alt="" />
-											</div>
-										</div>
+										))}
 									</div>
 								</div>
+							</div>
+							<div className={styles.productContant}>
 								<div className={styles.title}>
 									<div className={styles.productPriceName}>
 										<h1>{product.name}</h1>
-										<h2> ₹{Math.round(product.PriceAfterDiscount)}
-											{product.discountPercentage !== 0 && <span>₹{product.price}</span>}</h2>
+										<h2>
+											₹{Math.round(product.PriceAfterDiscount)}
+											{product.discountPercentage !== 0 && (
+												<span>₹{product.price}</span>
+											)}
+										</h2>
 									</div>
-									<div className={styles.addToCartContainer}>
-										<div className={styles.counts}>
 
+									{/* <div className={styles.addToCartContainer}>
+								
+									<button
+										onClick={() =>
+											handleAddToCart(product._id, getProductQuantity(product._id), product.quantity)
+										}
+									>
+										Add To Cart
+									</button>
+								</div> */}
+									<div className={styles.addToCartContainer}>
+										{!isInCart ? (
 											<>
-												<span onClick={() => handleRemoveFromCart(product._id)}>-</span>
-												{countLoader[product._id] ? (<div className={styles.countLoader}>
-													<Primaryloader />
+												{productLoaders[productId] ? (
+													<div
+														className={styles.cartLoader}
+														style={{ padding: "15px 0" }}
+													>
+														<HorizotalLoader />
+													</div>
+												) : (
+													<div
+														className={styles.addTocart}
+														onClick={() =>
+															handleAddToCart(
+																product._id,
+																getProductQuantity(product._id),
+																product.quantity
+															)
+														}
+													>
+														ADD TO CART
+													</div>
+												)}
+											</>
+										) : (
+											<div className={styles.cartIncDec}>
+												<LazyLoadImage
+													src={RemoveIcon}
+													effect="blur"
+													loading="lazy"
+													onClick={() => handleRemoveFromCart(product._id)}
+													alt=""
+												/>
+												{/* <p className="">
+													<span style={{ color: "#fff" }}>
+														{getProductQuantity(product._id)}
+													</span>
+												</p> */}
+												{countLoader[product._id] ? (<div className={styles.countLoaderss}>
+
 												</div>
 												) : (
 													<p>{getProductQuantity(productId)}</p>
 												)}
-												<span onClick={() =>
-													handleAddToCart(
-														product._id,
-														getProductQuantity(product._id),
-														product.quantity
-													)
-												}>+</span>
-											</>
-
-										</div>
-										<button onClick={() =>
-											handleAddToCart(
-												product._id,
-												getProductQuantity(product._id),
-												product.quantity
-											)
-										}>Add To Cart</button>
+												<LazyLoadImage
+													effect="blur"
+													loading="lazy"
+													onClick={() =>
+														handleAddToCart(
+															product._id,
+															getProductQuantity(product._id),
+															product.quantity
+														)
+													}
+													src={AddIcon}
+													alt=""
+												/>
+											</div>
+										)}
 									</div>
 								</div>
+
 								<div className={styles.description}>
 									<h2>DESCRIPTION</h2>
 									<p>{product.description}</p>
 								</div>
-								{includes && includes.length > 0 && (
-									<div className={styles.includes}>
-										<h2>INCLUDES</h2>
-										<ul>
-											{includes.map((item, id) => (
-												<li key={id}>{item?.include}</li>
-											))}
-										</ul>
-									</div>
-								)}
 							</div>
 						</div>
-					)}
-				</div>
+						{includes && includes.length > 0 && (
+							<div className={styles.includes}>
+								<h2>INCLUDES</h2>
+								<ul>
+									{includes.map((item, id) => (
+										<li key={id}>{item?.include}</li>
+									))}
+								</ul>
+							</div>
+						)}
+					</div>
+				)
 			)}
 		</>
-	)
+	);
 }
 
-export default ProductDetails
+export default ProductDetails;
